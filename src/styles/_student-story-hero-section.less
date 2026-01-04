@@ -1,0 +1,391 @@
+// ==========================================================================
+// STUDENT STORY PAGE - HERO SECTION
+// ==========================================================================
+// Based on Figma: https://www.figma.com/design/qVOIfc8UCZR1QPkIwhbRIX/Glenaeon-Concordia-Kit?node-id=9162-9769
+// Background only - content will be added later
+// ==========================================================================
+
+.student-story-hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.student-story-hero-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.student-story-hero-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.student-story-hero-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  // Ensure proper container for left/right split
+  max-width: 100%;
+}
+
+// White Background
+.student-story-hero-bg-white {
+  position: absolute;
+  inset: 0;
+  background-color: @base-white;
+  z-index: 0;
+}
+
+// Main Background Image
+.student-story-hero-bg-main {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+// Overlay Image
+.student-story-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 2;
+
+  img {
+    // From Figma: h-[157.33%] left-[30.35%] top-[-50.89%] w-[98.33%]
+    position: absolute;
+    height: 157.33%;
+    left: 30.35%;
+    top: -50.89%;
+    width: 98.33%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+// Dark Overlay
+.student-story-hero-bg-dark-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  pointer-events: none;
+}
+
+// Left Side Background (6 columns = 50% width)
+.student-story-hero-left-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%; // 6 columns = 50% width (720px out of 1440px)
+  height: 100vh;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+  // Ensure it covers exactly the left half
+  right: auto;
+  bottom: auto;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    width: 100%;
+  }
+}
+
+// Dark Blue Background
+.student-story-hero-left-bg-blue {
+  position: absolute;
+  inset: 0;
+  background-color: @tertiary-blue-dark; // #1c3666
+  z-index: 1;
+}
+
+// Pill Image with Blend Mode
+.student-story-hero-left-bg-pill {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 2;
+
+  img {
+    // From Figma: left-[-75%] top-[28.22%] w-[250%] h-full
+    position: absolute;
+    left: -75%;
+    top: 28.22%;
+    width: 250%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+// Content Overlay - positioned over background
+.student-story-hero-content {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+// Rotated Image (Pill) - Centered
+.student-story-hero-rotated-image {
+  position: absolute;
+  // Center horizontally and vertically
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  // From Figma: width: 381.485px, height: 515.24px
+  // Converting to percentages: width = 381.485 / 1440 = 26.49%, height = 515.24 / 900 = 57.25%
+  width: 26.49%;
+  height: 57.25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    width: 50%;
+    height: 60%;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    width: 60%;
+    height: 50%;
+  }
+}
+
+.student-story-hero-rotated-image-wrapper {
+  width: 100%;
+  height: 100%;
+  transform: rotate(357.5deg); // From Figma: 357.498deg (essentially -2.5deg)
+  transform-origin: center center;
+  position: relative;
+  border-radius: 1.25rem; // 20px
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 1.25rem; // 20px
+  }
+}
+
+.student-story-hero-rotated-image-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1.25rem; // 20px
+  pointer-events: none;
+  z-index: 1;
+}
+
+// Text Content - positioned on left side bottom
+.student-story-hero-text-content {
+  position: absolute;
+  // From Figma: left: 99.83px, buttons at y: 727px, text at y: 542px
+  // Converting to percentages: left = 99.83 / 1440 = 6.93%
+  left: 6.93%;
+  bottom: 0;
+  width: auto;
+  max-width: 25.0625rem; // 401px from Figma
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 0;
+  z-index: 2;
+  pointer-events: auto;
+  padding-bottom: 6.25rem; // 100px from bottom (900px - 727px - 51px = 122px, but using 100px for spacing)
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    left: 2rem;
+    max-width: 90%;
+    padding-bottom: 4rem;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    left: 1rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.student-story-hero-title {
+  position: absolute;
+  // From Figma: x: 259.5px, y: 335px
+  // Converting to percentages: left = 259.5 / 1440 = 18.02%, top = 335 / 900 = 37.22%
+  left: 18.02%;
+  top: 37.22%;
+  font-family: @font-family-averta;
+  font-weight: @font-weight-extrabold;
+  font-size: 9.375rem; // 150px from Figma display-1
+  line-height: 1;
+  letter-spacing: -0.375rem; // -6px from Figma
+  color: @base-white;
+  margin: 0;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 2;
+  pointer-events: none;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    left: 2rem;
+    top: 30%;
+    font-size: 6rem; // 96px
+    letter-spacing: -0.25rem; // -4px
+    white-space: normal;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    left: 1rem;
+    top: 25%;
+    font-size: 3.5rem; // 56px
+    letter-spacing: -0.125rem; // -2px
+  }
+}
+
+.student-story-hero-quote {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: @base-white;
+  margin: 0 0 1.0625rem 0; // 17px gap before buttons
+  width: 25.0625rem; // 401px from Figma
+  text-align: left;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    font-size: 0.875rem; // 14px
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: 0.8125rem; // 13px
+    margin-bottom: 0.75rem; // 12px
+  }
+}
+
+.student-story-hero-buttons {
+  display: flex;
+  gap: 1.0625rem; // 17px from Figma
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem; // 12px
+  }
+}
+
+.student-story-hero-button {
+  padding: 0.9375rem 1.25rem; // 15px 20px
+  font-family: @font-family-averta;
+  font-size: 0.9375rem; // 15px
+  font-weight: @font-weight-regular;
+  line-height: 1.4;
+  text-decoration: none;
+  border-radius: 0.625rem; // 10px
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background-color @transition-fast, transform @transition-fast, color @transition-fast;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+.student-story-hero-button-outline {
+  background-color: @base-white;
+  color: @tertiary-blue-dark;
+
+  &:hover {
+    background-color: darken(@base-white, 5%);
+    color: @tertiary-blue-dark;
+    transform: translateY(-0.0625rem); // -1px
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.student-story-hero-button-primary {
+  background-color: @primary-coral;
+  color: @base-white;
+
+  &:hover {
+    background-color: darken(@primary-coral, 5%);
+    color: @base-white;
+    transform: translateY(-0.0625rem); // -1px
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Arrow Navigation - positioned on right bottom
+.student-story-hero-navigation {
+  // From Figma: x: 1196.857px, y: 784.311px
+  // Converting to percentages: right = (1440 - 1196.857) / 1440 = 16.88%
+  // bottom = (900 - 784.311) / 900 = 12.85%
+  position: absolute;
+  right: 16.88%;
+  bottom: 12.85%;
+  z-index: 10;
+  pointer-events: none;
+
+  // Enable pointer events on buttons
+  button {
+    pointer-events: auto;
+  }
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    right: 2.5rem; // 40px
+    bottom: 2.5rem; // 40px
+    transform: scale(0.9);
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    right: 1.5rem; // 24px
+    bottom: 1.5rem; // 24px
+    transform: scale(0.8);
+  }
+}
+

@@ -1,0 +1,382 @@
+// ==========================================================================
+// FOOTER STYLES - Bootstrap First + Custom Positioning (5%)
+// ==========================================================================
+
+.site-footer {
+  position: relative;
+  /* background-image: url('../../assets/images/section-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  */
+  color: @tertiary-blue-dark;
+  position: relative;
+  padding: 8.25rem 2rem 1.5rem;
+
+  .container-fluid {
+    position: relative;
+
+    .footer__newsletter-col {
+
+      color: @tertiary-blue-dark; // #1C3666
+      font-family: @font-family-averta;
+      font-size: 1.5625rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 110%; // 27.5px
+      letter-spacing: -0.5px;
+
+      .footer__newsletter {
+
+        .footer__newsletter-title {
+          font-size: 1.5625rem;
+          line-height: 1.1;
+          letter-spacing: -0.5px;
+          color: @tertiary-blue-dark;
+          margin: 0;
+          font-weight: 400;
+        }
+
+        .footer__newsletter-form {
+          display: flex;
+          flex-direction: column;
+
+          >div {
+            gap: 1.25rem;
+          }
+
+          .footer__newsletter-input {
+            flex: 1;
+            min-width: 0;
+            padding: 0.625rem 0 0 0; // Remove bottom padding to eliminate gap
+            border: none;
+            border-bottom: none; // No border, line acts as visual guide
+            background: transparent;
+            font-family: @font-family-averta;
+            font-size: 0.9375rem;
+            line-height: 1.4;
+            color: @tertiary-blue-dark;
+            outline: none;
+            border-bottom: 1px solid rgba(28, 54, 102, 0.21);
+
+
+            &::placeholder {
+              color: fade(@tertiary-blue-dark, 60%);
+            }
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          // Sign Up Button
+          .btn-primary {
+            background-color: @tertiary-blue-dark;
+            border-color: @tertiary-blue-dark;
+            color: @base-white;
+            padding: 0.9375rem 1.125rem;
+            border-radius: 10px;
+            font-size: 1.125rem;
+            line-height: 1.15;
+
+            &:hover {
+              background-color: darken(@tertiary-blue-dark, 10%);
+              border-color: darken(@tertiary-blue-dark, 10%);
+            }
+          }
+
+          .footer__newsletter-line {
+            flex: 1;
+            height: 2px;
+            min-width: 0;
+            display: block;
+            margin-top: -2px;
+          }
+
+          .footer__newsletter-line-spacer {
+            width: 107px; // Match button width (from btn-lg padding + text)
+            height: 48px; // Match button height
+          }
+        }
+      }
+
+
+
+    }
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+
+
+    .footer__title {
+      font-family: @font-family-born-ready;
+      font-size: 6.25rem;
+      line-height: 1;
+      color: @tertiary-blue-dark;
+      margin: 0;
+      font-weight: 400;
+
+
+      @media (max-width: @breakpoint-lg) {
+        font-size: 3.75rem;
+      }
+
+      @media (max-width: @breakpoint-md) {
+        font-size: 2.5rem;
+        text-align: center;
+      }
+    }
+
+
+    .footer__acknowledgement {
+
+      color: @tertiary-blue-dark; // #1C3666
+      font-family: @font-family-averta; // Averta
+      font-size: 0.8125rem; // font-size-body-small
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; // 18.2px
+
+      p {
+        margin: 0;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+    }
+
+    .footer__links-container {
+      .footer-links-columns {
+        display: flex;
+        gap: 1rem 3.75rem;
+      }
+
+      .footer__social-col {
+        flex: 0 0 auto; // Auto width based on content
+      }
+
+
+
+
+    }
+  }
+}
+
+
+
+
+// Footer Links Container - Groups Links, Social, and Contact together
+
+
+// Row 2 spacing - More gap between newsletter and acknowledgement
+.footer__row-2 {
+  margin-top: 5rem !important; // Increased gap from Row 1
+}
+
+// Footer Links - Now using Bootstrap Grid (removed absolute positioning)
+
+.footer__link {
+  color: @tertiary-blue-dark;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+  margin-bottom: 0.3125rem; // spacing-xs from Figma
+
+  &:hover {
+    color: @primary-coral;
+  }
+}
+
+// Contact column has 10px gap (spacing-sm)
+.footer__links div:last-child {
+  gap: 0.625rem !important; // spacing-sm from Figma
+}
+
+// Utilities - Bootstrap Grid (2 columns)
+.footer__utilities {
+
+  position: relative; // For absolute positioning of button
+  display: flex;
+  gap: 2rem;
+
+  p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    color: @tertiary-blue-dark;
+  }
+
+  .footer__language-btn {
+    color: @tertiary-blue-dark;
+    border-color: @tertiary-blue-dark;
+    background-color: transparent;
+    padding: 0.625rem 0.8125rem;
+    border-radius: 5px;
+    font-size: 0.9375rem;
+    line-height: 1.15;
+    border: 1px solid;
+
+    &:hover {
+      background-color: @tertiary-blue-dark;
+      border-color: @tertiary-blue-dark;
+      color: @base-white;
+    }
+  }
+}
+
+// Member Logos - Bootstrap Grid (3 columns), aligned with upper links
+.footer__logos {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  mix-blend-mode: luminosity;
+
+
+  img {
+    width: 9.84375rem;
+    height: auto;
+  }
+}
+
+// Large GLENAEON Logo
+
+
+.footer__brand-logo {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  padding-top: 2.5rem;
+  padding-bottom: 1.25rem;
+}
+
+// Bottom Copyright Bar - Bootstrap Grid (border-top removed)
+
+// Small text color override
+.site-footer .small {
+  color: @tertiary-blue-dark;
+}
+
+.footer__brand-inner {
+  font-size: 17.5vw;
+  font-weight: bold;
+  text-align: center;
+  line-height: 100%;
+}
+
+.footer__brand-text {
+  display: inline-block;
+  white-space: pre;
+}
+
+.footer__brand-char-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.footer__brand-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+// Responsive
+@media (max-width: @breakpoint-lg) {
+  .site-footer {
+    min-height: auto;
+    padding: 2.5rem 0;
+  }
+
+
+
+  .footer__title {
+    text-align: center;
+  }
+
+  .footer__links .col-auto {
+    padding-right: 1.25rem;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+
+@media (max-width:1400px) {
+  .site-footer .container-fluid .footer__title {
+    font-size: 5rem;
+  }
+
+}
+
+@media (max-width:1200px) {
+  .site-footer .container-fluid .footer__title {
+    font-size: 4.25rem;
+  }
+
+
+}
+
+@media (min-width:768px) and (max-width:992px) {
+
+  .site-footer {
+    .footer__title {
+      text-align: left;
+    }
+  }
+}
+
+@media (max-width:767px) {
+  .site-footer {
+
+
+    .footer__newsletter {
+      margin-bottom: 5rem;
+      gap: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer__bottom {
+      div {
+        >div {
+          flex-direction: column;
+          gap: 1rem;
+
+          nav {
+            white-space: break-spaces;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .footer__link {
+              white-space: normal;
+
+            }
+
+          }
+        }
+      }
+    }
+
+    .footer__logos {
+      margin: 3rem 0 0 0;
+    }
+
+    .footer__links-container {
+      .footer-links-columns {
+        gap: 1rem 1.5rem;
+      }
+    }
+  }
+
+}

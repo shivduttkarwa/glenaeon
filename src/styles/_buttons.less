@@ -1,0 +1,163 @@
+// ==========================================================================
+// BUTTON STYLES
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// BASE BUTTON
+// --------------------------------------------------------------------------
+
+.btn-custom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: @spacing-sm;
+  padding: @btn-padding-y @btn-padding-x;
+  font-family: @font-primary;
+  font-size: @font-size-base;
+  font-weight: @font-weight-regular;
+  line-height: @line-height-normal;
+  text-align: center;
+  text-decoration: none;
+
+  border: none;
+  border-radius: @btn-radius;
+  cursor: pointer;
+  transition: background-color @transition-fast,
+              transform @transition-fast,
+              box-shadow @transition-fast;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid @color-navy;
+    outline-offset: 2px;
+  }
+
+}
+
+// --------------------------------------------------------------------------
+// BUTTON VARIANTS
+// --------------------------------------------------------------------------
+
+// Primary Button - Blue Dark
+.btn-primary-blue {
+  &:extend(.btn-custom);
+  background-color: @color-blue-dark;
+  color: @color-white;
+
+  &:hover {
+    background-color: darken(@color-blue-dark, 5%);
+    color: @color-white;
+  }
+
+  &:active {
+    background-color: darken(@color-blue-dark, 10%);
+  }
+}
+
+// Primary Button - Coral
+.btn-primary-coral {
+  &:extend(.btn-custom);
+  background-color: @color-coral;
+  color: @color-white;
+
+  &:hover {
+    background-color: darken(@color-coral, 5%);
+    color: @color-white;
+  }
+
+  &:active {
+    background-color: darken(@color-coral, 10%);
+  }
+}
+
+// Secondary Button - Outline White
+.btn-outline-white {
+  &:extend(.btn-custom);
+  background-color: transparent;
+  color: @color-white;
+  border: 1.5px solid @color-white;
+
+  &:hover {
+    background-color: @color-white;
+    color: @color-navy;
+  }
+}
+
+// Secondary Button - Outline Navy
+.btn-outline-navy {
+  &:extend(.btn-custom);
+  background-color: transparent;
+  color: @color-navy;
+  border: 1.5px solid @color-navy;
+
+  &:hover {
+    background-color: @color-navy;
+    color: @color-white;
+  }
+}
+
+.btn-solid-white {
+  &:extend(.btn-custom);
+  background-color: @color-white;
+  color: @color-navy;
+  padding: 0.9375rem 1.5rem;
+  &:hover {
+    background-color: @color-navy;
+    color: @color-white;
+  }
+}
+
+// --------------------------------------------------------------------------
+// BUTTON SIZES
+// --------------------------------------------------------------------------
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: @font-size-sm;
+}
+
+.btn-lg {
+  padding: 1.25rem;
+
+}
+
+// --------------------------------------------------------------------------
+// ICON BUTTON HOVER (Audio button)
+// --------------------------------------------------------------------------
+
+.audio-btn a,
+.audio-btn button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 50%;
+  transition: transform 0.3s ease-out;
+}
+
+.audio-btn svg {
+  display: block;
+  transform-origin: 50% 50%;
+  transition: transform 0.3s ease-out;
+}
+
+.audio-btn a:hover,
+.audio-btn a:focus-visible,
+.audio-btn button:hover,
+.audio-btn button:focus-visible {
+  transform: scale(1.125);
+}
+
+.audio-btn a:hover svg,
+.audio-btn a:focus-visible svg,
+.audio-btn button:hover svg,
+.audio-btn button:focus-visible svg {
+  transform: scale(1.25);
+}
+

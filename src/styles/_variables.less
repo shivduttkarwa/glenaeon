@@ -1,0 +1,209 @@
+// ==========================================================================
+// DESIGN TOKENS - Figma Variables (Exact Naming Match)
+// ==========================================================================
+// Variable Set: Glenaeon Concordia Kit
+// Based on: https://www.figma.com/design/qVOIfc8UCZR1QPkIwhbRIX/Glenaeon-Concordia-Kit
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// COLORS - Primary
+// --------------------------------------------------------------------------
+
+@primary-blue: #183153;
+@primary-coral: #db574e;
+
+// --------------------------------------------------------------------------
+// COLORS - Tertiary
+// --------------------------------------------------------------------------
+
+@tertiary-blue-dark: #1c3666;
+@color-tertiary-blue-dark: @tertiary-blue-dark; // Alias for backward compatibility
+
+// --------------------------------------------------------------------------
+// COLORS - Tints
+// --------------------------------------------------------------------------
+
+@tints-sand-10: #ffffff;
+@tints-sand-20: #faf7f4;
+@tints-sand-30: #f5f0eb;
+@tints-sand-40: #f5f3ed;
+
+// --------------------------------------------------------------------------
+// COLORS - Base
+// --------------------------------------------------------------------------
+
+@base-white: #ffffff;
+@base-black: #000000;
+
+// --------------------------------------------------------------------------
+// FONT FAMILY
+// --------------------------------------------------------------------------
+
+@font-family-averta: 'Averta', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+@font-family-born-ready: 'Born Ready', cursive;
+
+// --------------------------------------------------------------------------
+// FONT WEIGHT
+// --------------------------------------------------------------------------
+
+@font-weight-regular: 400;
+@font-weight-medium: 500;
+@font-weight-semibold: 600;
+@font-weight-bold: 700;
+@font-weight-extrabold: 800;
+
+// --------------------------------------------------------------------------
+// FONT SIZE
+// --------------------------------------------------------------------------
+
+@font-size-xs: 0.75rem;
+@font-size-sm: 0.875rem;
+@font-size-base: 0.9375rem;
+@font-size-lg: 1.25rem;
+@font-size-xl: 1.5rem;
+@font-size-2xl: 2rem;
+@font-size-3xl: 2.5rem;
+@font-size-h1: 3.75rem;
+@font-size-display-2: 6.25rem;
+@font-size-display-1: 9.375rem;
+
+// --------------------------------------------------------------------------
+// LINE HEIGHT
+// --------------------------------------------------------------------------
+
+@line-height-none: 1;
+@line-height-display: 0.9;
+@line-height-tight: 1.2;
+@line-height-snug: 1.3;
+@line-height-normal: 1.4;
+@line-height-relaxed: 1.5;
+@line-height-loose: 1.6;
+
+// --------------------------------------------------------------------------
+// LETTER SPACING
+// --------------------------------------------------------------------------
+
+@letter-spacing-tight: -0.4px;
+@letter-spacing-normal: 0;
+@letter-spacing-wide: 0.5px;
+@letter-spacing-display: -3px;
+
+// --------------------------------------------------------------------------
+// SPACING
+// --------------------------------------------------------------------------
+
+@spacing-xs: 0.25rem;
+@spacing-sm: 0.625rem;
+@spacing-md: 1.25rem;
+@spacing-lg: 1.875rem;
+@spacing-xl: 2.5rem;
+@spacing-2xl: 3.75rem;
+@spacing-3xl: 5rem;
+
+// --------------------------------------------------------------------------
+// BORDER RADIUS
+// --------------------------------------------------------------------------
+
+@radius-sm: 0.25rem;
+@radius-md: 0.5rem;
+@radius-lg: 0.625rem;
+@radius-xl: 1rem;
+@radius-full: 3.125rem;
+
+// --------------------------------------------------------------------------
+// SHADOWS
+// --------------------------------------------------------------------------
+
+@shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+@shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+@shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+@shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+// --------------------------------------------------------------------------
+// TRANSITIONS
+// --------------------------------------------------------------------------
+
+@transition-fast: 150ms ease;
+@transition-base: 250ms ease;
+@transition-slow: 350ms ease;
+
+// --------------------------------------------------------------------------
+// Z-INDEX LAYERS
+// --------------------------------------------------------------------------
+
+@z-dropdown: 1000;
+@z-sticky: 1020;
+@z-fixed: 1030;
+@z-modal-backdrop: 1040;
+@z-modal: 1050;
+@z-popover: 1060;
+@z-tooltip: 1070;
+
+// --------------------------------------------------------------------------
+// BREAKPOINTS (Bootstrap aligned)
+// --------------------------------------------------------------------------
+
+@breakpoint-sm: 576px;
+@breakpoint-md: 768px;
+@breakpoint-lg: 992px;
+@breakpoint-xl: 1200px;
+@breakpoint-xxl: 1400px;
+
+// --------------------------------------------------------------------------
+// COMPONENT SPECIFIC
+// --------------------------------------------------------------------------
+
+// Header
+@header-height: 5rem;
+@header-padding-x: 1.875rem;
+@header-padding-y: 0;
+@header-gap: 2.0625rem;
+@header-btn-gap: 1.25rem;
+
+// Buttons
+@btn-padding-x: 1.25rem;
+@btn-padding-y: 0.625rem;
+@btn-radius: @radius-lg;
+
+// Hero (based on 1440x900 Figma frame)
+@hero-frame-width: 1440px;
+@hero-frame-height: 900px;
+@hero-content-left: 75px;
+@hero-content-top-script: 479px;
+@hero-content-top-bold: 617px;
+@hero-desc-left: 1088px;
+@hero-desc-top: 515px;
+@hero-desc-width: 321px;
+@hero-bold-width: 869px;
+@hero-overlay-color: rgba(0, 0, 0, 0.2);
+
+// Arrow Navigation (based on 1440x900 Figma frame)
+@arrow-group-right: 80px;
+@arrow-group-bottom: 80px;
+@arrow-width: 3.5rem;
+@arrow-height: 3.5rem;
+@arrow-gap: 13px;
+
+// ==========================================================================
+// LEGACY ALIASES (for backward compatibility)
+// ==========================================================================
+// These map old variable names to new Figma-style names
+
+// Colors
+@color-white: @base-white;
+@color-black: @base-black;
+@color-beige: @tints-sand-40;
+@color-navy: @primary-blue;
+@color-navy-dark: @tertiary-blue-dark;
+@color-blue-dark: @tertiary-blue-dark;
+@color-coral: @primary-coral;
+@color-sand-20: @tints-sand-20;
+@color-sand-30: @tints-sand-30;
+
+// Typography
+@font-primary: @font-family-averta;
+@font-script: @font-family-born-ready;
+
+// Alpha Colors (not in Figma variables, but keeping for compatibility)
+@color-black-alpha-800: rgba(0, 0, 0, 0.7);
+@color-white-alpha-90: rgba(255, 255, 255, 0.9);

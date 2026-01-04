@@ -1,0 +1,479 @@
+// ==========================================================================
+// GLENAEON EDUCATION SECTION
+// ==========================================================================
+
+.glenaeon-education-section {
+
+  padding: 7rem 0;
+}
+
+.glenaeon-education-title {
+  .script-title {
+    font-family: 'Born Ready', cursive;
+    font-size: 2.75rem;
+    font-weight: 400;
+    line-height: 0.9;
+    color: @color-navy-dark;
+    display: block;
+
+  }
+
+  .caps-title {
+    font-family: @font-family-averta;
+    font-size: 3.75rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.075rem;
+    text-transform: uppercase;
+    color: @color-navy-dark;
+    margin-bottom: 5.25rem;
+  }
+}
+
+.glenaeon-education-section {
+  .body-large {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    letter-spacing: -0.025rem;
+    color: @color-navy-dark;
+    margin-bottom: 2.75rem;
+  }
+
+  .body-base-blocks {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem 2.125rem;
+
+    .body-base {
+      font-size: 0.9375rem;
+      line-height: 1.4;
+      flex: 51% 0 0;
+      color: @color-navy-dark;
+    }
+  }
+
+}
+
+// --------------------------------------------------------------------------
+// THREE TIER DIAGRAM
+// --------------------------------------------------------------------------
+
+.three-tier-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// Header Card
+.three-tier-header {
+  position: relative;
+  width: 20.3625rem;
+  height: 43.25625rem;
+  border-radius: 1.125rem;
+  overflow: hidden;
+  background: url(../../assets/images/three-tear-block-bg.png) no-repeat;
+  background-size: cover;
+
+
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    border-radius: 1.125rem;
+  }
+
+  &__content {
+    position: absolute;
+    top: 1.40625rem;
+    left: 2.599375rem;
+    width: 15.164313rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.125rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  &__title {
+    font-family: @font-family-averta;
+    color: var(--basic-white);
+    font-size: 1.40625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.0703125rem;
+    line-height: 1.1;
+    margin: 0;
+    width: 11.564313rem;
+  }
+
+  &__text {
+    font-family: @font-family-averta;
+    font-size: 0.84375rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
+// Tier Pyramid
+.three-tier-pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  position: absolute;
+  bottom: 1.5625rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// Individual Tier
+.tier {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+
+  &__outer {
+    grid-column: 1;
+    grid-row: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+  }
+
+  &__bg {
+    grid-column: 1;
+    grid-row: 1;
+    display: block;
+    width: calc(100% - 1rem);
+    height: auto;
+    z-index: 2;
+
+  }
+
+  &__content {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.225rem;
+    width: 9.50625rem;
+    z-index: 3;
+    padding-top: 0.5rem;
+  }
+
+  &__number {
+    font-family: @font-family-averta;
+    font-size: 1.125rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1125rem;
+    line-height: 1.3;
+  }
+
+  &__subtitle {
+    font-family: @font-family-averta;
+    font-size: 0.84375rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__desc {
+    font-family: @font-family-averta;
+    font-size: 0.84375rem;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+}
+
+// Tier sizes from Figma
+.tier-3 {
+  width: 14.035rem;
+
+
+}
+
+.tier-2 {
+  width: 18.406563rem;
+
+
+}
+
+.tier-1 {
+  width: 22.8295rem;
+
+
+
+  .tier__desc {
+    width: 13.589313rem;
+  }
+}
+
+// Wrapper to position pyramid over header
+.three-tier-diagram {
+  position: relative;
+
+  .three-tier-header {
+    position: relative;
+  }
+
+  .three-tier-pyramid {
+    position: absolute;
+    bottom: 1.5625rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+// --------------------------------------------------------------------------
+// RESPONSIVE
+// --------------------------------------------------------------------------
+
+@media (max-width: 1199px) {
+  .three-tier-header {
+    width: 17.5rem;
+    height: 37.5rem;
+
+    &__content {
+      left: 1.875rem;
+      width: 13.75rem;
+    }
+
+    &__title {
+      font-size: 1.25rem;
+      width: 10rem;
+    }
+
+    &__text {
+      font-size: 0.75rem;
+    }
+  }
+
+  .tier-3 {
+    width: 11.875rem;
+  }
+
+  .tier-2 {
+    width: 15.625rem;
+  }
+
+  .tier-1 {
+    width: 19.375rem;
+  }
+
+  .tier__number {
+    font-size: 1rem;
+  }
+
+  .tier__subtitle,
+  .tier__desc {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .glenaeon-education-title .caps-title {
+    font-size: 2.5rem;
+  }
+
+  .glenaeon-education-section {
+
+    .col-lg-6,
+    .col-lg-5 {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .three-tier-diagram {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+
+.glenaeon-education-section{
+padding: 4rem 0;
+}
+
+
+  .glenaeon-education-title {
+    .script-title {
+      font-size: 1.25rem;
+    }
+
+    .caps-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .three-tier-header {
+    width: 16.25rem;
+    height: 34.375rem;
+
+    &__content {
+      left: 1.5625rem;
+      width: 13.125rem;
+    }
+
+    &__title {
+      font-size: 1.125rem;
+      width: 9.375rem;
+    }
+
+    &__text {
+      font-size: 0.6875rem;
+    }
+  }
+
+  .tier-3 {
+    width: 10.625rem;
+  }
+
+  .tier-2 {
+    width: 13.75rem;
+  }
+
+  .tier-1 {
+    width: 16.875rem;
+
+    .tier__desc {
+      width: 11.25rem;
+    }
+  }
+
+  .tier__number {
+    font-size: 0.875rem;
+  }
+
+  .tier__subtitle,
+  .tier__desc {
+    font-size: 0.6875rem;
+  }
+}
+
+// --------------------------------------------------------------------------
+// EDUCATION STATS SUBSECTION
+// --------------------------------------------------------------------------
+
+.education-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.education-stat {
+  flex: 1;
+
+  &__number {
+    font-family: @font-family-averta;
+    font-size: 7.5rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.3rem;
+    color: #1c3666;
+    margin: 0 0 1.25rem 0;
+  }
+
+  &__line {
+    display: block;
+    width: 100%;
+    max-width: 21.4175rem;
+    height: 0.34375rem;
+    margin: 0 auto 1.25rem;
+  }
+
+  &__text {
+    font-family: @font-family-averta;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.025rem;
+    color: #1c3666;
+    margin: 0;
+
+  }
+}
+
+
+@media (min-width:768px) and (max-width:992px) {
+  .glenaeon-education-section {
+    .container-fluid {
+      padding: 0 2.5rem;
+
+      .body-base-blocks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 2.125rem;
+
+        .body-base {
+          flex: 100% 0 0;
+        }
+      }
+
+      .education-stats{
+        gap: 0;
+        .education-stat{
+         flex: 0 0 calc(33.33% - 1.5625rem);
+         text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .education-stats {
+    flex-wrap: wrap;
+    gap: 3.125rem;
+  }
+
+  .education-stat {
+    flex: 0 0 calc(50% - 1.5625rem);
+
+    &__number {
+      font-size: 5rem;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .education-stats {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .education-stat {
+    flex: 0 0 100%;
+
+    &__number {
+      font-size: 3.75rem;
+      letter-spacing: -0.15rem;
+      text-align: center;
+    }
+
+    &__text {
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+
+  .three-tier-diagram {
+    transform: scale(1.325);
+    margin: 5rem 0;
+  }
+
+}

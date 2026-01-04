@@ -1,0 +1,145 @@
+// ==========================================================================
+// REUSABLE VIDEO CARD COMPONENT
+// ==========================================================================
+// This component can be used anywhere in the website for video testimonial cards
+// Uses scoped class names: .video-card, .video-card-inner, .video-card-overlay, etc.
+
+.video-card {
+  width: 100%;
+  position: relative;
+  border: 7.063px solid @color-white;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 300 / 503.731;
+  }
+}
+
+.video-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+
+  .video-card-media {
+    display: flex;
+    height: 100%;
+
+    .testimonial-video,
+    img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 300/504;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}
+
+.video-card-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 67.244%, rgba(0, 0, 0, 0.65) 100%);
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 1;
+  padding: 2rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.video-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+.video-card-info {
+  color: @color-white;
+  text-align: left;
+  pointer-events: auto;
+}
+
+.video-card-name {
+  font-family: @font-primary;
+  font-weight: @font-weight-bold;
+  font-size: 1.5625rem;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 0 0 0 0;
+}
+
+.video-card-title {
+  font-family: @font-primary;
+  font-weight: @font-weight-regular;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.video-card-play-wrapper {
+  pointer-events: auto;
+}
+
+.video-card-play-button {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: none;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+
+.video-card-play-circle {
+  position: relative;
+  width: 3.375rem;
+  height: 3.375rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../../assets/images/circle-btn-bg.svg) no-repeat center;
+  background-size: cover;
+}
+
+.video-card-play-icon {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  color: @color-white;
+
+  .icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity @transition-fast ease;
+  }
+
+  .icon-close {
+    opacity: 0;
+  }
+}
+
+.video-card-play-button.is-active {
+  .icon-play {
+    opacity: 0;
+  }
+
+  .icon-close {
+    opacity: 1;
+  }
+}
+

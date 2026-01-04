@@ -1,0 +1,223 @@
+// ==========================================================================
+// STAFF SECTION
+// ==========================================================================
+
+.staff-section {
+  padding: 6.5rem 0 12rem;
+
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    text-align: center;
+
+    .title-script {
+      font-family: @font-script;
+      font-weight: @font-weight-regular;
+      font-size: @font-size-h1;
+      line-height: 1;
+      letter-spacing: 0;
+      color: @color-blue-dark;
+      text-align: center;
+      margin: 0;
+
+      @media (max-width: (@breakpoint-md - 1)) {
+        font-size: clamp(2.25rem, 8vw, 3.75rem);
+      }
+    }
+
+    .title-bold {
+      font-family: @font-primary;
+      font-weight: @font-weight-extrabold;
+      font-size: @font-size-h1;
+      line-height: 1;
+      letter-spacing: -0.125rem;
+      text-transform: uppercase;
+      color: @color-blue-dark;
+      text-align: center;
+      margin: 0;
+
+      @media (max-width: (@breakpoint-md - 1)) {
+        font-size: clamp(2.25rem, 8vw, 3.75rem);
+        letter-spacing: -0.075rem;
+      }
+    }
+  }
+
+  // Filter Tabs
+  .filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: @spacing-md;
+    flex-wrap: wrap;
+    margin-bottom: 8.69rem;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      gap: @spacing-sm;
+      margin-bottom: 3.875rem;
+    }
+  }
+
+  .filter-tab {
+    font-family: @font-primary;
+    font-weight: @font-weight-regular;
+    font-size: @font-size-base;
+    line-height: 1.4;
+    color: @color-blue-dark;
+    background-color: @base-white;
+    border-radius: @radius-lg;
+    padding: @spacing-sm @spacing-md;
+    cursor: pointer;
+    transition: background-color @transition-base, color @transition-base, border-color @transition-base;
+
+    border: none;
+
+    &:hover {
+      background-color: @color-blue-dark;
+      color: @color-white;
+    }
+
+    &--active {
+      background-color: @color-coral;
+      color: @color-white;
+      border-color: @color-coral;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: @font-size-sm;
+      padding: 0.5rem @spacing-sm;
+    }
+  }
+
+  // Staff Grid
+
+  .grid.row {
+    margin: 0 -1.5625rem;
+    gap: 3.125rem 0;
+
+    >div {
+      padding: 0 1.5625rem;
+
+      // Isotope hidden items - only hide, don't affect layout
+      &.isotope-hidden {
+        display: none !important;
+      }
+
+      .grid_card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+
+
+        .image {
+          width: 100%;
+          max-width: 100%;
+          aspect-ratio: 1/1;
+          position: relative;
+          margin-bottom: 1.25rem;
+
+
+          .frame {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+          }
+
+          >img {
+
+            width: 99%;
+            height: 98%;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0.125rem;
+
+          }
+
+
+
+
+        }
+
+        .name {
+          font-family: @font-primary;
+          font-weight: @font-weight-semibold;
+          font-size: 1.125rem;
+          line-height: 1.3;
+          color: @color-blue-dark;
+          margin: 0 0 0.3125rem;
+
+
+          @media (max-width: (@breakpoint-md - 1)) {
+            font-size: 1rem;
+          }
+        }
+
+        .position {
+          font-family: @font-primary;
+          font-weight: @font-weight-regular;
+          font-size: 0.875rem;
+          line-height: 1.4;
+          color: @color-blue-dark;
+          margin: 0;
+          opacity: 0.8;
+
+          @media (max-width: (@breakpoint-md - 1)) {
+            font-size: 0.8125rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Custom animations removed - Isotope handles transitions
+
+
+@media (max-width:767px) {
+  .staff-section {
+    .grid.row {
+      margin: inherit;
+      // Reset Isotope container styles on mobile - restore Bootstrap flex layout
+      position: relative !important;
+      height: auto !important;
+      display: flex !important;
+      flex-wrap: wrap !important;
+
+      >div {
+        padding: inherit;
+        // Allow Isotope to animate but ensure Bootstrap controls final layout
+        position: relative !important;
+        // Don't force transform to none - allow Isotope animations
+        // But ensure left/top don't interfere with flexbox
+        left: auto !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        // Preserve Bootstrap col-6 width (2 cards per row = 50% each)
+        width: 50% !important;
+        max-width: 50% !important;
+        flex: 0 0 50% !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        // Ensure transitions work for smooth animations
+        transition: transform 0.36s ease, opacity 0.36s ease !important;
+
+        .grid_card .image {
+          max-width: 90%;
+          margin: 0 auto 1.25rem;
+
+          >img{
+            width: 98%;
+          }
+        }
+      }
+    }
+  }
+}

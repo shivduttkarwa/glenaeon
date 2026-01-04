@@ -1,0 +1,266 @@
+// ==========================================================================
+// WHAT MAKES GLENAEON SPECIAL SECTION
+// ==========================================================================
+
+.what-makes-glenaeon-special-section {
+  position: relative;
+  padding: 3rem 0;
+  overflow: hidden;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    padding: 3.75rem 0;
+  }
+}
+
+// Curved Line Background
+.what-makes-glenaeon-special-curved-line {
+     position: absolute;
+    top: 8.53rem;
+    left: 4rem;
+    right: 4rem;
+    bottom: 0;
+    z-index: 1;
+    margin:auto;
+
+  img {
+       display: flex;
+    height: 100%;
+    width: 100%;
+    opacity:1;
+  }
+
+  // Hide on mobile devices
+  @media (max-width: (@breakpoint-md - 1)) {
+    display: none !important;
+  }
+}
+
+// Title Group
+.what-makes-glenaeon-special-title-group {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 3rem;
+  text-align: center;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    margin-bottom: 2rem;
+  }
+}
+
+.what-makes-glenaeon-special-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  line-height: @line-height-none;
+  color: @tertiary-blue-dark;
+  font-size: 3.75rem;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: clamp(2.5rem, 8vw, 3.75rem);
+  }
+}
+
+.what-makes-glenaeon-special-title-script {
+  font-family: @font-family-born-ready;
+  font-weight: @font-weight-regular;
+  font-size: 3.75rem;
+  line-height: @line-height-none;
+  letter-spacing: 0;
+  color: @tertiary-blue-dark;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: clamp(2.5rem, 8vw, 3.75rem);
+  }
+}
+
+.what-makes-glenaeon-special-title-bold {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-extrabold;
+  font-size: 3.75rem;
+  line-height: @line-height-none;
+  letter-spacing: -0.075rem;
+  text-transform: uppercase;
+  color: @tertiary-blue-dark;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: clamp(2.5rem, 8vw, 3.75rem);
+    letter-spacing: -0.05rem;
+  }
+}
+
+// Item Container
+.what-makes-glenaeon-special-item {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 4rem;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    margin-bottom: 2.5rem;
+  }
+}
+
+// Content
+.what-makes-glenaeon-special-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0 2.5rem;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    padding: 0 1rem;
+    margin-top: 2rem;
+  }
+}
+
+.what-makes-glenaeon-special-subtitle {
+  font-family: @font-family-born-ready;
+  font-weight: @font-weight-regular;
+  font-size: 1.5625rem;
+  line-height: 0.9;
+  letter-spacing: 0;
+  color: @tertiary-blue-dark;
+  margin: 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: clamp(1.25rem, 4vw, 1.5625rem);
+  }
+}
+
+.what-makes-glenaeon-special-heading {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-extrabold;
+  font-size: 2.1875rem;
+  line-height: @line-height-none;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: @tertiary-blue-dark;
+  margin: 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: clamp(1.5rem, 5vw, 2.1875rem);
+  }
+}
+
+.what-makes-glenaeon-special-age {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  letter-spacing: -0.025rem;
+  color: @tertiary-blue-dark;
+  margin: 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: clamp(1rem, 3.5vw, 1.25rem);
+  }
+}
+
+.what-makes-glenaeon-special-description {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: @tertiary-blue-dark;
+  margin: 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: 0.875rem;
+  }
+}
+
+.what-makes-glenaeon-special-button {
+  padding: 0.9375rem 1.5625rem;
+  font-family: @font-family-averta;
+  font-size: 0.9375rem;
+  font-weight: @font-weight-regular;
+  line-height: 1.4;
+  color: @base-white;
+  background-color: @primary-coral;
+  border-radius: 0.625rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background-color @transition-fast, transform @transition-fast;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  align-self: flex-start;
+
+  &:hover {
+    background-color: darken(@primary-coral, 5%);
+    color: @base-white;
+    transform: translateY(-0.0625rem);
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+// CTA Wrapper
+.what-makes-glenaeon-special-cta-wrapper {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 3rem;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    margin-top: 2rem;
+  }
+}
+
+.what-makes-glenaeon-special-cta-button {
+  padding: 0.9375rem 1.5625rem;
+  font-family: @font-family-averta;
+  font-size: 0.9375rem;
+  font-weight: @font-weight-regular;
+  line-height: 1.4;
+  color: @base-white;
+  background-color: @primary-coral;
+  border-radius: 0.625rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background-color @transition-fast, transform @transition-fast;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: darken(@primary-coral, 5%);
+    color: @base-white;
+    transform: translateY(-0.0625rem);
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    width: 100%;
+    max-width: 18.75rem;
+    white-space: normal;
+  }
+}
+

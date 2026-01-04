@@ -1,0 +1,129 @@
+// ==========================================================================
+// LOCAL NAVIGATION / FILTER SECTION
+// ==========================================================================
+
+.local-nav-section {
+  padding: 7.5rem 0 5rem; // 120px top, 80px bottom (gap to content)
+  position: relative;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    padding: 5.625rem 0 3.75rem; // 90px top, 60px bottom
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 3.75rem 0 2.5rem; // 60px top, 40px bottom
+  }
+
+  // Ensure buttons are properly centered
+  .local-nav-container {
+    max-width: 100%;
+  }
+
+  .container-fluid {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Navigation Container (Filter Buttons - NOT Isotope container)
+  .local-nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem; // 10px
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  // Navigation Item (Filter Button) - NOT an Isotope item
+  .local-nav-item {
+    background-color: @base-white;
+    border: 1px solid @base-white;
+    border-style: solid;
+    border-radius: @radius-lg; // 10px (0.625rem) - matches Figma rounded-[var(--radius/sm,10px)]
+    padding: 0.9375rem @spacing-md; // 15px vertical, 20px horizontal (matches Figma)
+    font-family: @font-family-averta;
+    font-weight: @font-weight-bold;
+    font-size: @font-size-base;
+    line-height: @line-height-none;
+    color: @tertiary-blue-dark;
+    cursor: pointer;
+    transition: all @transition-base;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box; // Ensure border is included in width/height
+
+    // Hover state
+    &:hover {
+      background-color: @tints-sand-20;
+      border-color: @tints-sand-20;
+    }
+
+    // Active state
+    &.is-active {
+      background-color: @tertiary-blue-dark;
+      border: 1px solid @tertiary-blue-dark;
+      border-style: solid;
+      color: @base-white;
+
+      &:hover {
+        background-color: @tertiary-blue-dark;
+        border-color: @tertiary-blue-dark;
+        opacity: 0.9;
+      }
+    }
+
+
+
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: @font-size-sm;
+      padding: 0.75rem @spacing-md;
+    }
+  }
+}
+
+// ==========================================================================
+// LOCAL NAVIGATION CONTENT SECTION (Filterable Content)
+// ==========================================================================
+
+.local-nav-content-section {
+  padding: 0 0 7.5rem; // 0 top (gap handled by filter section), 120px bottom
+  position: relative;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    padding: 0 0 5.625rem; // 90px bottom
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 0 0 3.75rem; // 60px bottom
+  }
+
+  .container-fluid {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Content Container (Isotope container)
+  .local-nav-content-container {
+    position: relative;
+    width: 100%;
+  }
+
+  // Content Item (Isotope item)
+  .local-nav-content-item {
+    width: 100%;
+    margin-bottom: 0;
+
+    // Remove nested container-fluid padding to align properly
+    .welcome-head-section {
+      padding: 0;
+
+      .container-fluid {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+

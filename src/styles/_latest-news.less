@@ -1,0 +1,346 @@
+// ==========================================================================
+// LATEST NEWS SECTION (Filters + Grid)
+// ==========================================================================
+
+// ==========================================================================
+// FILTERS SECTION
+// ==========================================================================
+
+.latest-news-filters-section {
+  padding: 6.5rem 0 3.125rem; // 50px bottom padding for gap to content
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 3.75rem 0 2rem;
+  }
+
+  // Title Group
+  &__title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3.125rem; // 50px gap from Figma
+    align-items: center;
+    text-align: center;
+    margin-bottom: 3.125rem; // 50px gap to filters from Figma
+    max-width: 53.25rem; // 852px from Figma
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      gap: 2rem;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; // 8px gap from Figma
+    align-items: center;
+    text-align: center;
+  }
+
+  &__title-script {
+    font-family: @font-family-born-ready;
+    font-weight: @font-weight-regular;
+    font-size: @font-size-h1; // 3.75rem (60px)
+    line-height: @line-height-none; // 1
+    letter-spacing: 0;
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: clamp(2.25rem, 8vw, 3.75rem);
+    }
+  }
+
+  &__title-bold {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-extrabold; // 800
+    font-size: @font-size-h1; // 3.75rem (60px)
+    line-height: @line-height-none; // 1
+    letter-spacing: -0.075rem; // -1.2px
+    text-transform: uppercase;
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: clamp(2.25rem, 8vw, 3.75rem);
+      letter-spacing: -0.075rem;
+    }
+  }
+
+  &__description {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-regular; // 400
+    font-size: @font-size-lg; // 1.25rem (20px)
+    line-height: 1.3;
+    letter-spacing: -0.025rem; // -0.4px
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+    width: 100%;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 1rem;
+    }
+  }
+
+  // Filter Buttons
+  &__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: @spacing-sm; // 0.625rem (10px) gap from Figma
+    justify-content: center;
+    align-items: flex-start;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      gap: 0.5rem;
+      justify-content:center;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: @tertiary-blue-dark;
+        border-radius: 2px;
+      }
+    }
+
+
+  }
+
+  &__filter-btn {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-bold; // 700
+    font-size: @font-size-base; // 0.9375rem (15px)
+    line-height: @line-height-none; // 1
+    letter-spacing: 0;
+    color: @tertiary-blue-dark; // #1c3666
+    background-color: @base-white;
+    border: 1px solid @base-white;
+    border-radius: @radius-lg; // 0.625rem (10px)
+    padding: 0.9375rem @spacing-md; // 15px vertical, 20px horizontal from Figma
+    cursor: pointer;
+    transition: background-color @transition-base, color @transition-base, border-color @transition-base;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    &:hover {
+      background-color: @tertiary-blue-dark;
+      color: @base-white;
+      border-color: @tertiary-blue-dark;
+    }
+
+    &--active {
+      background-color: @tertiary-blue-dark;
+      color: @base-white;
+      border-color: @tertiary-blue-dark;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 0.875rem;
+      padding: 0.75rem @spacing-sm;
+    }
+  }
+}
+
+// ==========================================================================
+// GRID SECTION
+// ==========================================================================
+
+.latest-news-grid-section {
+  padding: 3.125rem 0 6.5rem; // 50px top, 104px bottom
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 2rem 0 3.75rem;
+  }
+
+  // Isotope Grid
+  .latest-news-isotope-grid {
+    --bs-gutter-x: 5.875rem; // 94px horizontal gap from Figma
+    --bs-gutter-y: 3.125rem; // 50px vertical gap from Figma
+    margin-bottom: 3.125rem; // 50px gap to Load More button
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      --bs-gutter-x: 3rem;
+      --bs-gutter-y: 2.5rem;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      --bs-gutter-x: 0;
+      --bs-gutter-y: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .latest-news-item {
+    margin-bottom: 0; // Bootstrap gutter handles spacing
+  }
+
+  // Card
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; // 24px gap from Figma
+    align-items: center;
+    width: 100%;
+  }
+
+  // Image Wrapper with rotation
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 15.4894375rem; // 247.831px from Figma
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      height: 12rem;
+    }
+
+    &--rotate-1 {
+      transform: rotate(357.5deg);
+    }
+
+    &--rotate-2 {
+      transform: rotate(2.5deg);
+    }
+
+    &--rotate-3 {
+      transform: rotate(357.5deg);
+    }
+
+    &--rotate-4 {
+      transform: rotate(2.5deg);
+    }
+
+    &--rotate-5 {
+      transform: rotate(357.5deg);
+    }
+
+    &--rotate-6 {
+      transform: rotate(2.5deg);
+    }
+
+    &--rotate-7 {
+      transform: rotate(357.5deg);
+    }
+
+    &--rotate-8 {
+      transform: rotate(2.5deg);
+    }
+
+    &--rotate-9 {
+      transform: rotate(357.5deg);
+    }
+  }
+
+  &__image-inner {
+    width: 100%;
+    height: 14.55125rem; // 232.82px from Figma
+    border-radius: @radius-xl; // 20px
+    overflow: hidden;
+    position: relative;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      height: 11rem;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: @radius-xl; // 20px
+  }
+
+  // Card Content
+  &__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-sm; // 0.625rem (10px) gap from Figma
+    align-items: center;
+    width: 100%;
+    text-align: center;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__card-title {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-bold; // 700
+    font-size: 1.5625rem; // 25px
+    line-height: 1.1;
+    letter-spacing: -0.03125rem; // -0.5px
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__card-date {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-regular; // 400
+    font-size: @font-size-lg; // 1.25rem (20px)
+    line-height: 1.3;
+    letter-spacing: -0.025rem; // -0.4px
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 1rem;
+    }
+  }
+
+  // Load More Button
+  &__load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__load-more-btn {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-regular; // 400
+    font-size: @font-size-base; // 0.9375rem (15px)
+    line-height: @line-height-normal; // 1.4
+    letter-spacing: 0;
+    color: @base-white;
+    background-color: @primary-coral; // #db574e
+    border: none;
+    border-radius: @radius-lg; // 10px
+    padding: 0.9375rem @spacing-md; // 15px vertical, 25px horizontal
+    cursor: pointer;
+    text-align: center;
+    transition: background-color @transition-base, transform @transition-base;
+
+    &:hover {
+      background-color: darken(@primary-coral, 5%);
+      transform: translateY(-0.125rem);
+      color: @base-white;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 0.875rem;
+      padding: 0.75rem @spacing-md;
+    }
+  }
+}

@@ -1,0 +1,258 @@
+// // ==========================================================================
+// // PRESCHOOLERS TESTIMONIALS SECTION
+// // ==========================================================================
+
+// .preschoolers-testimonials-section {
+//   padding: 10rem 0 6.25rem;
+//   position: relative;
+//   background-color: #faf7f4; // Sand tint from Figma
+//   overflow: hidden;
+
+//   @media (max-width: (@breakpoint-md - 1)) {
+//     padding: 4rem 0;
+//   }
+
+//   // Section Title
+//   .section-title {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     gap: 2px;
+//     margin-bottom: 4rem;
+//     text-align: center;
+
+//     @media (max-width: (@breakpoint-md - 1)) {
+//       margin-bottom: 2.5rem;
+//     }
+
+//     .script-text {
+//       font-family: @font-script; // Born Ready
+//       font-weight: @font-weight-regular;
+//       font-size: @font-size-h1; // 60px
+//       line-height: 1;
+//       letter-spacing: 0;
+//       color: @color-blue-dark;
+//       display: block;
+
+//       @media (max-width: (@breakpoint-md - 1)) {
+//         font-size: clamp(36px, 8vw, 60px);
+//       }
+//     }
+
+//     .caps-text {
+//       font-family: @font-primary; // Averta
+//       font-weight: @font-weight-extrabold;
+//       font-size: @font-size-h1; // 60px
+//       line-height: 1;
+//       letter-spacing: -1.2px;
+//       text-transform: uppercase;
+//       color: @color-blue-dark;
+//       display: block;
+
+//       @media (max-width: (@breakpoint-md - 1)) {
+//         font-size: clamp(36px, 8vw, 60px);
+//       }
+//     }
+//   }
+
+//   // Arc Carousel Container
+//   .arc-carousel-container {
+//     margin-bottom: 3.5rem;
+//     padding: 0 2rem;
+//     min-height: 600px;
+//     position: relative;
+//     overflow: hidden;
+
+//     @media (max-width: (@breakpoint-lg - 1)) {
+//       padding: 0 1rem;
+//       min-height: 500px;
+//     }
+
+//     @media (max-width: (@breakpoint-md - 1)) {
+//       padding: 0 1rem;
+//       min-height: 400px;
+//     }
+//   }
+
+//   .arc-carousel {
+//     position: relative;
+//     width: 100%;
+//     height: 600px;
+//     user-select: none;
+//     cursor: grab;
+
+//     &:active {
+//       cursor: grabbing;
+//     }
+
+//     @media (max-width: (@breakpoint-lg - 1)) {
+//       height: 500px;
+//     }
+
+//     @media (max-width: (@breakpoint-md - 1)) {
+//       height: 400px;
+//     }
+//   }
+
+//   // Individual Video Card (for arc carousel)
+//   .video-card {
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     margin-left: -150px; // Half of card width (300px)
+//     margin-top: -251px; // Half of card height (503px)
+//     transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+//     transform-origin: 50% 500px; // Arc center point
+//     &.active {
+//       z-index: 10;
+//     }
+
+//     @media (max-width: (@breakpoint-md - 1)) {
+//       transform-origin: 50% 400px; // Smaller arc for mobile
+//       margin-left: -140px; // Half of mobile card width (280px)
+//       margin-top: -200px; // Adjust for mobile aspect ratio
+//     }
+//   }
+
+//   .video-card-inner {
+//     position: relative;
+//     width: 300px;
+//     height: 503.731px;
+//     border: 7.063px solid @color-white;
+//     border-radius: 20px;
+//     overflow: hidden;
+//     background-color: #000;
+//     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+//     @media (max-width: (@breakpoint-md - 1)) {
+//       width: 280px;
+//       height: auto;
+//       aspect-ratio: 300 / 503.731;
+//     }
+//   }
+
+//   .video-thumbnail {
+//     position: relative;
+//     width: 100%;
+//     height: 100%;
+//     overflow: hidden;
+//     border-radius: calc(20px - 7.063px);
+
+//     img {
+//       position: absolute;
+//       inset: 0;
+//       width: 100%;
+//       height: 100%;
+//       object-fit: cover;
+//       object-position: center;
+//     }
+//   }
+
+//   .video-overlay {
+//     position: absolute;
+//     inset: 0;
+//     background: linear-gradient(
+//       to bottom,
+//       rgba(0, 0, 0, 0) 0%,
+//       rgba(0, 0, 0, 0) 67%,
+//       rgba(0, 0, 0, 0.65) 100%
+//     );
+//     z-index: 1;
+//   }
+
+//   .video-info {
+//     position: absolute;
+//     bottom: 31.48px;
+//     left: 27.5px;
+//     right: 110px;
+//     color: @color-white;
+//     z-index: 2;
+
+//     .student-name {
+//       font-family: @font-primary;
+//       font-weight: @font-weight-bold;
+//       font-size: 25px; // H3 size
+//       line-height: 1.1;
+//       letter-spacing: -0.5px;
+//       margin: 0 0 4px 0;
+//     }
+
+//     .student-grade {
+//       font-family: @font-primary;
+//       font-weight: @font-weight-regular;
+//       font-size: 15px;
+//       line-height: 1.4;
+//       margin: 0;
+//     }
+//   }
+
+//   .play-button {
+//     position: absolute;
+//     bottom: 31.48px;
+//     right: 27.5px;
+//     width: 54.65px;
+//     height: 55.454px;
+//     padding: 0;
+//     border: none;
+//     background: transparent;
+//     cursor: pointer;
+//     transition: transform 0.3s ease;
+//     z-index: 2;
+
+//     &:hover {
+//       transform: scale(1.1);
+//     }
+
+//     &:active {
+//       transform: scale(0.95);
+//     }
+
+//     svg {
+//       width: 100%;
+//       height: 100%;
+//       display: block;
+//       filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+//     }
+//   }
+
+
+//   // CTA Button (styled as btn-coral from existing project)
+//   .btn-coral {
+//     padding: 20px 25px;
+//     border-radius: 10px;
+//     font-family: @font-primary;
+//     font-size: 15px;
+//     font-weight: @font-weight-regular;
+//     line-height: 1.4;
+//     letter-spacing: 0;
+//     background-color: @color-coral;
+//     color: @color-white;
+//     border: none;
+//     cursor: pointer;
+//     text-decoration: none;
+//     display: inline-block;
+//     transition: background-color @transition-base, transform @transition-fast;
+
+//     &:hover {
+//       background-color: darken(@color-coral, 5%);
+//       transform: translateY(-2px);
+//       color: @color-white;
+//       text-decoration: none;
+//     }
+
+//     &:active {
+//       transform: translateY(0);
+//       background-color: darken(@color-coral, 10%);
+//     }
+
+//     &:focus-visible {
+//       outline: 2px solid @color-coral;
+//       outline-offset: 2px;
+//     }
+//   }
+// }
+
+// // ==========================================================================
+// // END PRESCHOOLERS TESTIMONIALS SECTION
+// // ==========================================================================
+

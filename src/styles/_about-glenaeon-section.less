@@ -1,0 +1,583 @@
+// ==========================================================================
+// ABOUT GLENAEON SECTION
+// ==========================================================================
+
+.about-glenaeon-section {
+  padding: 6.5rem 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 3.75rem 0;
+  }
+
+  // Title Section
+  &__title {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 6.625rem; // 106px gap from Figma
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      margin-bottom: 3.75rem;
+    }
+  }
+
+  &__title-script {
+    font-family: @font-family-born-ready;
+    font-weight: @font-weight-regular;
+    font-size: @font-size-h1; // 3.75rem (60px)
+    line-height: @line-height-none; // 1
+    letter-spacing: 0;
+    color: @tertiary-blue-dark; // #1c3666
+    text-align: center;
+    margin: 0;
+    width: 100%;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: clamp(2.25rem, 8vw, 3.75rem);
+    }
+  }
+
+  &__title-bold {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-extrabold; // 800
+    font-size: @font-size-h1; // 3.75rem (60px)
+    line-height: @line-height-none; // 1
+    letter-spacing: -0.075rem; // -1.2px
+    text-transform: uppercase;
+    color: @tertiary-blue-dark; // #1c3666
+    text-align: center;
+    margin: 0;
+    width: 100%;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: clamp(2.25rem, 8vw, 3.75rem);
+      letter-spacing: -0.075rem;
+    }
+  }
+
+  // Cards Grid
+  &__cards-grid {
+    // Use Bootstrap's gutter system with custom gap
+    --bs-gutter-x: 6.625rem; // 106px horizontal gap
+    margin-bottom: -6.625rem; // Negative margin to offset last row
+    justify-content: center;
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      --bs-gutter-x: 3.75rem;
+      margin-bottom: -3.75rem;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      --bs-gutter-x: 0;
+      margin-bottom: -2.5rem;
+    }
+  }
+
+  &__card-col {
+    margin-bottom: 4.375rem; // 106px gap between rows
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      margin-bottom: 3.75rem;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      margin-bottom: 2.5rem;
+    }
+
+    // Remove margin from last row
+    &:nth-last-child(-n+2) {
+      @media (min-width: @breakpoint-md) {
+        margin-bottom: 0;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Card
+  &__card {
+    display: flex;
+    gap: 1.5625rem; // 25px gap between image and content from Figma
+    align-items: center;
+    width: 100%;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      flex-direction: column;
+      align-items: center; // Center on mobile
+      gap: @spacing-lg;
+    }
+  }
+
+  // Image Wrapper - matching staff-section structure exactly
+  &__image-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    width: 13.23125rem; // 211.701px from Figma
+    height: 13.32525rem; // 213.204px from Figma
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      width: 10rem;
+      height: 10rem;
+      margin: 0 auto; // Center on mobile
+    }
+  }
+
+  &__image-outer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+  }
+
+  &__frame-img {
+    width: 100%;
+    height: 101%;
+    object-fit: contain;
+  }
+
+  &__image {
+    width: 98%;
+    height: 98%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    margin: 0.125rem;
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 1/1; // Ensure perfect circle to prevent distortion
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      width: 98%;
+      height: 98%;
+    }
+  }
+
+  // Card Content
+  &__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-sm; // 0.625rem (10px) gap between elements
+    flex: 1;
+    min-width: 0;
+    padding-left: 0.5rem;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      align-items: center; // Center content on mobile
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  &__card-title {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-bold; // 700
+    font-size: 1.5625rem; // 25px
+    line-height: 1.1;
+    letter-spacing: 0.078125rem; // 1.25px
+    text-transform: uppercase;
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0 0 0.3125rem 0; // 5px gap to description from Figma
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 1.25rem;
+      letter-spacing: 0.0625rem;
+    }
+  }
+
+  &__card-description {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-regular; // 400
+    font-size: @font-size-base; // 0.9375rem (15px)
+    line-height: @line-height-normal; // 1.4
+    letter-spacing: 0;
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 0.875rem;
+    }
+  }
+
+  // Card Link
+  &__card-link {
+    display: flex;
+    align-items: center;
+    gap: @spacing-sm; // 0.625rem (10px) gap between text and arrow
+    text-decoration: none;
+    margin-top: 0; // No extra margin, gap handled by parent
+    align-self: flex-start;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+    }
+
+    &:hover .about-glenaeon-section__link-text,
+    &:focus-visible .about-glenaeon-section__link-text {
+      color: darken(@primary-coral, 10%);
+      text-decoration-color: darken(@primary-coral, 10%);
+    }
+
+    &:hover svg,
+    &:focus-visible svg {
+      transform: translateX(0.65rem);
+    }
+
+    &:hover .about-glenaeon-section__link-arrow,
+    &:focus-visible .about-glenaeon-section__link-arrow {
+      transform: translateX(0.65rem) rotate(180deg);
+    }
+
+    &:hover svg path,
+    &:focus-visible svg path {
+      fill: darken(@primary-coral, 10%);
+    }
+
+    svg,
+    .about-glenaeon-section__link-arrow {
+      display: block;
+      transition: transform 450ms ease;
+    }
+
+    svg path {
+      fill: @primary-coral;
+      transition: fill 450ms ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &:hover svg,
+      &:focus-visible svg,
+      &:hover .about-glenaeon-section__link-arrow,
+      &:focus-visible .about-glenaeon-section__link-arrow {
+        transform: none;
+      }
+    }
+  }
+
+  &__link-text {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-regular; // 400
+    font-size: @font-size-lg; // 1.25rem (20px)
+    line-height: 1.3;
+    letter-spacing: -0.025rem; // -0.4px
+    color: @primary-coral; // #db574e
+    text-decoration: underline;
+    text-decoration-thickness: 0.04em;
+    text-decoration-color: currentColor;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    transition: color 450ms ease, text-decoration-color 450ms ease;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 1.125rem;
+    }
+  }
+
+  &__link-arrow {
+    flex-shrink: 0;
+    width: 1.3175625rem; // 21.081px
+    height: 0.0625rem; // 1px
+    transform: rotate(180deg); // Point left as per Figma
+  }
+
+  // Separator
+  &__separator {
+    padding: 0;
+    margin: 9rem auto 3rem;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__separator-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+}
+
+// ==========================================================================
+// ABOUT GLENAEON SECTION - PART 2
+// ==========================================================================
+
+.about-glenaeon-section-part2 {
+  padding: 6.5rem 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 3.75rem 0;
+  }
+
+  // Title Group
+  &__title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3.125rem; // 50px gap from Figma
+    align-items: center;
+    text-align: center;
+    margin-bottom: 5.875rem; // 94px gap to cards from Figma
+    max-width: 45.0625rem; // 721px from Figma
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      gap: 2rem;
+      margin-bottom: 3rem;
+      padding: 0 1rem;
+    }
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; // 8px gap from Figma
+    align-items: center;
+    text-align: center;
+  }
+
+  &__title-script {
+    font-family: @font-family-born-ready;
+    font-weight: @font-weight-regular;
+    font-size: @font-size-h1; // 3.75rem (60px)
+    line-height: @line-height-none; // 1
+    letter-spacing: 0;
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: clamp(2.25rem, 8vw, 3.75rem);
+    }
+  }
+
+  &__title-bold {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-extrabold; // 800
+    font-size: @font-size-h1; // 3.75rem (60px)
+    line-height: @line-height-none; // 1
+    letter-spacing: -0.075rem; // -1.2px
+    text-transform: uppercase;
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: clamp(2.25rem, 8vw, 3.75rem);
+      letter-spacing: -0.075rem;
+    }
+  }
+
+  &__description {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-regular; // 400
+    font-size: @font-size-lg; // 1.25rem (20px)
+    line-height: 1.3;
+    letter-spacing: -0.025rem; // -0.4px
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+    max-width: 42.125rem; // 674px from Figma
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 1rem;
+    }
+  }
+
+  // Cards Row
+  &__cards-row {
+    margin-bottom: 3.125rem; // 50px gap to button
+    --bs-gutter-x: 5rem;
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      --bs-gutter-x: 3rem;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      --bs-gutter-x: 0;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__card-col {
+    margin-bottom: 1.5rem; // 24px gap from Figma
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      margin-bottom: 2.5rem;
+    }
+@media (max-width:767px){
+  padding: 0 0.5rem;
+}
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Card
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; // 24px gap from Figma
+    align-items: center;
+    width: 100%;
+
+  }
+
+  // Image Wrapper with rotation
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 15.4894375rem; // 247.831px from Figma
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      height: 12rem;
+    }
+
+    &--rotate-1 {
+      transform: rotate(357.5deg);
+    }
+
+    &--rotate-2 {
+      transform: rotate(2.5deg);
+    }
+
+    &--rotate-3 {
+      transform: rotate(357.5deg);
+    }
+  }
+
+  &__image-inner {
+    width: 100%;
+    height: 14.55125rem; // 232.82px from Figma
+    border-radius: @radius-xl; // 20px
+    overflow: hidden;
+    position: relative;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      height: 11rem;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: @radius-xl; // 20px
+  }
+
+  // Card Content
+  &__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-sm; // 0.625rem (10px) gap from Figma
+    align-items: center;
+    width: 100%;
+    text-align: center;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__card-category {
+    font-family: @font-family-born-ready;
+    font-weight: @font-weight-regular; // 400
+    font-size: 1.5625rem; // 25px
+    line-height: 0.9;
+    letter-spacing: 0;
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__card-title {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-bold; // 700
+    font-size: 1.5625rem; // 25px
+    line-height: 1.1;
+    letter-spacing: -0.03125rem; // -0.5px
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+
+    &--large {
+      font-size: 2.1875rem; // 35px
+      letter-spacing: -0.065625rem; // -1.05px
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 1.25rem;
+
+      &--large {
+        font-size: 1.75rem;
+      }
+    }
+  }
+
+  &__card-date {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-regular; // 400
+    font-size: @font-size-lg; // 1.25rem (20px)
+    line-height: 1.3;
+    letter-spacing: -0.025rem; // -0.4px
+    color: @tertiary-blue-dark; // #1c3666
+    margin: 0;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 1rem;
+    }
+  }
+
+  // Button Wrapper
+  &__button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3.125rem; // 50px gap from cards
+  }
+
+  &__button {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-regular; // 400
+    font-size: @font-size-base; // 0.9375rem (15px)
+    line-height: @line-height-normal; // 1.4
+    letter-spacing: 0;
+    color: @base-white;
+    background-color: @primary-coral; // #db574e
+    border: none;
+    border-radius: @radius-lg; // 10px
+    padding: 0.9375rem @spacing-md; // 15px vertical, 25px horizontal
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: background-color @transition-base, transform @transition-base;
+
+    &:hover {
+      background-color: darken(@primary-coral, 5%);
+      transform: translateY(-0.125rem);
+      color: @base-white;
+      text-decoration: none;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: 0.875rem;
+      padding: 0.75rem @spacing-md;
+    }
+  }
+}
+
+

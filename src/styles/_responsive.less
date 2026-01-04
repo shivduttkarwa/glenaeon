@@ -1,0 +1,435 @@
+// ==========================================================================
+// RESPONSIVE OVERRIDES
+// ==========================================================================
+
+// This file contains any additional responsive adjustments
+// that don't fit neatly into component files.
+
+// --------------------------------------------------------------------------
+// CONTAINER ADJUSTMENTS
+// --------------------------------------------------------------------------
+
+@media (max-width: (@breakpoint-sm - 1)) {
+  .container {
+    padding-left: @spacing-md;
+    padding-right: @spacing-md;
+  }
+}
+
+// --------------------------------------------------------------------------
+// HIDE/SHOW UTILITIES
+// --------------------------------------------------------------------------
+
+.d-mobile-none {
+  @media (max-width: (@breakpoint-md - 1)) {
+    display: none !important;
+  }
+}
+
+.d-mobile-block {
+  @media (max-width: (@breakpoint-md - 1)) {
+    display: block !important;
+  }
+}
+
+.d-desktop-none {
+  @media (min-width: @breakpoint-md) {
+    display: none !important;
+  }
+}
+
+.d-desktop-block {
+  @media (min-width: @breakpoint-md) {
+    display: block !important;
+  }
+}
+
+.mobile-only {
+  display: none;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    display: block;
+  }
+}
+
+.desktop-only {
+  display: block;
+
+  @media (max-width: 991px) {
+    display: none;
+  }
+}
+
+.mega-menu {
+  .mobile-only {
+    display: none;
+
+    .hero__mobile-actions {
+      position: relative;
+      z-index: 11111;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width:992px) and (max-width:1400px) {
+  body {
+
+    .masked-image-content-block__title,
+    .masked-image-content-block__title-bold,
+    .masked-image-content-block__title-script {
+      font-size: 3rem;
+    }
+  }
+}
+
+@media (max-width:992px) {
+  body {
+    .breadcrumb-wrap {
+      padding: 1rem 2rem;
+    }
+  }
+}
+
+@media (min-width:768px) and (max-width:992px) {
+  html {
+    font-size: 13px;
+
+    body {
+      .full-width-video-promo {
+        height: auto;
+      }
+
+      h2,
+      h2 span {
+        font-size: 2.75rem;
+      }
+
+      .section .edge-image {
+        &.bottom-edge {
+          bottom: -1px;
+        }
+      }
+
+      .wellbeing-section {
+        .wellbeing-content-row {
+          justify-content: center;
+        }
+      }
+
+      .three-stages-section {
+        padding: 6.25rem 0;
+
+        .container-fluid {
+          padding: 0 2.5rem;
+
+          .three-stages-content {
+            flex-direction: row;
+            justify-content: space-between;
+
+            .three-stages-description {
+              width: 70%;
+            }
+          }
+
+          .three-stages-cards {
+            flex-direction: row;
+            padding: 0;
+
+            .three-stages-card {
+              max-width: 48%;
+            }
+          }
+        }
+      }
+
+      .cottage-garden-section {
+        min-height: 50vh;
+      }
+    }
+  }
+}
+
+@media (max-width:767px) {
+  html {
+    font-size: 18px;
+  }
+
+
+
+  body {
+    .three-stages-section {
+      padding: 4.75rem 0 6.25rem;
+
+      .graph-image {
+        text-align: center;
+        margin: 1rem 0;
+
+        img {
+          max-width: 92%;
+          margin: auto;
+        }
+      }
+    }
+
+    .testimonial-audio-slide {
+
+
+
+      .container-fluid {
+        >.row {
+          gap: 3rem 0;
+        }
+      }
+    }
+
+    .masked-image-block {
+      flex-direction: column-reverse;
+      gap: 2rem;
+
+      .masked-image-content-block-wrap {
+
+        margin: -5% auto 0;
+      }
+
+    }
+
+    .masked-image-content-block {
+      padding: 1.5rem 0 5rem;
+    }
+
+    .breadcrumb-wrap {
+      padding: 1rem;
+
+    }
+
+    .site-header {
+      height: 5rem;
+      min-height: 5rem;
+
+
+    }
+
+    .mega-menu {
+      .mega-menu__inner {
+        padding-top:4.5rem;
+      }
+
+      .mobile-only {
+        display: block;
+      }
+    }
+
+    .header-quick-links {
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    body.mega-menu-open .site-header .header-quick-links {
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .mega-menu__nav-item {
+      a {
+        font-size: 2.5rem;
+      }
+    }
+
+
+
+    .three-stages-section .three-stages-list,
+    .three-stages-section .three-stages-item,
+    .three-stages-section .three-stages-line {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .three-stages-section .three-stages-diagram {
+      display: none;
+    }
+
+    .masked-image-content-block__cta {
+      align-self: center;
+    }
+
+    .full-width-image-words-animation {
+      min-height: auto;
+      height: 80vh;
+
+      .container-fluid {
+        height: 100%;
+
+        .word {
+          font-size: 4.5rem;
+          letter-spacing: normal;
+        }
+      }
+    }
+
+    .five-as-section {
+      padding: 1rem 0 2rem;
+    }
+
+    .full-width-video-promo {
+      height: inherit;
+    }
+
+    .wellbeing-section .five-as-section__image-wrapper {
+      max-width: 85%;
+      margin: 2.5rem auto;
+    }
+
+    .glenaeon-education-section .body-base-blocks {
+      flex-direction: column;
+
+      .body-base {
+        flex: 100% 0 0;
+      }
+    }
+
+    .site-footer .container-fluid .footer__acknowledgement {
+      margin-bottom: 2rem;
+    }
+
+    .edge-position {
+      position: relative;
+
+      &.bottom-edge {
+        margin-top: -1.125rem;
+      }
+
+      &.top-edge {
+        margin-bottom: -0.1875rem;
+      }
+    }
+
+    .what-we-do-section .what-we-do-content-wrapper {
+      gap: 0;
+    }
+
+    .full-width-testimonial-audio .testimonial-audio-controls .testimonial-audio-navigation.arrow-navigation .arrow-navigation__arrow {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    .full-width-testimonial-audio .testimonial-audio-quote {
+      min-height: 10rem;
+    }
+
+    .co-curricular-carousel {
+      height: 70vh;
+    }
+
+    .five-as-section__nav {
+      gap: 1rem 0;
+      padding: 0 1rem;
+    }
+
+    .five-as-section__nav-item {
+      min-width: 7rem;
+      white-space: nowrap;
+    }
+.about-glenaeon-section__card-link {
+        align-self: center;
+      }
+    &.landing-page {
+      .what-makes-glenaeon-special-section {
+        .masked-image-content-block {
+          padding: 0;
+          margin: -2rem auto;
+        }
+      }
+
+      
+
+      .about-glenaeon-section__image-wrapper {
+        width: 85%;
+        height: auto;
+        margin: auto;
+      }
+
+      .about-glenaeon-section__image-inner {
+        width: 100%;
+      }
+
+      .about-glenaeon-section__separator {
+        margin: 2rem auto 0rem;
+      }
+
+      .masked-image-content-block {
+        padding: 0;
+        margin: -2rem auto 0;
+      }
+
+    }
+
+    .column-reverse-mobile {
+      flex-direction: column-reverse;
+    }
+
+    .wellbeing-section.with-lead-para {
+      .five-as-section__image-wrapper {
+        max-width: 84%;
+        margin: 2.5rem auto 0;
+
+      }
+
+      .wellbeing-content {
+        text-align: center;
+
+        .wellbeing-title-group {
+          margin-bottom: 0;
+
+          p.lead {
+            font-size: 1.875rem;
+
+          }
+        }
+
+      }
+    }
+  
+
+  }
+
+}
+
+@media (min-width:680px) and (max-width:992px) {
+  body {
+    .edge-position {
+      &.top-edge {
+        margin-bottom: -0.875rem;
+      }
+
+      &.bottom-edge {
+        margin-top: -1.25rem;
+      }
+    }
+  }
+
+  .full-width-testimonial-audio .testimonial-audio-quote {
+    min-height: 16rem;
+  }
+}
+
+@media (max-width:400px) {
+  html {
+    font-size: 15px;
+  }
+
+  .hero .hero__content .hero__description {
+    margin-bottom: 1rem;
+  }
+
+
+}
+
+@media (min-width:1800px) {
+  html {
+    font-size: 20px;
+  }
+}

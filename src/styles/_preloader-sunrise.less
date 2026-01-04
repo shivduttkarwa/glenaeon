@@ -1,0 +1,76 @@
+/* Figma Preloader Sunrise Animation LESS */
+#preloader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  z-index: 9999;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.preloader-sunrise-bg {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 1066px);
+  transform: translate(-50%, -50%);
+  width: 1496px;
+  height: 1496px;
+  animation: sunrise-bg-anim 2s ease-in-out;
+}
+@keyframes sunrise-bg-anim {
+  0% { opacity: 0; transform: translate(-50%, -60%) scale(0.8); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.preloader-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 384.89px;
+  display: flex;
+  gap: 9.5px;
+  align-items: flex-end;
+  animation: logo-anim 2.2s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes logo-anim {
+  0% { opacity: 0; transform: translate(-50%, -60%) scale(0.8); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.preloader-logo-symbol {
+  position: relative;
+  width: 178.05px;
+  height: 175.41px;
+}
+.preloader-logo-symbol img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  animation: symbol-fade-in 1.2s forwards;
+}
+.preloader-logo-symbol img:nth-child(1) { animation-delay: 0.2s; }
+.preloader-logo-symbol img:nth-child(2) { animation-delay: 0.5s; }
+.preloader-logo-symbol img:nth-child(3) { animation-delay: 0.8s; }
+@keyframes symbol-fade-in {
+  to { opacity: 1; }
+}
+.preloader-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12.13px;
+  align-items: center;
+  padding-bottom: 7.92px;
+}
+.preloader-logo-text img {
+  opacity: 0;
+  animation: text-fade-in 1.5s forwards;
+}
+.preloader-logo-text img:nth-child(1) { animation-delay: 1.1s; }
+.preloader-logo-text img:nth-child(2) { animation-delay: 1.4s; }
+@keyframes text-fade-in {
+  to { opacity: 1; }
+}

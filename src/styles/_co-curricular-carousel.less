@@ -1,0 +1,361 @@
+// ==========================================================================
+// CO-CURRICULAR OPPORTUNITIES CAROUSEL SECTION
+// ==========================================================================
+
+.co-curricular-carousel {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: @color-sand-30;
+  padding: 0;
+  overflow: hidden;
+
+  // Dark Overlay for better content visibility
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  // Title
+  .title {
+    position: absolute;
+    left: 80px;
+    top: 80px;
+    z-index: 3;
+    pointer-events: none;
+    text-shadow: 0.0625rem 0.0625rem .0375rem rgba(0, 0, 0, 0.375);
+
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      left: 40px;
+      top: 40px;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      left: 20px;
+      top: 20px;
+    }
+  }
+
+  .title-text {
+    font-family: @font-primary;
+    font-weight: @font-weight-bold;
+    font-size: @font-size-base;
+    line-height: 1;
+    letter-spacing: 0.75px;
+    text-transform: uppercase;
+    color: @color-white;
+    margin: 0;
+  }
+
+  // Slide Counter
+  .counter {
+    position: absolute;
+    right: 80px;
+    top: 80px;
+    z-index: 3;
+    pointer-events: none;
+    font-family: @font-primary;
+    font-weight: @font-weight-regular;
+    font-size: 20px;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+    color: @color-white;
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      right: 40px;
+      top: 40px;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      right: 20px;
+      top: 20px;
+      font-size: 16px;
+    }
+  }
+
+  .counter-current {
+    font-weight: @font-weight-regular;
+  }
+
+  .counter-separator {
+    margin: 0 2px;
+  }
+
+  .counter-total {
+    font-weight: @font-weight-regular;
+  }
+
+  // Swiper Container
+  .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 2;
+
+    .swiper-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity @transition-base;
+      height: 100%;
+
+      &.current {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  .slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  // Full bleed video/image
+  .video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    display: block;
+  }
+
+  // Slide Content
+  .slide-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4.35rem;
+    pointer-events: none;
+  }
+
+  .slide-title {
+    font-family: @font-family-averta;
+    text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, .75);
+    font-weight: @font-weight-extrabold;
+    font-style: normal;
+    font-size: @font-size-display-2;
+    line-height: 0.9;
+    letter-spacing: -5px;
+    text-align: center;
+    color: @color-white;
+    margin: 0;
+    position: relative;
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      font-size: 80px;
+      letter-spacing: -4px;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: clamp(40px, 10vw, 60px);
+      letter-spacing: clamp(-3px, -0.05em, -2px);
+    }
+  }
+
+  .slide-button {
+    background-color: @color-coral;
+    padding: 15px @spacing-md;
+    border-radius: 10px;
+    font-family: @font-family-averta;
+    font-weight: @font-weight-regular;
+    font-size: @font-size-base;
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-align: center;
+    color: @color-white;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform @transition-base;
+    border: none;
+    width: auto;
+    min-width: fit-content;
+   
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      padding: 12px @spacing-md;
+      font-size: @font-size-sm;
+    }
+  }
+
+  // Controls Container (Pagination + Navigation)
+  .controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 80px;
+    z-index: 3;
+    width: 100%;
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      bottom: 40px;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      bottom: 70px; // 20px + 50px to push up
+    }
+
+    .container-fluid {
+      padding-left: 80px;
+      padding-right: 80px;
+
+      @media (max-width: (@breakpoint-lg - 1)) {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      @media (max-width: (@breakpoint-md - 1)) {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    .row {
+      align-items: center;
+      margin: 0;
+    }
+
+    .col-auto {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  // Pagination
+  .pagination {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      gap: 8px;
+    }
+  }
+
+  .pagination-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: @color-white;
+    border: 2px solid @color-white;
+    cursor: pointer;
+    transition: all @transition-base;
+    flex-shrink: 0;
+  }
+
+  .pagination-dot--active {
+    width: 40px;
+    height: 10px;
+    border-radius: 1000px;
+  }
+
+  .pagination-dot:hover {
+    opacity: 0.8;
+  }
+
+
+
+  // Navigation Arrows
+  .navigation {
+    display: flex;
+    gap: 6.5px;
+    align-items: center;
+    position: relative;
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      gap: 5px;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      gap: 4px;
+    }
+
+    // Override arrow-navigation absolute positioning from hero
+    &.arrow-navigation {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      pointer-events: auto;
+
+    }
+
+    .arrow-navigation__arrow {
+      position: relative;
+      width: @arrow-width;
+      height: @arrow-width;
+      min-width: @arrow-width;
+      min-height: @arrow-width;
+      &.swiper-button-lock{
+        display: block;
+      }
+    }
+  }
+
+  // Override hero section's mobile hiding rule for this carousel
+  // NOTE: Hero section uses .hero .arrow-navigation { display: none !important; } on mobile
+  // Since we cannot override !important without using !important ourselves,
+  // we must use it here. Consider refactoring hero section to be more specific
+  // (e.g., .hero .hero__navigation.arrow-navigation) to avoid this.
+  @media (max-width: (@breakpoint-md - 1)) {
+    .navigation.arrow-navigation {
+      display: flex !important;
+      pointer-events: auto;
+    }
+
+    .navigation.arrow-navigation .arrow-navigation__arrow {
+      display: block;
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      min-height: 56px;
+    }
+  }
+
+  @media (min-width:768px) and (max-width:992px){
+    height: 50vh;
+    min-height: 450px;
+  }
+
+}

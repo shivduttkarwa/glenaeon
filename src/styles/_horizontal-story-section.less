@@ -1,0 +1,775 @@
+// ==========================================================================
+// HORIZONTAL SCROLLING STORY SECTION
+// ==========================================================================
+// Based on Figma: https://www.figma.com/design/qVOIfc8UCZR1QPkIwhbRIX/Glenaeon-Concordia-Kit?node-id=9162-9744
+// Horizontal scroll with GSAP ScrollTrigger
+// ==========================================================================
+
+.horizontal-story-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: @color-sand-20; // #faf7f4
+  overflow: hidden;
+
+  // Background image with opacity
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../../assets/images/section-bg.jpg');
+    background-size: 819.2px 409.6px; // From Figma: bg-size-[819.2000122070312px_409.6000061035156px]
+    background-position: top left;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    opacity: 0.5; // From Figma: opacity-50
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  // Content should be above background
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.horizontal-story-pin-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.horizontal-story-scroll-container {
+  display: flex;
+  width: fit-content;
+  height: 100vh;
+  will-change: transform;
+}
+
+.horizontal-story-panel {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6.25rem 0; // 100px top/bottom
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 4rem 0; // 64px top/bottom
+  }
+}
+
+// ==========================================================================
+// TESTIMONIAL CARDS
+// ==========================================================================
+
+.horizontal-story-testimonial-card {
+  position: relative;
+  width: 100%;
+  max-width: 44rem; // 704px from Figma
+  padding: 3.125rem; // 50px from Figma
+  border-radius: 1.25rem; // 20px
+  overflow: hidden;
+  z-index: 1;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 2rem;
+    max-width: 100%;
+  }
+}
+
+.horizontal-story-testimonial-bg {
+  position: absolute;
+  inset: 0;
+  background-color: @tertiary-blue-dark; // #1c3666
+  border-radius: 1.25rem;
+  z-index: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+    background-image: url('https://www.figma.com/api/mcp/asset/a47ad49d-4c61-4606-8ce1-ceabaf8917d0');
+    background-size: 125% auto;
+    background-position: -12.5% 28.67%;
+    background-repeat: no-repeat;
+    border-radius: 1.25rem;
+  }
+}
+
+.horizontal-story-testimonial-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.1875rem; // 35px from Figma
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    gap: 1.5rem;
+  }
+}
+
+.horizontal-story-testimonial-quote {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-style: italic;
+  font-size: 2.1875rem; // 35px from Figma h2
+  line-height: 1.2;
+  letter-spacing: -0.04375rem; // -0.7px
+  color: @base-white;
+  margin: 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: 1.5rem;
+    letter-spacing: -0.03rem;
+  }
+}
+
+.horizontal-story-testimonial-audio {
+  display: flex;
+  gap: 1.625rem; // 26px from Figma
+  align-items: center;
+}
+
+.horizontal-story-audio-track {
+  position: relative;
+  width: 29.6875rem; // 475px from Figma
+  height: 1.875rem; // 30px from Figma
+  overflow: hidden;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    width: 100%;
+    max-width: 20rem;
+  }
+}
+
+.horizontal-story-audio-track-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.horizontal-story-audio-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 52.42%; // 249px / 475px from Figma
+  height: 100%;
+  background-color: @base-white;
+  mask-image: url('https://www.figma.com/api/mcp/asset/5bac9c54-e78e-43d4-a3f0-ffbe754c1494');
+  mask-size: 475px 30px;
+  mask-position: 5.858px 3px;
+  mask-repeat: no-repeat;
+}
+
+.horizontal-story-audio-time {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.4;
+  color: @base-white;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.horizontal-story-testimonial-author {
+  display: flex;
+  gap: 1rem; // 16px from Figma
+  align-items: center;
+}
+
+.horizontal-story-author-avatar {
+  position: relative;
+  width: 3.125rem; // 50px
+  height: 3.125rem; // 50px
+  border-radius: 1000px;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.horizontal-story-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.horizontal-story-author-name {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-bold;
+  font-size: 1.25rem; // 20px
+  line-height: 1.3;
+  letter-spacing: -0.025rem; // -0.4px
+  color: @base-white;
+  margin: 0;
+}
+
+.horizontal-story-author-title {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.4;
+  color: @base-white;
+  margin: 0;
+}
+
+// ==========================================================================
+// MOMENTS SECTION
+// ==========================================================================
+
+.horizontal-story-moments {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; // 20px
+  width: 100%;
+  max-width: 31.625rem; // 506px from Figma
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    max-width: 100%;
+  }
+}
+
+.horizontal-story-moments-kicker {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-bold;
+  font-size: 0.9375rem; // 15px
+  line-height: 1;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  color: @tertiary-blue-dark;
+  margin: 0;
+}
+
+.horizontal-story-moments-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; // 10px
+}
+
+.horizontal-story-moments-image {
+  position: relative;
+  width: 100%;
+  height: 23.8125rem; // 381px from Figma
+  border-radius: 1.25rem; // 20px
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.horizontal-story-moments-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 62.73%, rgba(0, 0, 0, 0.4) 100%);
+  border-radius: 1.25rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.horizontal-story-moments-pagination {
+  position: absolute;
+  bottom: 1.25rem; // 20px
+  right: 1.25rem; // 20px
+  display: flex;
+  gap: 1.3125rem; // 21px from Figma
+  align-items: center;
+  z-index: 2;
+
+  p {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-bold;
+    font-size: 0.9375rem; // 15px
+    line-height: 1.4;
+    color: @base-white;
+    margin: 0;
+  }
+
+  .arrow-navigation {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    pointer-events: auto;
+  }
+}
+
+.horizontal-story-moments-caption {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-style: italic;
+  font-size: 1.5625rem; // 25px from Figma h3
+  line-height: 1.2;
+  letter-spacing: -0.03125rem; // -0.5px
+  color: @tertiary-blue-dark;
+  margin: 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: 1.25rem;
+  }
+}
+
+.horizontal-story-moments-label {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.4;
+  color: @tertiary-blue-dark;
+  margin: 0;
+}
+
+// ==========================================================================
+// STORY CARDS GRID
+// ==========================================================================
+
+.horizontal-story-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem; // 32px
+  width: 100%;
+  max-width: 90rem; // 1440px
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.horizontal-story-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; // 20px
+}
+
+.horizontal-story-card-image {
+  position: relative;
+  width: 100%;
+  height: 31.25rem; // 500px from Figma
+  border: 7px solid @base-white;
+  border-radius: 1.25rem; // 20px
+  overflow: hidden;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    height: 25rem;
+  }
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.horizontal-story-card-image-rotated {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(5.53deg);
+  transform-origin: center center;
+}
+
+.horizontal-story-card-image-wrapper {
+  position: relative;
+  width: 23.75rem; // 380px from Figma
+  height: 23.75rem; // 380px from Figma
+  border: 7px solid @base-white;
+  border-radius: 1.25rem;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  img:first-child {
+    height: 150.04%;
+    left: 1.42%;
+    top: -10.35%;
+    width: 100%;
+  }
+}
+
+.horizontal-story-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 62.73%, rgba(0, 0, 0, 0.4) 100%);
+  border-radius: 1.25rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.horizontal-story-card-pagination {
+  position: absolute;
+  bottom: 1.25rem; // 20px
+  right: 1.25rem; // 20px
+  display: flex;
+  gap: 1.3125rem; // 21px
+  align-items: center;
+  z-index: 2;
+
+  p {
+    font-family: @font-family-averta;
+    font-weight: @font-weight-bold;
+    font-size: 0.9375rem; // 15px
+    line-height: 1.4;
+    color: @base-white;
+    margin: 0;
+  }
+
+  .arrow-navigation {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    pointer-events: auto;
+  }
+}
+
+.horizontal-story-card-quote {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-style: italic;
+  font-size: 1.5625rem; // 25px from Figma h3
+  line-height: 1.2;
+  letter-spacing: -0.03125rem; // -0.5px
+  color: @tertiary-blue-dark;
+  margin: 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: 1.25rem;
+  }
+}
+
+// ==========================================================================
+// WHAT'S NEXT SECTION
+// ==========================================================================
+
+.horizontal-story-whats-next {
+  display: flex;
+  gap: 2rem; // 32px
+  align-items: flex-start;
+  width: 100%;
+  max-width: 50rem; // 800px
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.horizontal-story-whats-next-avatar {
+  flex-shrink: 0;
+}
+
+.horizontal-story-avatar-circle {
+  position: relative;
+  width: 20.938rem; // 335px from Figma
+  height: 21.066rem; // 337px from Figma
+  border-radius: 1000px;
+  overflow: hidden;
+  border: 3.168px solid @base-white;
+  padding: 0.297rem; // 4.752px
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1000px;
+    display: block;
+  }
+}
+
+.horizontal-story-whats-next-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.0625rem; // 17px from Figma
+  flex: 1;
+}
+
+.horizontal-story-whats-next-title {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-bold;
+  font-size: 2.1875rem; // 35px from Figma h2
+  line-height: 1.1;
+  letter-spacing: -0.065625rem; // -1.05px
+  color: @tertiary-blue-dark;
+  margin: 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: 1.75rem;
+  }
+}
+
+.horizontal-story-whats-next-text {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-size: 1.25rem; // 20px
+  line-height: 1.3;
+  letter-spacing: -0.025rem; // -0.4px
+  color: @tertiary-blue-dark;
+  margin: 0;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: 1rem;
+  }
+}
+
+.horizontal-story-whats-next-buttons {
+  display: flex;
+  gap: 1.25rem; // 20px
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+}
+
+.horizontal-story-button {
+  padding: 1.25rem; // 20px
+  font-family: @font-family-averta;
+  font-size: 0.9375rem; // 15px
+  font-weight: @font-weight-regular;
+  line-height: 1.4;
+  text-decoration: none;
+  border-radius: 0.625rem; // 10px
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background-color @transition-fast, transform @transition-fast, color @transition-fast;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+.horizontal-story-button-outline {
+  background-color: @base-white;
+  color: @tertiary-blue-dark;
+
+  &:hover {
+    background-color: darken(@base-white, 5%);
+    color: @tertiary-blue-dark;
+    transform: translateY(-0.0625rem); // -1px
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.horizontal-story-button-primary {
+  background-color: @primary-coral;
+  color: @base-white;
+
+  &:hover {
+    background-color: darken(@primary-coral, 5%);
+    color: @base-white;
+    transform: translateY(-0.0625rem); // -1px
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// ==========================================================================
+// BOOK TOUR SECTION
+// ==========================================================================
+
+.horizontal-story-tour {
+  position: relative;
+  width: 100%;
+  height: 56.25rem; // 900px from Figma
+  overflow: hidden;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    height: 43.75rem; // 700px
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    height: 37.5rem; // 600px
+  }
+}
+
+.horizontal-story-tour-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.horizontal-story-tour-bg-white {
+  position: absolute;
+  inset: 0;
+  background-color: @base-white;
+  z-index: 0;
+}
+
+.horizontal-story-tour-bg-main {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+.horizontal-story-tour-bg-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 2;
+
+  img {
+    position: absolute;
+    height: 120%;
+    left: -32.57%;
+    top: -19.11%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+.horizontal-story-tour-bg-dark-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.horizontal-story-tour-content {
+  position: absolute;
+  left: 4.59%; // 66.13px / 1440px
+  bottom: 17.23%; // 155px / 900px
+  width: 45.63%; // 657px / 1440px
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; // 20px
+  z-index: 4;
+  pointer-events: auto;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    left: 2rem;
+    bottom: 2rem;
+    width: calc(100% - 4rem);
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    left: 1rem;
+    bottom: 1rem;
+    width: calc(100% - 2rem);
+  }
+}
+
+.horizontal-story-tour-title {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-extrabold;
+  font-size: 3.75rem; // 60px from Figma h1
+  line-height: 1;
+  letter-spacing: -0.075rem; // -1.2px
+  text-transform: uppercase;
+  color: @base-white;
+  margin: 0;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: 2rem;
+  }
+}
+
+.horizontal-story-tour-description {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-size: 1.25rem; // 20px
+  line-height: 1.3;
+  letter-spacing: -0.025rem; // -0.4px
+  color: @base-white;
+  margin: 0;
+  max-width: 21.5625rem; // 345px from Figma
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+}
+
+.horizontal-story-tour-arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  width: 2.996625rem; // 47.946px from Figma
+  height: 2.28125rem; // 36.5px from Figma
+  z-index: 5;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    display: none;
+  }
+}
+

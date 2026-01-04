@@ -1,0 +1,422 @@
+// ==========================================================================
+// NURTURING START SECTION
+// ==========================================================================
+// Pixel-perfect match to Figma design
+// Figma: https://www.figma.com/design/qVOIfc8UCZR1QPkIwhbRIX/Glenaeon-Concordia-Kit?node-id=9162-9987
+// ==========================================================================
+
+.nurturing-start-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff1b0;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    height: 700px;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    height: auto;
+  }
+
+  .nurturing-background-image {
+    background-repeat: no-repeat;
+    background-size: center;
+    background-size: cover;
+    position: relative;
+
+
+
+
+    @media (max-width:767px) {
+      padding-top: 60%;
+      background-size: 125%;
+      background-position: left top;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:linear-gradient(to bottom, rgba(255, 233, 175, 0) 31%, rgba(255, 233, 176, 0.96) 35%, #ffe8af 30%, #fbb28e 100%);
+
+        z-index: 1;
+      }
+    }
+  }
+
+
+}
+
+// Background image layer - positioned behind everything
+.nurturing-start-bg-images {
+  position: absolute;
+  left: -8.4146%; // -121.17px / 1440px
+  top: -9.2778%; // -83.5px / 900px
+  width: 109.0972%; // 1571px / 1440px
+  height: 118.5556%; // 1067px / 900px
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.nurturing-start-bg-image-1 {
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/images/Frame-49.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.nurturing-start-bg-image-2 {
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/images/bg-nurturing.jpg');
+  background-size: cover;
+  background-position: -15.93% center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+// Yellow background layer 1
+.nurturing-start-bg-yellow-1 {
+  position: absolute;
+  left: 0.1014%; // 1.46px / 1440px
+  top: 0;
+  width: 100%; // 1440px
+  height: 99.486%; // 895.624px / 900px
+  background-color: #fff1b0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+// Yellow background layer 2
+.nurturing-start-bg-yellow-2 {
+  position: absolute;
+  left: 62.6389%; // 902.46px / 1440px
+  top: 0;
+  width: 37.3611%; // 539px / 1440px
+  height: 100%; // 900px
+  background-color: #fff1b0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+// Gradient transition layer
+.nurturing-start-bg-gradient {
+  position: absolute;
+  left: 33.6111%; // 484.46px / 1440px
+  top: 0;
+  width: 29.0278%; // 418px / 1440px
+  height: 100%; // 900px
+  background: linear-gradient(to right,
+      #fff1b0 0%,
+      rgba(255, 241, 176, 0.64) 53.846%,
+      rgba(255, 241, 176, 0) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+// Peach gradient with watercolor overlay
+.nurturing-start-bg-peach {
+  position: absolute;
+  left: 50.7639%; // 731.46px / 1440px
+  top: 0;
+  width: 49.3056%; // 710px / 1440px
+  height: 100%; // 900px
+  background: linear-gradient(to left,
+      #ffc1aa 0%,
+      rgba(255, 193, 170, 0) 100%);
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.nurturing-start-bg-peach-overlay {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+  background-image: url('../../assets/images/big-bg-nurturing.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+// Rotated image container
+.nurturing-start-image-container {
+  position: absolute;
+  left: 43.0%; // 619.06px / 1440px
+  top: 8.6%; // 77.41px / 900px
+  width: 34.5%; // 496.85px / 1440px
+  height: 82.8%; // 745.185px / 900px
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: multiply;
+  z-index: 4;
+  pointer-events: none;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 70%;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    width: 60%;
+    height: 60%;
+  }
+}
+
+.nurturing-start-image-rotated {
+  width: 100%;
+  height: 100%;
+  transform: rotate(270deg);
+  transform-origin: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nurturing-start-image {
+  // After 270deg rotation, the image dimensions swap
+  // Container is 496.85px x 745.185px
+  // Image needs to be 745.185px x 496.85px to fill after rotation
+  width: 150.1%; // 745.185px / 496.85px
+  height: 66.7%; // 496.85px / 745.185px
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+// Text content container
+.nurturing-start-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  padding: 6rem 0;
+  z-index: 5;
+  min-height: 100vh;
+
+
+  &:before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 0;
+    background: url(../../assets/images/back-img.png) right center no-repeat;
+
+    @media (max-width:767px) {
+      top: 38%;
+    }
+
+  }
+
+
+  .content-box {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2.125rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+
+    @media (max-width:767px) {
+      width: 100%;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: auto;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    width: 95%;
+    gap: 24px;
+    padding: 0 20px;
+  }
+
+  @media (max-width:767px) {
+    width: 100%;
+    transform: none;
+    padding: 0rem 1.5rem 2rem;
+    min-height: auto;
+  }
+}
+
+// Text group
+.nurturing-start-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 94.63%; // 564px / 596px
+  text-align: center;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    width: 100%;
+  }
+
+
+
+}
+
+.nurturing-start-script {
+  font-family: @font-family-born-ready;
+  font-size: 60px;
+  font-weight: @font-weight-regular;
+  line-height: @line-height-none;
+  letter-spacing: 0;
+  color: @primary-coral;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    font-size: clamp(40px, 8vw, 60px);
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: clamp(32px, 7vw, 50px);
+  }
+}
+
+.nurturing-start-heading {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-extrabold;
+  font-size: 60px;
+  line-height: @line-height-none;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: @primary-coral;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  text-align: center;
+  width: 100%;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    font-size: clamp(36px, 7vw, 60px);
+    letter-spacing: -0.8px;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: clamp(28px, 6vw, 48px);
+    letter-spacing: -0.6px;
+  }
+}
+
+.nurturing-start-heading p {
+  margin: 0;
+}
+
+// Info group
+.nurturing-start-info-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  text-align: center;
+}
+
+.nurturing-start-year {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-extrabold;
+  font-size: 35px;
+  line-height: @line-height-none;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #005e9c;
+  margin: 0;
+  text-align: center;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    font-size: clamp(24px, 5vw, 35px);
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: clamp(20px, 4vw, 30px);
+  }
+}
+
+.nurturing-start-urgency {
+  font-family: @font-family-averta;
+  font-weight: @font-weight-regular;
+  font-size: 35px;
+  line-height: @line-height-none;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #005e9c;
+  margin: 0;
+  text-align: center;
+
+  @media (max-width: (@breakpoint-lg - 1)) {
+    font-size: clamp(20px, 4vw, 35px);
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    font-size: clamp(18px, 3.5vw, 28px);
+    letter-spacing: 1.5px;
+  }
+}
+
+// Button
+.nurturing-start-button {
+  padding: 20px 25px;
+  font-family: @font-family-averta;
+  font-size: 0.975rem;
+  font-weight: @font-weight-regular;
+  line-height: 1.4;
+  color: @base-white;
+  background-color: @tertiary-blue-dark;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background-color @transition-fast, transform @transition-fast;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: darken(@tertiary-blue-dark, 5%);
+    color: @base-white;
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 15px 20px;
+    font-size: 14px;
+    width: 100%;
+    white-space: normal;
+  }
+}

@@ -1,0 +1,284 @@
+// ==========================================================================
+// VIDEO TESTIMONIALS SECTION
+// ==========================================================================
+
+// Card reveal animation support
+.card-clip-reveal:not(.clip-animation-complete) {
+  --clip-value: 100%;
+  -webkit-clip-path: inset(var(--clip-value) 0 0 0);
+  clip-path: inset(var(--clip-value) 0 0 0);
+}
+
+.card-clip-reveal.clip-animation-complete {
+  -webkit-clip-path: none;
+  clip-path: none;
+}
+
+// Featured cards swiper with dynamic scaling effect
+.features-cards-slider {
+  .swiper {
+    overflow: visible;
+    cursor: pointer !important; // Pointer instead of grab hand
+    // Prevent text selection and blue highlighting on drag
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .swiper-slide {
+    width: auto; // Important for slidesPerView calculations
+    // Prevent text selection in slides
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .feature-card {
+    transform-origin: center center;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+    // Prevent selection and highlighting
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    // Prevent drag behavior on images and content
+    * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+    }
+    // Allow text selection for important content (like titles)
+    h2, h3, h4, p, .feature-card-content {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+    }
+  }
+}
+
+.video-testimonials {
+  padding: 10.75rem 0 6.625rem;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: @spacing-lg;
+    text-align: center;
+  }
+
+  .title-script {
+    font-family: @font-script;
+    font-weight: @font-weight-regular;
+    font-size: @font-size-h1;
+    line-height: 1;
+    letter-spacing: 0;
+    color: @color-blue-dark;
+    text-align: center;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: clamp(36px, 8vw, 60px);
+    }
+  }
+
+  .title-bold {
+    font-family: @font-primary;
+    font-weight: @font-weight-extrabold;
+    font-size: @font-size-h1;
+    line-height: 1;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: @color-blue-dark;
+    text-align: center;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      font-size: clamp(36px, 8vw, 60px);
+      letter-spacing: -1.2px;
+    }
+  }
+
+  .cards {
+   padding: 0 4.5rem;
+    >.row{
+      margin:-0 0.4375rem;
+      >div{
+        padding: 0 0.4375rem;
+      }
+    }
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      gap: @spacing-md;
+    }
+  }
+
+  // Use reusable video-card component with legacy class name support
+  .card {
+    &:extend(.video-card all);
+  }
+
+  .card-inner {
+    &:extend(.video-card-inner all);
+    
+    .media {
+      &:extend(.video-card-media all);
+    }
+  }
+
+  .card-overlay {
+    &:extend(.video-card-overlay all);
+  }
+
+  .card-content {
+    &:extend(.video-card-content all);
+  }
+
+  .card-info {
+    &:extend(.video-card-info all);
+  }
+
+  .card-name {
+    &:extend(.video-card-name all);
+  }
+
+  .card-title {
+    &:extend(.video-card-title all);
+  }
+
+  .play-button-wrapper {
+    &:extend(.video-card-play-wrapper all);
+  }
+
+  .play-button {
+    &:extend(.video-card-play-button all);
+  }
+
+  .play-button-circle {
+    &:extend(.video-card-play-circle all);
+  }
+
+  .play-button-icon {
+    &:extend(.video-card-play-icon all);
+  }
+
+
+
+
+
+
+
+  .card-layer {
+    object-fit: cover;
+    max-width: none;
+  }
+
+  // All Videos Button
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .all-videos-btn {
+    padding: @spacing-md;
+    border-radius: 10px;
+    font-family: @font-primary;
+    font-size: @font-size-base;
+    font-weight: @font-weight-regular;
+    line-height: 1.4;
+    letter-spacing: 0;
+    background-color: @color-coral;
+    color: @color-white;
+    border: none;
+    cursor: pointer;
+    transition: background-color @transition-base, transform @transition-fast;
+
+    &:hover {
+      background-color: darken(@color-coral, 5%);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      background-color: darken(@color-coral, 10%);
+    }
+
+    &:focus-visible {
+      outline: 2px solid @color-coral;
+      outline-offset: 2px;
+    }
+  }
+
+  // Video Testimonials Swiper for Mobile
+  .video-testimonials-swiper {
+    .swiper {
+      padding: 0;
+    }
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .video-card,
+      .card {
+        max-width: 300px;
+        height: auto;
+        aspect-ratio: 300 / 503.731;
+      }
+    }
+  }
+}
+
+// Media Query for Mobile
+@media (max-width: 991px) {
+  .video-testimonials {
+    // Show grid on desktop, hide on mobile
+    .cards {
+      display: none;
+    }
+
+    // Hide desktop grid, show swiper on mobile
+    .video-testimonials-swiper {
+      display: block;
+    }
+  }
+}
+
+
+@media (min-width:768px) and (max-width:992px){
+  .video-testimonials{
+    padding:4.75rem 0 ;
+  }
+}
+
+@media (max-width:767px) {
+  .video-testimonials {
+       padding: 3.75rem 0;
+    .cards {
+      padding: 0;
+
+      >.row{
+        gap: 1.5rem 0;
+      }
+      .video-card,
+      .card {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+}
