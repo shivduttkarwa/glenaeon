@@ -9926,9 +9926,23 @@ button {
 }
 @media (max-width: 767px) {
   .full-width-testimonial-audio .testimonial-audio-player {
-    flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "waveform waveform" "toggle time";
+    column-gap: 16px;
+    row-gap: 12px;
+    align-items: center;
+  }
+  .full-width-testimonial-audio .testimonial-audio-player .testimonial-audio-waveform {
+    grid-area: waveform;
+  }
+  .full-width-testimonial-audio .testimonial-audio-player .testimonial-audio-toggle {
+    grid-area: toggle;
+  }
+  .full-width-testimonial-audio .testimonial-audio-player .testimonial-audio-time {
+    grid-area: time;
+    justify-self: end;
+    white-space: nowrap;
   }
 }
 .full-width-testimonial-audio .testimonial-audio-player audio {

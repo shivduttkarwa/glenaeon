@@ -1538,9 +1538,28 @@ button {
     margin-bottom: 26px;
 
     @media (max-width: (@breakpoint-md - 1)) {
-      flex-direction: column;
-      gap: 15px;
-      align-items: flex-start;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        "waveform waveform"
+        "toggle time";
+      column-gap: 16px;
+      row-gap: 12px;
+      align-items: center;
+
+      .testimonial-audio-waveform {
+        grid-area: waveform;
+      }
+
+      .testimonial-audio-toggle {
+        grid-area: toggle;
+      }
+
+      .testimonial-audio-time {
+        grid-area: time;
+        justify-self: end;
+        white-space: nowrap;
+      }
     }
 
     audio {
