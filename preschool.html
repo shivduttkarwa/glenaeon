@@ -31,14 +31,17 @@
   </script>
 
   <style>
-    .js .hero__title-line {
+    .js .hero__title-script,
+    .js .hero__title-main,
+    .js .hero__description,
+    .js .hero .play-button {
       opacity: 0;
     }
 
     h1 .hero__title-script,
     h1 .hero__title-main {
       display: block;
-      overflow: hidden;
+      overflow: visible;
     }
 
     h1 .hero__title-script {
@@ -53,6 +56,34 @@
       h1 .hero__title-script {
         margin-bottom: calc(1rem - 0.34em);
       }
+    }
+
+    .hero-anim-text {
+      display: inline-block;
+      overflow: visible;
+    }
+
+    .hero-anim-text__inner {
+      display: inline-block;
+    }
+
+    .hero-anim-text__word {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: visible;
+    }
+
+    .hero-anim-text__char {
+      display: inline-block;
+      position: relative;
+      padding-right: 0.02em;
+      will-change: transform, opacity;
+    }
+
+    .hero-script-text {
+      display: inline-block;
+      position: relative;
+      overflow: visible;
     }
 
     .preschool-hero-line {
@@ -428,7 +459,7 @@
                       <h4>About</h4>
                     </li>
                     <li class="mega-menu__subnav-item">
-                      <a href="index.html">About Glenaeon</a>
+                      <a href="about-glenaeon.html">About Glenaeon</a>
                       <span class="mega-menu__subnav-icon">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -2018,97 +2049,256 @@
     const prefersReducedMotion = window.matchMedia
       ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
       : false;
-    let preschoolHeroPrepared = false;
-    let preschoolHeroAnimated = false;
+    let heroTextAnimated = false;
 
-    const PRESCHOOL_HERO_KNOBS = {
-      lineDuration: 0.8,
-      lineEase: 'power1.out',
-      lineFromY: '200%',
-      lineGap: 0.15
+    const HERO_TEXT_KNOBS = {
+      scriptDuration: 1.4,
+      scriptGap: 0,
+      scriptEase: 'power3.out',
+      scriptTrackingFrom: '0.22em',
+      scriptTrackingTo: '-0.009em',
+      boldStartRatio: 0.5,
+      boldDuration: 0.9,
+      boldStagger: 0.06,
+      boldEase: 'back.inOut(2.7)',
+      boldFromY: 100,
+      descriptionDuration: 0.8,
+      descriptionGap: 0.3,
+      descriptionEase: 'power3.out',
+      descriptionFromY: 34,
+      playButtonDuration: 0.7,
+      playButtonGap: 0.1,
+      playButtonEase: 'power2.out',
+      playButtonScaleFrom: .08,
+      playButtonOpacityFrom: 0
     };
 
-    function getPreschoolHeroTextElements() {
+    function getActiveHeroTextElements() {
       const heroSlider = document.querySelector('.hero__slider');
       if (!heroSlider) return null;
 
       const activeSlide = heroSlider.querySelector('.swiper-slide-active') || heroSlider.querySelector('.swiper-slide');
       if (!activeSlide) return null;
 
+      const script = activeSlide.querySelector('.hero__title-script');
+      const main = activeSlide.querySelector('.hero__title-main');
+
       return {
-        title: activeSlide.querySelector('.hero__title-line'),
-        scriptLine: activeSlide.querySelector('.hero__title-script .preschool-hero-line'),
-        mainLine: activeSlide.querySelector('.hero__title-main .preschool-hero-line')
+        script,
+        main,
+        scriptLine: script ? script.querySelector('.preschool-hero-line') : null,
+        mainLine: main ? main.querySelector('.preschool-hero-line') : null,
+        description: activeSlide.querySelector('.hero__description'),
+        playButton: document.querySelector('.hero .play-button')
       };
     }
 
-    function prepPreschoolHeroText() {
-      const elements = getPreschoolHeroTextElements();
-      if (!elements) return;
-      if (elements.title) {
-        elements.title.style.opacity = '1';
+    function splitHeroChars(element) {
+      if (!element) return [];
+      if (element.dataset.split === 'true' && Array.isArray(element.__heroChars)) {
+        return element.__heroChars;
       }
-      if (preschoolHeroPrepared || typeof gsap === 'undefined') return;
 
-      const lines = [elements.scriptLine, elements.mainLine].filter(Boolean);
-      if (!lines.length) return;
+      const text = (element.textContent || '').replace(/\\s+/g, ' ').trim();
+      if (!text) return [];
 
-      gsap.set(lines, {
-        y: PRESCHOOL_HERO_KNOBS.lineFromY,
-        opacity: 0,
-        willChange: 'transform, opacity'
+      element.textContent = '';
+      element.dataset.split = 'true';
+      element.classList.add('hero-anim-text');
+      element.setAttribute('role', 'text');
+      element.setAttribute('aria-label', text);
+
+      const chars = [];
+      const words = text.split(' ');
+      words.forEach((word, index) => {
+        const wordEl = document.createElement('span');
+        wordEl.className = 'hero-anim-text__word';
+        wordEl.setAttribute('aria-hidden', 'true');
+
+        Array.from(word).forEach(char => {
+          const span = document.createElement('span');
+          span.className = 'hero-anim-text__char';
+          span.textContent = char;
+          span.setAttribute('aria-hidden', 'true');
+          wordEl.appendChild(span);
+          chars.push(span);
+        });
+
+        element.appendChild(wordEl);
+        if (index < words.length - 1) {
+          element.appendChild(document.createTextNode(' '));
+        }
       });
 
-      preschoolHeroPrepared = true;
+      element.__heroChars = chars;
+      return chars;
     }
 
-    function playPreschoolHeroText() {
-      if (preschoolHeroAnimated || typeof gsap === 'undefined') return;
-      const elements = getPreschoolHeroTextElements();
+    function prepHeroTextAnimation() {
+      if (typeof gsap === 'undefined') return;
+      const elements = getActiveHeroTextElements();
       if (!elements) return;
 
-      const lines = [elements.scriptLine, elements.mainLine].filter(Boolean);
-      if (!lines.length) return;
+      const scriptTarget = elements.scriptLine || elements.script;
+      const mainTarget = elements.mainLine || elements.main;
 
+      if (scriptTarget) {
+        gsap.set(scriptTarget, {
+          opacity: 0,
+          letterSpacing: HERO_TEXT_KNOBS.scriptTrackingFrom,
+          willChange: 'letter-spacing, opacity'
+        });
+      }
+
+      const boldChars = splitHeroChars(mainTarget);
+      if (boldChars.length) {
+        gsap.set(boldChars, {
+          yPercent: HERO_TEXT_KNOBS.boldFromY,
+          opacity: 0,
+          willChange: 'transform, opacity'
+        });
+      }
+
+      if (elements.script && scriptTarget !== elements.script) {
+        gsap.set(elements.script, { opacity: 1 });
+      }
+      if (elements.main) {
+        gsap.set(elements.main, { opacity: 1 });
+      }
+
+      if (elements.description) {
+        gsap.set(elements.description, {
+          opacity: 0,
+          y: HERO_TEXT_KNOBS.descriptionFromY,
+          willChange: 'transform, opacity'
+        });
+      }
+
+      if (elements.playButton) {
+        gsap.set(elements.playButton, {
+          opacity: HERO_TEXT_KNOBS.playButtonOpacityFrom,
+          scale: HERO_TEXT_KNOBS.playButtonScaleFrom,
+          transformOrigin: '50% 50%',
+          willChange: 'transform, opacity'
+        });
+      }
+    }
+
+    function playHeroTextAnimation() {
+      if (heroTextAnimated || typeof gsap === 'undefined') return;
+      const elements = getActiveHeroTextElements();
+      if (!elements) return;
       if (prefersReducedMotion) {
-        if (elements.title) {
-          gsap.set(elements.title, { opacity: 1, clearProps: 'transform' });
+        const scriptTarget = elements.scriptLine || elements.script;
+        const mainTarget = elements.mainLine || elements.main;
+        const boldChars = splitHeroChars(mainTarget);
+        if (scriptTarget) {
+          gsap.set(scriptTarget, { opacity: 1, clearProps: 'letter-spacing' });
         }
-        gsap.set(lines, { opacity: 1, y: 0, clearProps: 'will-change' });
-        preschoolHeroAnimated = true;
+        if (boldChars.length) {
+          gsap.set(boldChars, { yPercent: 0, opacity: 1, clearProps: 'will-change' });
+        }
+        if (elements.description) {
+          gsap.set(elements.description, { opacity: 1, clearProps: 'transform' });
+        }
+        if (elements.playButton) {
+          gsap.set(elements.playButton, { opacity: 1, scale: 1, clearProps: 'transform' });
+        }
+        heroTextAnimated = true;
+        return;
+      }
+
+      const scriptTarget = elements.scriptLine || elements.script;
+      const mainTarget = elements.mainLine || elements.main;
+      const boldChars = splitHeroChars(mainTarget);
+      if (!scriptTarget && !boldChars.length && !elements.description && !elements.playButton) {
+        heroTextAnimated = true;
         return;
       }
 
       const tl = gsap.timeline();
+      const boldStart = scriptTarget
+        ? (HERO_TEXT_KNOBS.scriptDuration * HERO_TEXT_KNOBS.boldStartRatio) + HERO_TEXT_KNOBS.scriptGap
+        : 0;
 
-      if (elements.scriptLine) {
-        tl.to(elements.scriptLine, {
-          duration: PRESCHOOL_HERO_KNOBS.lineDuration,
-          y: 0,
+      if (scriptTarget) {
+        gsap.set(scriptTarget, {
+          opacity: 0,
+          letterSpacing: HERO_TEXT_KNOBS.scriptTrackingFrom,
+          willChange: 'letter-spacing, opacity'
+        });
+        tl.to(scriptTarget, {
+          duration: HERO_TEXT_KNOBS.scriptDuration,
           opacity: 1,
-          ease: PRESCHOOL_HERO_KNOBS.lineEase
+          letterSpacing: HERO_TEXT_KNOBS.scriptTrackingTo,
+          ease: HERO_TEXT_KNOBS.scriptEase
         }, 0);
       }
 
-      if (elements.mainLine) {
-        const startAt = elements.scriptLine ? `>+${PRESCHOOL_HERO_KNOBS.lineGap}` : 0;
-        tl.to(elements.mainLine, {
-          duration: PRESCHOOL_HERO_KNOBS.lineDuration,
-          y: 0,
+      if (boldChars.length) {
+        gsap.set(boldChars, {
+          yPercent: HERO_TEXT_KNOBS.boldFromY,
+          opacity: 0,
+          willChange: 'transform, opacity'
+        });
+        tl.to(boldChars, {
+          duration: HERO_TEXT_KNOBS.boldDuration,
           opacity: 1,
-          ease: PRESCHOOL_HERO_KNOBS.lineEase
-        }, startAt);
+          yPercent: 0,
+          stagger: HERO_TEXT_KNOBS.boldStagger,
+          ease: HERO_TEXT_KNOBS.boldEase
+        }, boldStart);
+      }
+
+      if (elements.description) {
+        gsap.set(elements.description, {
+          opacity: 0,
+          y: HERO_TEXT_KNOBS.descriptionFromY,
+          willChange: 'transform, opacity'
+        });
+        tl.to(elements.description, {
+          duration: HERO_TEXT_KNOBS.descriptionDuration,
+          opacity: 1,
+          y: 0,
+          ease: HERO_TEXT_KNOBS.descriptionEase
+        }, `-=${HERO_TEXT_KNOBS.descriptionGap}`);
+      }
+
+      if (elements.playButton) {
+        gsap.set(elements.playButton, {
+          opacity: HERO_TEXT_KNOBS.playButtonOpacityFrom,
+          scale: HERO_TEXT_KNOBS.playButtonScaleFrom,
+          transformOrigin: '50% 50%',
+          willChange: 'transform, opacity'
+        });
+        tl.to(elements.playButton, {
+          duration: HERO_TEXT_KNOBS.playButtonDuration,
+          opacity: 1,
+          scale: 1,
+          ease: HERO_TEXT_KNOBS.playButtonEase
+        }, `>+${HERO_TEXT_KNOBS.playButtonGap}`);
       }
 
       tl.eventCallback('onComplete', () => {
-        gsap.set(lines, { clearProps: 'will-change' });
-        preschoolHeroAnimated = true;
+        if (scriptTarget) {
+          gsap.set(scriptTarget, { clearProps: 'will-change' });
+        }
+        if (boldChars.length) {
+          gsap.set(boldChars, { clearProps: 'will-change' });
+        }
+        if (elements.description) {
+          gsap.set(elements.description, { clearProps: 'will-change' });
+        }
+        if (elements.playButton) {
+          gsap.set(elements.playButton, { clearProps: 'will-change' });
+        }
+        heroTextAnimated = true;
       });
     }
 
-    prepPreschoolHeroText();
+    prepHeroTextAnimation();
     if (typeof gsap !== 'undefined') {
-      gsap.delayedCall(0, playPreschoolHeroText);
+      gsap.delayedCall(0, playHeroTextAnimation);
     }
   </script>
 
@@ -2140,9 +2330,6 @@
 
   <!-- Animations -->
   <script src="animations.js"></script>
-
-  <!-- Video Popup -->
-  <script src="src/scripts/video-popup.js"></script>
 
   <!-- Enable scrolling on page load -->
   <script>
