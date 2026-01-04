@@ -476,6 +476,80 @@ function initFooterBrandReveal() {
 // FOOTER BRAND TEXT REVEAL - END
 // ==========================================================================
 
+// ==========================================================================
+// DIVIDER LINE REVEAL - START
+// ==========================================================================
+function initDeviderLineAnimation() {
+  if (typeof gsap === 'undefined') {
+    return;
+  }
+
+  const sections = document.querySelectorAll('.devider');
+  if (!sections.length) {
+    return;
+  }
+
+  sections.forEach((section, index) => {
+    if (section.dataset.deviderAnimated === 'true') {
+      return;
+    }
+
+    const svg = section.querySelector('svg');
+    const clipPath = svg ? svg.querySelector('clipPath') : null;
+    const revealRect = svg ? svg.querySelector('.devider__reveal') : null;
+    const clipTarget = svg ? svg.querySelector('[clip-path]') : null;
+    if (!svg || !clipPath || !revealRect || !clipTarget) {
+      return;
+    }
+
+    section.dataset.deviderAnimated = 'true';
+
+    const viewBox = svg.viewBox && svg.viewBox.baseVal;
+    const maxWidth = viewBox && viewBox.width ? viewBox.width : 0;
+    const maxHeight = viewBox && viewBox.height ? viewBox.height : 0;
+    const targetWidth = maxWidth || 1239;
+    const targetHeight = maxHeight || 22;
+
+    const clipId = `devider-clip-${index}`;
+    clipPath.id = clipId;
+    clipTarget.setAttribute('clip-path', `url(#${clipId})`);
+
+    if (typeof ScrollTrigger === 'undefined') {
+      revealRect.setAttribute('width', targetWidth);
+      revealRect.setAttribute('height', targetHeight);
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.set(revealRect, {
+      attr: {
+        width: 0,
+        height: targetHeight
+      }
+    });
+
+    const smoother = typeof ScrollSmoother !== 'undefined' ? ScrollSmoother.get() : null;
+    const scrollerEl = smoother ? smoother.wrapper() : null;
+
+    gsap.to(revealRect, {
+      attr: {
+        width: targetWidth
+      },
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        scroller: scrollerEl || undefined,
+        start: 'top bottom',
+        end: 'bottom 30%',
+        scrub: true
+      }
+    });
+  });
+}
+// ==========================================================================
+// DIVIDER LINE REVEAL - END
+// ==========================================================================
+
 function initAnimations() {
   if (typeof gsap === 'undefined') {
     return;
@@ -486,6 +560,7 @@ function initAnimations() {
   initVideoTestimonialsAnimations();
   initRevealAnimations();
   initFooterBrandReveal();
+  initDeviderLineAnimation();
   initParallaxBackgrounds();
   // Featured cards now use swiper instead of GSAP scroll effect
 
