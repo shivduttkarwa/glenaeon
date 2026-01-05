@@ -150,7 +150,7 @@ function initScrollSmootherManager() {
 function initVideoTestimonialsAnimations() {
   if (videoTestimonialsAnimationsInitialized) return;
   // Support both video-testimonials and moments sections
-  const sections = document.querySelectorAll(VIDEO_SECTION_SELECTOR + ', .moments-section');
+  const sections = document.querySelectorAll(VIDEO_SECTION_SELECTOR + ', .moments-section, .arc-slider-stage');
   if (!sections.length || typeof gsap === 'undefined') return;
   videoTestimonialsAnimationsInitialized = true;
 
@@ -174,7 +174,6 @@ function setupVideoCardsReveal(section) {
   
   // For moments section: all cards in the carousel (nested inside .moments-card)
   const momentsCards = section.querySelectorAll('.moments-arc-carousel .swiper-slide .moments-card .video-card, .moments-arc-carousel .swiper-slide .moments-card .card, .moments-arc-carousel .swiper-slide .video-card, .moments-arc-carousel .swiper-slide .card');
-  
   const allCards = [...desktopCards, ...momentsCards];
   
   if (allCards.length > 0) {
@@ -415,15 +414,52 @@ function initFooterBrandReveal() {
   }
 
   const prefersReducedMotion = reduceMotionMediaQuery ? reduceMotionMediaQuery.matches : false;
-  const brandItems = document.querySelectorAll('.footer__brand-inner');
+  const innerItems = Array.from(document.querySelectorAll('.footer__brand-inner'));
+  const outerItems = Array.from(document.querySelectorAll('.footer__brand'))
+    .filter((item) => !item.querySelector('.footer__brand-inner'));
+  const brandItems = [...innerItems, ...outerItems];
   if (!brandItems.length) {
     return;
   }
 
   brandItems.forEach((item) => {
+    if (item.dataset.footerBrandAnimated === 'true') {
+      return;
+    }
+
+    const mediaEl = item.querySelector('object, svg, img');
+    if (mediaEl) {
+      item.dataset.footerBrandAnimated = 'true';
+      gsap.set(item, { overflow: 'hidden' });
+
+      if (prefersReducedMotion) {
+        gsap.set(mediaEl, { yPercent: 0, clearProps: 'transform' });
+        return;
+      }
+
+      gsap.set(mediaEl, { yPercent: 120 });
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 90%',
+          end: 'top 30%',
+          scrub: true
+        }
+      }).to(mediaEl, {
+        yPercent: 0,
+        duration: 2.6,
+        ease: 'back.out(1)'
+      });
+      return;
+    }
+
     let textSpan = item.querySelector('.footer__brand-text');
     if (!textSpan) {
       const textContent = item.textContent;
+      if (!textContent || !textContent.trim()) {
+        return;
+      }
       item.textContent = '';
       textSpan = document.createElement('span');
       textSpan.className = 'footer__brand-text';
@@ -450,6 +486,7 @@ function initFooterBrandReveal() {
 
     const chars = textSpan.querySelectorAll('.footer__brand-char');
 
+    item.dataset.footerBrandAnimated = 'true';
     if (prefersReducedMotion) {
       gsap.set(chars, { yPercent: 0, clearProps: 'transform' });
       return;

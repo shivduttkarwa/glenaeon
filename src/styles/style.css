@@ -2188,6 +2188,7 @@ h1 .hero__title-script {
     justify-content: space-between;
     flex-direction: column;
     order: 1;
+    height: 100%;
   }
   .hero .hero__content h1 {
     font-size: 3.5rem;
@@ -2731,7 +2732,6 @@ h1 .hero__title-script {
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 20px;
   overflow: hidden;
 }
 .video-card-inner .video-card-media,
@@ -2752,6 +2752,16 @@ h1 .hero__title-script {
   object-fit: cover;
   object-position: center;
 }
+@media (min-width: 1400px) {
+  .video-card-inner .video-card-media .testimonial-video,
+  .video-card-inner .video-card-media img,
+  .video-testimonials .card-inner .video-card-media .testimonial-video,
+  .video-testimonials .card-inner .video-card-media img,
+  .video-card-inner .video-testimonials .card-inner .media .testimonial-video,
+  .video-card-inner .video-testimonials .card-inner .media img {
+    min-height: 31.625rem;
+  }
+}
 .video-card-overlay,
 .video-testimonials .card-overlay {
   position: absolute;
@@ -2763,10 +2773,52 @@ h1 .hero__title-script {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 67.244%, rgba(0, 0, 0, 0.65) 100%);
   border-radius: 20px;
   pointer-events: none;
-  z-index: 1;
+  z-index: 3;
   padding: 2rem;
   display: flex;
   align-items: flex-end;
+}
+.video-card.has-fallback .video-card-media,
+.video-testimonials .card.has-fallback .video-card-media,
+.video-card.has-fallback .video-testimonials .card-inner .media {
+  position: relative;
+  overflow: hidden;
+}
+.video-card.has-fallback .video-card-fallback,
+.video-testimonials .card.has-fallback .video-card-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 2;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.6s ease, transform 0.8s ease;
+  pointer-events: none;
+}
+.video-card.has-fallback .testimonial-video,
+.video-card.has-fallback .learner-video,
+.video-testimonials .card.has-fallback .testimonial-video,
+.video-testimonials .card.has-fallback .learner-video {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.6s ease, transform 0.8s ease;
+}
+.video-card.has-fallback.is-video-ready .video-card-fallback,
+.video-testimonials .card.has-fallback.is-video-ready .video-card-fallback {
+  opacity: 0;
+  transform: scale(1.04);
+}
+.video-card.has-fallback.is-video-ready .testimonial-video,
+.video-card.has-fallback.is-video-ready .learner-video,
+.video-testimonials .card.has-fallback.is-video-ready .testimonial-video,
+.video-testimonials .card.has-fallback.is-video-ready .learner-video {
+  opacity: 1;
+  transform: scale(1);
 }
 .video-card-content,
 .video-testimonials .card-content {
@@ -2837,19 +2889,51 @@ h1 .hero__title-script {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 150ms ease ease;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
+}
+.video-card-play-icon .icon-play,
+.video-testimonials .play-button-icon .icon-play {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+.video-card-play-icon .icon-play svg,
+.video-testimonials .play-button-icon .icon-play svg {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.video-card-play-icon .icon-play path,
+.video-testimonials .play-button-icon .icon-play path {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
 }
 .video-card-play-icon .icon-close,
 .video-testimonials .play-button-icon .icon-close {
   opacity: 0;
+  transform: scale(0.8) rotate(-45deg);
+}
+.video-card-play-icon .icon-close path,
+.video-testimonials .play-button-icon .icon-close path {
+  transition: stroke-dasharray 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), stroke-dashoffset 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  stroke-dasharray: 0 20;
+  stroke-dashoffset: 20;
 }
 .video-card-play-button.is-active .icon-play,
 .video-testimonials .play-button.is-active .icon-play {
   opacity: 0;
+  transform: scale(0.8) rotate(45deg);
+}
+.video-card-play-button.is-active .icon-play path,
+.video-testimonials .play-button.is-active .icon-play path {
+  transform: scale(0.6);
 }
 .video-card-play-button.is-active .icon-close,
 .video-testimonials .play-button.is-active .icon-close {
   opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+.video-card-play-button.is-active .icon-close path,
+.video-testimonials .play-button.is-active .icon-close path {
+  stroke-dasharray: 20 0;
+  stroke-dashoffset: 0;
 }
 .card-clip-reveal:not(.clip-animation-complete) {
   --clip-value: 100%;
@@ -4343,7 +4427,7 @@ h1 .hero__title-script {
   height: 43.25625rem;
   border-radius: 1.125rem;
   overflow: hidden;
-  background: url(../../assets/images/three-tear-block-bg.png) no-repeat;
+  background: url(../../assets/images/three-tear-block-bg.jpg) no-repeat;
   background-size: cover;
 }
 .three-tier-header__bg {
@@ -5302,6 +5386,132 @@ h1 .hero__title-script {
     width: 100%;
     height: 100%;
   }
+}
+.arc-slider-section {
+  padding: 12.25rem 0;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .arc-slider-section {
+    padding: 3.5rem 0;
+  }
+}
+.arc-slider-section .title {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 1.875rem;
+  text-align: center;
+}
+.arc-slider-section .title-script {
+  font-family: 'Born Ready', cursive;
+  font-weight: 400;
+  font-size: 3.75rem;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #1c3666;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .arc-slider-section .title-script {
+    font-size: clamp(36px, 8vw, 60px);
+  }
+}
+.arc-slider-section .title-bold {
+  font-family: 'Averta', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 800;
+  font-size: 3.75rem;
+  line-height: 1;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  color: #1c3666;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .arc-slider-section .title-bold {
+    font-size: clamp(36px, 8vw, 60px);
+    letter-spacing: -1.2px;
+  }
+}
+.arc-slider-section .moments-cta {
+  margin-top: 60px;
+}
+.arc-slider-section .moments-cta .d-flex {
+  gap: 26px;
+}
+.arc-slider-section .moments-btn {
+  padding: 1.25rem;
+}
+.arc-slider-section .moments-link {
+  color: #db574e;
+  text-decoration: underline;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+.arc-slider-stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+.arc-slider-stage * {
+  box-sizing: border-box;
+}
+.arc-slider-section .arc-slider-stage {
+  min-height: auto;
+}
+.arc-slider {
+  position: relative;
+  width: 100%;
+  height: 73vh;
+  margin: 0;
+  cursor: pointer;
+  touch-action: pan-y;
+  --arc-offset: 0deg;
+  --card-width: 18.75rem;
+  --card-height: 31.48319rem;
+  --arc-translate-y: 0px;
+}
+.arc-slider.is-dragging {
+  cursor: pointer;
+}
+.arc-slider__track {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  transform: translateY(var(--arc-translate-y, 0px));
+}
+.arc-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transform-origin: 50% var(--origin-y);
+  transform: rotate(calc(var(--arc-offset) + var(--rotate-base)));
+  pointer-events: none;
+}
+.arc-slide .video-card,
+.arc-slide .video-testimonials .card {
+  width: var(--card-width);
+  height: var(--card-height);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
+  will-change: transform;
+  pointer-events: auto;
+}
+.arc-slide .video-card img,
+.arc-slide .video-card video,
+.arc-slide .video-testimonials .card img,
+.arc-slide .video-testimonials .card video {
+  pointer-events: none;
 }
 .what-makes-glenaeon-special-section {
   position: relative;
@@ -7289,11 +7499,37 @@ h1 .hero__title-script {
   width: 100%;
   overflow: hidden;
 }
+.about-glenaeon-section__separator svg {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+.about-glenaeon-section__separator-line {
+  stroke-width: 1px;
+}
+@media (max-width: 767px) {
+  .about-glenaeon-section__separator-line {
+    stroke-width: 1.2px;
+  }
+}
 .about-glenaeon-section__separator-img {
   width: 100%;
   height: auto;
   display: block;
   object-fit: contain;
+}
+.devider svg {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+.devider__line {
+  stroke-width: 1px;
+}
+@media (max-width: 767px) {
+  .devider__line {
+    stroke-width: 1.2px;
+  }
 }
 .about-glenaeon-section-part2 {
   padding: 6.5rem 0;
@@ -8182,10 +8418,11 @@ h1 .hero__title-script {
   */
   color: #1c3666;
   position: relative;
-  padding: 8.25rem 2rem 1.5rem;
+  padding: 8.25rem 0 1.5rem;
 }
 .site-footer .container-fluid {
   position: relative;
+  padding: 0 2rem 0;
 }
 .site-footer .container-fluid .footer__newsletter-col {
   color: #1c3666;
@@ -8302,6 +8539,33 @@ h1 .hero__title-script {
 }
 .site-footer .container-fluid .footer__links-container .footer__social-col {
   flex: 0 0 auto;
+}
+.site-footer .footer__brand {
+  margin: auto;
+  text-align: center;
+}
+.site-footer:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 77%;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0.01+0,0+95,0+95,0+95,0.1+100 */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0.1) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  margin: auto;
+}
+@media (min-width: 1900px) {
+  .site-footer:before {
+    height: 75%;
+  }
+}
+@media (max-width: 767px) {
+  .site-footer:before {
+    height: 86%;
+  }
 }
 .footer__row-2 {
   margin-top: 5rem !important;
@@ -8689,9 +8953,6 @@ h1 .hero__title-script {
   body.landing-page .about-glenaeon-section__image-inner {
     width: 100%;
   }
-  body.landing-page .about-glenaeon-section__separator {
-    margin: 2rem auto 0rem;
-  }
   body.landing-page .masked-image-content-block {
     padding: 0;
     margin: -2rem auto 0;
@@ -8711,6 +8972,9 @@ h1 .hero__title-script {
   }
   body .wellbeing-section.with-lead-para .wellbeing-content .wellbeing-title-group p.lead {
     font-size: 1.875rem;
+  }
+  body .about-glenaeon-section__separator {
+    margin: 2rem auto 0rem;
   }
 }
 @media (min-width: 680px) and (max-width: 992px) {

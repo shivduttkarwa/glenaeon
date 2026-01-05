@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brush Close Icon Card</title>
+  <style>
+    :root{
+      --bg: #07070a;
+      --card: rgba(255,255,255,0.06);
+      --card-2: rgba(255,255,255,0.09);
+      --border: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.88);
+      --muted: rgba(255,255,255,0.60);
+      --shadow: 0 30px 90px rgba(0,0,0,0.6);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 450px at 20% 15%, rgba(255,255,255,0.12), transparent 55%),
+        radial-gradient(900px 500px at 80% 25%, rgba(255,255,255,0.08), transparent 60%),
+        radial-gradient(700px 500px at 50% 90%, rgba(255,255,255,0.06), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .card{
+      width: min(560px, 92vw);
+      border-radius: 22px;
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      padding: 28px 26px 26px;
+      isolation: isolate;
+    }
+
+    /* subtle glossy top highlight */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(600px 240px at 25% 0%, rgba(255,255,255,0.12), transparent 60%);
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    .title{
+      font-size: clamp(22px, 3vw, 28px);
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+    }
+    .desc{
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    .pill-row{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .pill{
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.75);
+      font-size: 12px;
+    }
+
+    /* Close button */
+    .close-btn{
+      position:absolute;
+      top: 14px;
+      right: 14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      user-select:none;
+    }
+    .close-btn:hover{
+      transform: translateY(-1px) scale(1.02);
+      border-color: rgba(255,255,255,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+    }
+    .close-btn:active{
+      transform: translateY(0px) scale(0.98);
+    }
+
+    /* Brush icon styling */
+    .brush-x{
+      width: 22px;
+      height: 22px;
+      display:block;
+      filter: drop-shadow(0 10px 12px rgba(0,0,0,0.35));
+      transition: transform 200ms ease;
+    }
+    .close-btn:hover .brush-x{
+      transform: rotate(-6deg) scale(1.03);
+    }
+
+    /* Hidden state when "closed" */
+    .card.is-closed{
+      transform: scale(0.98);
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    /* little status text */
+    .status{
+      margin-top: 16px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* For reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .close-btn, .brush-x, .card.is-closed{ transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <button class="close-btn" id="closeBtn" aria-label="Close card" title="Close">
+      <!-- Paintbrush-style X icon (filled shapes, uneven strokes) -->
+      <svg class="brush-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <!-- Stroke 1 (top-left to bottom-right) -->
+        <path
+          d="M5.2 4.9
+             C6.4 3.6 7.6 4.4 8.7 5.8
+             L19.1 18.8
+             C19.9 19.8 19.6 21 18.3 20.3
+             C17.7 20 17.1 19.4 16.5 18.6
+             L5.9 5.7
+             C5.2 4.9 4.7 5.5 5.2 4.9Z"
+          fill="white" opacity="0.95"
+        />
+        <!-- Bristle texture cut-ins (tiny irregular bites) -->
+        <path d="M8.9 7.1 C8.2 7.3 8.1 6.5 8.6 6.3 C9.1 6.1 9.6 6.8 8.9 7.1Z" fill="white" opacity="0.55"/>
+        <path d="M16.8 17.1 C16.0 17.4 16.0 16.6 16.6 16.4 C17.1 16.2 17.6 16.8 16.8 17.1Z" fill="white" opacity="0.55"/>
+
+        <!-- Stroke 2 (bottom-left to top-right) -->
+        <path
+          d="M4.8 18.7
+             C4.1 20.0 5.2 20.6 6.8 19.5
+             L18.8 8.2
+             C20.1 7.0 20.5 5.7 19.2 5.2
+             C18.5 4.9 17.6 5.3 16.6 6.2
+             L6.2 16.0
+             C5.5 16.7 5.1 18.0 4.8 18.7Z"
+          fill="white" opacity="0.95"
+        />
+        <!-- Extra paint wobble highlight -->
+        <path
+          d="M7.0 15.9 C6.5 16.3 6.2 15.6 6.7 15.2 C7.1 14.9 7.6 15.5 7.0 15.9Z"
+          fill="white" opacity="0.45"
+        />
+      </svg>
+    </button>
+
+    <h2 class="title">Card with Brush Close Icon</h2>
+    <p class="desc">
+      This close button uses an SVG “paintbrush” ✕ made with uneven filled shapes (not perfect strokes),
+      so it feels handmade and premium. Hover it for a subtle tilt.
+    </p>
+
+    <div class="pill-row">
+      <span class="pill">Glass UI</span>
+      <span class="pill">Brush-stroke SVG</span>
+      <span class="pill">Micro-interactions</span>
+      <span class="pill">Clean layout</span>
+    </div>
+
+    <div class="status" id="status">Tip: click the close icon to hide the card.</div>
+  </div>
+
+  <script>
+    const card = document.getElementById("card");
+    const closeBtn = document.getElementById("closeBtn");
+    const status = document.getElementById("status");
+
+    closeBtn.addEventListener("click", () => {
+      card.classList.add("is-closed");
+      // Optional: show text after it "closes"
+      setTimeout(() => {
+        status.textContent = "Card closed. Refresh to see it again.";
+      }, 220);
+    });
+  </script>
+</body>
+</html>

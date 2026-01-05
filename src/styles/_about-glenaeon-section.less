@@ -298,11 +298,39 @@
     overflow: hidden;
   }
 
+  &__separator svg {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__separator-line {
+    stroke-width: 1px;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      stroke-width: 1.2px;
+    }
+  }
+
   &__separator-img {
     width: 100%;
     height: auto;
     display: block;
     object-fit: contain;
+  }
+}
+
+.devider svg {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.devider__line {
+  stroke-width: 1px;
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    stroke-width: 1.2px;
   }
 }
 
