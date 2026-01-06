@@ -1117,7 +1117,7 @@
                   <div class="video-card">
                     <div class="video-card-inner">
                       <div class="video-card-media">
-                        <video class="testimonial-video full" playsinline muted preload="metadata" loop>
+                        <video class="testimonial-video full" playsinline muted preload="none" loop poster="assets/images/20251020_SteinerWilloughby_144.jpg">
                           <source src="assets/videos/vt-1.mp4" type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
@@ -1193,7 +1193,7 @@
                   <div class="video-card">
                     <div class="video-card-inner">
                       <div class="video-card-media">
-                        <video class="testimonial-video full" playsinline muted preload="metadata" loop>
+                        <video class="testimonial-video full" playsinline muted preload="none" loop poster="assets/images/Steiner_MiddleCove_0277.jpg">
                           <source src="assets/videos/vt-2.mp4" type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
@@ -1269,7 +1269,7 @@
                   <div class="video-card">
                     <div class="video-card-inner">
                       <div class="video-card-media">
-                        <video class="testimonial-video full" playsinline muted preload="metadata" loop>
+                        <video class="testimonial-video full" playsinline muted preload="none" loop poster="assets/images/SteinerWilloughby_259.jpg">
                           <source src="assets/videos/vt-3.mp4" type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
@@ -1345,7 +1345,7 @@
                   <div class="video-card">
                     <div class="video-card-inner">
                       <div class="video-card-media">
-                        <video class="testimonial-video full" playsinline muted preload="metadata" loop>
+                        <video class="testimonial-video full" playsinline muted preload="none" loop poster="assets/images/20251020_SteinerWilloughby_144.jpg">
                           <source src="assets/videos/vt-1.mp4" type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
@@ -1427,7 +1427,7 @@
                     <div class="video-card">
                       <div class="video-card-inner">
                         <div class="video-card-media">
-                          <video class="testimonial-video full" playsinline muted autoplay loop preload="metadata">
+                          <video class="testimonial-video full" playsinline muted autoplay loop preload="none" poster="assets/images/20251020_SteinerWilloughby_144.jpg">
                             <source src="assets/videos/vt-1.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                           </video>
@@ -1475,7 +1475,7 @@
                     <div class="video-card">
                       <div class="video-card-inner">
                         <div class="video-card-media">
-                          <video class="testimonial-video full" playsinline muted autoplay loop preload="metadata">
+                          <video class="testimonial-video full" playsinline muted autoplay loop preload="none" poster="assets/images/Steiner_MiddleCove_0277.jpg">
                             <source src="assets/videos/vt-2.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                           </video>
@@ -1523,7 +1523,7 @@
                     <div class="video-card">
                       <div class="video-card-inner">
                         <div class="video-card-media">
-                          <video class="testimonial-video full" playsinline muted autoplay loop preload="metadata">
+                          <video class="testimonial-video full" playsinline muted autoplay loop preload="none" poster="assets/images/SteinerWilloughby_259.jpg">
                             <source src="assets/videos/vt-3.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                           </video>
@@ -1573,7 +1573,7 @@
                     <div class="video-card">
                       <div class="video-card-inner">
                         <div class="video-card-media">
-                          <video class="testimonial-video full" playsinline muted autoplay loop preload="metadata">
+                          <video class="testimonial-video full" playsinline muted autoplay loop preload="none" poster="assets/images/Steiner_MiddleCove_0277.jpg">
                             <source src="assets/videos/vt-2.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                           </video>
@@ -1669,7 +1669,7 @@
               <!-- Slide 1 -->
               <div class="swiper-slide">
                 <div class="slide">
-                  <video class="video full" loop muted playsinline preload="auto">
+                  <video class="video full" loop muted playsinline preload="none" poster="assets/images/20251021_Steiner_MiddleCove_0260.jpg">
                     <source src="assets/videos/5.mp4" type="video/mp4" />
                   </video>
                   <div class="slide-content">
@@ -1686,7 +1686,7 @@
               <!-- Slide 2 -->
               <div class="swiper-slide">
                 <div class="slide">
-                  <video class="video full" loop muted playsinline preload="auto">
+                  <video class="video full" loop muted playsinline preload="none" poster="assets/images/Steiner_MiddleCove_0407.jpg">
                     <source src="assets/videos/3.mp4" type="video/mp4" />
                   </video>
                   <div class="slide-content">
@@ -1701,7 +1701,7 @@
               <!-- Slide 3 -->
               <div class="swiper-slide">
                 <div class="slide">
-                  <video class="video full" loop muted playsinline preload="auto">
+                  <video class="video full" loop muted playsinline preload="none" poster="assets/images/SteinerWilloughby_237.jpg">
                     <source src="assets/videos/3.mp4" type="video/mp4" />
                   </video>
                   <div class="slide-content">
@@ -2689,9 +2689,10 @@
     }
 
     prepareHeroTextReveal();
-    window.addEventListener('load', () => {
+    document.addEventListener('DOMContentLoaded', () => {
       if (typeof gsap === 'undefined') return;
-      gsap.delayedCall(0.1, playHeroTextReveal);
+      // Start hero text animation immediately for faster perceived loading
+      playHeroTextReveal();
     });
   </script>
 
@@ -2720,7 +2721,10 @@
   <!-- Custom Scripts -->
   <script src="src/scripts/megamenu-animations.js"></script>
   <script src="src/scripts/main.js"></script>
+
   <script src="src/scripts/video-popup.js"></script>
+  
+
 
   <!-- Animations -->
   <script src="animations.js"></script>

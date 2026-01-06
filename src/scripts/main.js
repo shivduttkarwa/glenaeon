@@ -27,6 +27,7 @@
     initFiveAsTabs();
     initFAQAccordion();
     initLocalNavFilters();
+    initLazyVideoLoading();
     // initFeaturesCardsSlider();
    
   });
@@ -1723,6 +1724,67 @@
   // END LOCAL NAVIGATION / FILTER SECTION - ISOTOPE
   // ==========================================================================
 
+  // ==========================================================================
+  // LAZY VIDEO LOADING WITH INTERSECTION OBSERVER
+  // ==========================================================================
+
+  function initLazyVideoLoading() {
+    // Check if Intersection Observer is supported
+    if (!window.IntersectionObserver) {
+      console.warn('Intersection Observer not supported, loading all videos immediately');
+      loadAllVideos();
+      return;
+    }
+
+    const videoElements = document.querySelectorAll('video[preload="none"]');
+    if (!videoElements.length) return;
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const video = entry.target;
+          loadVideoWhenNeeded(video);
+          videoObserver.unobserve(video);
+        }
+      });
+    }, {
+      rootMargin: '100px 0px', // Start loading 100px before video comes into view
+      threshold: 0.1
+    });
+
+    // Observe all videos with preload="none"
+    videoElements.forEach(video => {
+      videoObserver.observe(video);
+    });
+
+    function loadVideoWhenNeeded(video) {
+      // Only load if not already loaded
+      if (video.readyState === 0) {
+        video.setAttribute('preload', 'metadata');
+        video.load();
+        
+        // For testimonial videos that should autoplay when loaded
+        if (video.hasAttribute('autoplay') || video.closest('.video-card')) {
+          video.addEventListener('loadeddata', () => {
+            if (video.hasAttribute('autoplay')) {
+              video.play().catch(() => {}); // Handle autoplay restrictions
+            }
+          }, { once: true });
+        }
+      }
+    }
+
+    function loadAllVideos() {
+      // Fallback for browsers without Intersection Observer
+      videoElements.forEach(video => {
+        loadVideoWhenNeeded(video);
+      });
+    }
+  }
+
+  // ==========================================================================
+  // END LAZY VIDEO LOADING
+  // ==========================================================================
  
   
 })();
