@@ -369,7 +369,11 @@
 
 @media (max-width:767px) {
   .site-footer {
+    padding-bottom: 5rem; // Extra scroll area for mobile brand animation
 
+    &:before {
+      height: 83%; // Extend bottom shade to cover extra padding on mobile
+    }
 
     .footer__newsletter {
       margin-bottom: 5rem;

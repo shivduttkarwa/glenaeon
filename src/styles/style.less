@@ -1398,8 +1398,13 @@ button {
   // Background image per slide
   .testimonial-audio-slide {
     position: relative;
-    min-height: 100%;
+    min-height: 100vh;
     padding: 13rem 0;
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      min-height: 100vh;
+      padding: 6rem 0;
+    }
 
     &::before {
       content: '';
@@ -1410,8 +1415,14 @@ button {
       background-position: center;
       background-repeat: no-repeat;
       z-index: 0;
-      display: flex;
+      width: 100%;
       height: 100%;
+      min-height: 100vh;
+
+      @media (max-width: (@breakpoint-lg - 1)) {
+        min-height: 100vh;
+        background-attachment: scroll;
+      }
     }
 
     &::after {
@@ -1420,9 +1431,13 @@ button {
       inset: 0;
       background: rgba(0, 0, 0, 0.5);
       z-index: 1;
-
+      width: 100%;
       height: 100%;
-      display: flex;
+      min-height: 100vh;
+
+      @media (max-width: (@breakpoint-lg - 1)) {
+        min-height: 100vh;
+      }
     }
   }
 
@@ -1439,7 +1454,7 @@ button {
     .container-fluid {
       position: relative;
       z-index: 2;
-      min-height: 100%;
+      min-height: 100vh;
       display: flex;
       align-items: center;
 
@@ -1450,10 +1465,13 @@ button {
 
       @media (max-width: (@breakpoint-lg - 1)) {
         padding: 0 40px;
+        min-height: 100vh;
+        align-items: center;
       }
 
       @media (max-width: (@breakpoint-md - 1)) {
         padding: 0 20px;
+        min-height: 100vh;
       }
     }
   }
@@ -1554,6 +1572,8 @@ button {
 
       .testimonial-audio-toggle {
         grid-area: toggle;
+        justify-self: start;
+        align-self: center;
       }
 
       .testimonial-audio-time {
@@ -1572,19 +1592,30 @@ button {
     width: 44px;
     height: 44px;
     border-radius: 999px;
-    border: 1px solid fade(@color-white, 70%);
+    border: none;
     background: transparent;
     color: @color-white;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
 
-    &:hover,
-    &:focus-visible {
-      border-color: @color-white;
-      background-color: fade(@color-white, 12%);
+    @media (max-width: (@breakpoint-lg - 1)) {
+      width: 35.2px;
+      height: 35.2px;
+      transform: scale(0.8);
+    }
+
+    svg {
+      width: 44px;
+      height: 44px;
+      display: block;
+    }
+
+    .outerRing {
+      transform-origin: 50% 50%;
+      will-change: transform;
     }
 
     .testimonial-audio-toggle-icon {
@@ -1618,13 +1649,11 @@ button {
     flex-shrink: 0;
     cursor: pointer;
     overflow: hidden;
-    background: linear-gradient(
-      90deg,
-      var(--wave-strong) 0%,
-      var(--wave-strong) var(--wave-progress),
-      var(--wave-light) var(--wave-progress),
-      var(--wave-light) 100%
-    );
+    background: linear-gradient(90deg,
+        var(--wave-strong) 0%,
+        var(--wave-strong) var(--wave-progress),
+        var(--wave-light) var(--wave-progress),
+        var(--wave-light) 100%);
     mask-image: url('../../assets/figma/5184ebea-e47d-4526-bea8-b44cdef221ce.svg');
     mask-position: center;
     mask-size: 100% 100%;
@@ -3144,4 +3173,143 @@ button {
 
 .swiper .swiper-button-lock {
   display: block;
+}
+
+img:not(.arrow-navigation__main-img, .arrow-navigation__line-img, .arrow-navigation__feather-img) {
+  object-fit: cover;
+}
+
+
+.horizontal-story-panel-4 {
+  .horizontal-story-moments {
+    .left-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 23.75rem;
+
+
+      .image-width-play-btn {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem 0;
+
+
+        .image-wrap {
+          transform: rotate(5.53deg);
+          position: relative;
+
+          img {
+            width: 23.75rem;
+            height: 23.75rem;
+            object-fit: cover;
+            border-radius: 1.5rem;
+            aspect-ratio: 1;
+            border: 0.4375rem solid var(--basic-white, #FFF);
+          }
+
+          .overlay {
+            position: absolute;
+            left: 0.4375rem;
+            right: 0.4375rem;
+            top: 0.4375rem;
+            bottom: 0.4375rem;
+            margin: auto;
+            border-radius: 1.5rem;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 62.73%, rgba(0, 0, 0, 0.40) 100%);
+          }
+        }
+      }
+
+      .image-description {
+        padding: 0 2.5rem;
+
+        h5 {
+          color: var(--tertiary-blue-dark, #1C3666);
+          font-family: var(--font-family-averta, Averta);
+          font-size: 1.25rem;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 130%;
+          /* 1.625rem */
+          letter-spacing: -0.025rem;
+          margin: 0;
+        }
+
+        p {
+          color: var(--tertiary-blue-dark, #1C3666);
+          font-family: var(--font-family-averta, Averta);
+          font-size: 0.9375rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 140%;
+
+        }
+
+      }
+    }
+
+    .right-block {}
+  }
+}
+
+.horizontal-story-panel-5 {
+  gap: 2rem 4.8rem;
+
+  .circle-image {
+    position: absolute;
+  }
+}
+
+.horizontal-story-panel-6 {
+  padding: 0 5rem;
+
+  .cards-wrap {
+    display: flex;
+    gap: 2rem 14rem;
+    align-items: center;
+    position: relative;
+
+
+    .svg-object {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: auto;
+      text-align: center;
+      transform: rotate(180deg);
+      width: 86%;
+    }
+
+    .left-block {}
+
+    .right-block {
+      flex-direction: column;
+      gap: 2.44rem;
+      width: 32.1875rem;
+
+      .five-as-section__image-wrapper {
+
+        width: 20.28281rem;
+      }
+
+      .horizontal-story-whats-next {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  }
+}
+
+.horizontal-story-panel-7 {
+  padding: 0;
+  position: relative;
+
+
+  .horizontal-story-tour-bg-dark-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
 }

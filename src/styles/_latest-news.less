@@ -182,6 +182,22 @@
     }
   }
 
+  // Drum List Grid - 2 cards per row
+  .drum-list-grid {
+    --bs-gutter-x: 4.625rem; // 74px horizontal gap for 2 cards
+    --bs-gutter-y: 3.125rem; // 50px vertical gap from Figma
+
+    @media (max-width: (@breakpoint-lg - 1)) {
+      --bs-gutter-x: 3rem;
+      --bs-gutter-y: 2.5rem;
+    }
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      --bs-gutter-x: 0;
+      --bs-gutter-y: 2rem;
+    }
+  }
+
   .latest-news-item {
     margin-bottom: 0; // Bootstrap gutter handles spacing
   }
@@ -199,7 +215,7 @@
   &__image-wrapper {
     position: relative;
     width: 100%;
-    height: 15.4894375rem; // 247.831px from Figma
+    height: 15.4894375rem; // 247.831px from Figma (original for 3-column layout)
     display: flex;
     align-items: center;
     justify-content: center;
@@ -208,8 +224,9 @@
       height: 12rem;
     }
 
+    // Base rotation pattern (for latest-news.html with 3 cards per row)
     &--rotate-1 {
-      transform: rotate(357.5deg);
+      transform: rotate(-2.5deg);
     }
 
     &--rotate-2 {
@@ -217,7 +234,7 @@
     }
 
     &--rotate-3 {
-      transform: rotate(357.5deg);
+      transform: rotate(-2.5deg);
     }
 
     &--rotate-4 {
@@ -225,7 +242,7 @@
     }
 
     &--rotate-5 {
-      transform: rotate(357.5deg);
+      transform: rotate(-2.5deg);
     }
 
     &--rotate-6 {
@@ -233,7 +250,7 @@
     }
 
     &--rotate-7 {
-      transform: rotate(357.5deg);
+      transform: rotate(-2.5deg);
     }
 
     &--rotate-8 {
@@ -241,19 +258,90 @@
     }
 
     &--rotate-9 {
-      transform: rotate(357.5deg);
+      transform: rotate(-2.5deg);
+    }
+  }
+
+  // Drum List specific: Same tilt per row, alternating between rows (2 cards per row)
+  // Row 1: Both cards = -2.5deg
+  // Row 2: Both cards = +2.5deg (opposite)
+  // Row 3: Both cards = -2.5deg
+  // Row 4: Both cards = +2.5deg
+  // etc.
+  .drum-list-grid &__image-wrapper {
+    &--rotate-1 {
+      transform: rotate(-2.5deg); // Row 1, Card 1
+    }
+
+    &--rotate-2 {
+      transform: rotate(-2.5deg); // Row 1, Card 2 (same as Card 1)
+    }
+
+    &--rotate-3 {
+      transform: rotate(2.5deg); // Row 2, Card 1 (opposite from Row 1)
+    }
+
+    &--rotate-4 {
+      transform: rotate(2.5deg); // Row 2, Card 2 (same as Card 3)
+    }
+
+    &--rotate-5 {
+      transform: rotate(-2.5deg); // Row 3, Card 1 (same as Row 1)
+    }
+
+    &--rotate-6 {
+      transform: rotate(-2.5deg); // Row 3, Card 2 (same as Card 5)
+    }
+
+    &--rotate-7 {
+      transform: rotate(2.5deg); // Row 4, Card 1 (opposite from Row 3)
+    }
+
+    &--rotate-8 {
+      transform: rotate(2.5deg); // Row 4, Card 2 (same as Card 7)
+    }
+
+    &--rotate-9 {
+      transform: rotate(-2.5deg); // Row 5, Card 1 (same as Row 1)
     }
   }
 
   &__image-inner {
     width: 100%;
-    height: 14.55125rem; // 232.82px from Figma
+    height: 14.55125rem; // 232.82px from Figma (original for 3-column layout)
     border-radius: @radius-xl; // 20px
     overflow: hidden;
     position: relative;
 
     @media (max-width: (@breakpoint-md - 1)) {
       height: 11rem;
+    }
+  }
+
+  // Drum List specific: Override dimensions for 2-column layout
+  .drum-list-grid &__image-wrapper {
+    width: 34.375rem; // 550px for 2-column layout
+    height: 22.917rem; // 366.67px for 2-column layout
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    aspect-ratio: 550.00/366.67;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .drum-list-grid &__image-inner {
+    width: 100%;
+    height: 100%;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      height: auto;
+      min-height: 12rem;
     }
   }
 

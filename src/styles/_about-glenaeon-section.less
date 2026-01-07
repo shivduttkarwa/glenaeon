@@ -456,7 +456,7 @@
 
   }
 
-  // Image Wrapper with rotation
+  // Image Wrapper with rotation - Original design for 3-column layout
   &__image-wrapper {
     position: relative;
     width: 100%;
@@ -469,8 +469,9 @@
       height: 12rem;
     }
 
+    // Rotation for 3-column layout (about-glenaeon.html, news-detail.html)
     &--rotate-1 {
-      transform: rotate(357.5deg);
+      transform: rotate(-2.5deg);
     }
 
     &--rotate-2 {
@@ -478,7 +479,7 @@
     }
 
     &--rotate-3 {
-      transform: rotate(357.5deg);
+      transform: rotate(-2.5deg);
     }
   }
 
@@ -604,6 +605,40 @@
     @media (max-width: (@breakpoint-md - 1)) {
       font-size: 0.875rem;
       padding: 0.75rem @spacing-md;
+    }
+  }
+
+  // Scoped styles for drum pages (2-column layout) - preserve larger dimensions
+  .col-lg-6 &__image-wrapper {
+    width: 34.375rem; // 550px
+    height: 22.917rem; // 366.67px
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    aspect-ratio: 550.00/366.67;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      width: 100%;
+      height: auto;
+    }
+
+    &--rotate-1 {
+      transform: rotate(-2.5deg); // Row 1, Card 1
+    }
+
+    &--rotate-2 {
+      transform: rotate(-2.5deg); // Row 1, Card 2 (same as Card 1)
+    }
+  }
+
+  .col-lg-6 &__image-inner {
+    width: 100%;
+    height: 100%;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      height: auto;
+      min-height: 12rem;
     }
   }
 }

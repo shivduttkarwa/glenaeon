@@ -172,9 +172,7 @@ function setupVideoCardsReveal(section) {
   // For video-testimonials: desktop cards
   const desktopCards = section.querySelectorAll('.cards.desktop-only .video-card, .cards.desktop-only .card');
   
-  // For moments section: all cards in the carousel (nested inside .moments-card)
-  const momentsCards = section.querySelectorAll('.moments-arc-carousel .swiper-slide .moments-card .video-card, .moments-arc-carousel .swiper-slide .moments-card .card, .moments-arc-carousel .swiper-slide .video-card, .moments-arc-carousel .swiper-slide .card');
-  const allCards = [...desktopCards, ...momentsCards];
+  const allCards = [...desktopCards];
   
   if (allCards.length > 0) {
     allCards.forEach(card => {
@@ -194,14 +192,8 @@ function setupFeatureCardsReveal() {
 }
 
 function setupMobileSlideAnimations(section) {
-  // Support both video-testimonials-swiper and moments-arc-carousel
   // For video-testimonials: mobile swiper
   let sliderEl = section.querySelector('.video-testimonials-swiper .swiper');
-  
-  // For moments section: the arc carousel (works for all screen sizes)
-  if (!sliderEl && section.classList.contains('moments-section')) {
-    sliderEl = section.querySelector('.moments-arc-carousel');
-  }
   
   if (!sliderEl) return;
 
@@ -430,24 +422,51 @@ function initFooterBrandReveal() {
     const mediaEl = item.querySelector('object, svg, img');
     if (mediaEl) {
       item.dataset.footerBrandAnimated = 'true';
-      gsap.set(item, { overflow: 'hidden' });
+      
+      // Check mobile once for all mobile-specific logic
+      const isMobile = window.innerWidth <= 768;
+      
+      // Don't set overflow hidden on mobile to prevent text clipping
+      if (!isMobile) {
+        gsap.set(item, { overflow: 'hidden' });
+      }
 
       if (prefersReducedMotion) {
         gsap.set(mediaEl, { yPercent: 0, clearProps: 'transform' });
         return;
       }
+      
+      // Mobile animation values - easy to tweak
+      const mobileStart = 100;    // Starting position (yPercent)
+      const mobileEnd = 0;        // Ending position (yPercent) - changed from -10 to prevent top clipping
+      
+      // Desktop animation values
+      const desktopStart = 120;
+      const desktopEnd = 0;
+      
+      const initialYPercent = isMobile ? mobileStart : desktopStart;
+      const finalYPercent = isMobile ? mobileEnd : desktopEnd;
+      
+      gsap.set(mediaEl, { yPercent: initialYPercent });
 
-      gsap.set(mediaEl, { yPercent: 120 });
+      // Different trigger points for mobile vs desktop
+      const mobileScrollStart = 'top 90%';   // Mobile start trigger - easy to tweak
+      const mobileScrollEnd = 'top 40%';     // Mobile end trigger - easy to tweak
+      const desktopScrollStart = 'top 90%';
+      const desktopScrollEnd = 'top 30%';
+      
+      const scrollStart = isMobile ? mobileScrollStart : desktopScrollStart;
+      const scrollEnd = isMobile ? mobileScrollEnd : desktopScrollEnd;
 
       gsap.timeline({
         scrollTrigger: {
           trigger: item,
-          start: 'top 90%',
-          end: 'top 30%',
+          start: scrollStart,
+          end: scrollEnd,
           scrub: true
         }
       }).to(mediaEl, {
-        yPercent: 0,
+        yPercent: finalYPercent,
         duration: 2.6,
         ease: 'back.out(1)'
       });
@@ -492,7 +511,11 @@ function initFooterBrandReveal() {
       return;
     }
 
-    gsap.set(chars, { yPercent: 120 });
+    // Use different initial positioning for mobile vs desktop
+    const isMobile = window.innerWidth <= 768;
+    const initialYPercent = isMobile ? 80 : 120;
+    
+    gsap.set(chars, { yPercent: initialYPercent });
 
     gsap.timeline({
       scrollTrigger: {
@@ -587,6 +610,51 @@ function initDeviderLineAnimation() {
 // DIVIDER LINE REVEAL - END
 // ==========================================================================
 
+// ==========================================================================
+// ABOUT SEPARATOR ANIMATION - START
+// ==========================================================================
+function initAboutSeparatorAnimation() {
+  if (typeof gsap === 'undefined' || !hasScrollTrigger) {
+    return;
+  }
+
+  const separator = document.querySelector('.about-glenaeon-section__separator');
+  const separatorSvg = separator ? separator.querySelector('svg') : null;
+  const revealRect = separator ? separator.querySelector('.about-glenaeon-section__separator-reveal') : null;
+  if (!separatorSvg || !revealRect) return;
+
+  const viewBox = separatorSvg.viewBox && separatorSvg.viewBox.baseVal;
+  const maxWidth = viewBox && viewBox.width ? viewBox.width : 0;
+  const maxHeight = viewBox && viewBox.height ? viewBox.height : 0;
+
+  gsap.set(revealRect, {
+    attr: {
+      width: 0,
+      height: maxHeight || 22
+    }
+  });
+
+  const smoother = typeof ScrollSmoother !== 'undefined' ? ScrollSmoother.get() : null;
+  const scrollerEl = smoother ? smoother.wrapper() : null;
+
+  gsap.to(revealRect, {
+    attr: {
+      width: maxWidth || 1239
+    },
+    ease: 'none',
+    scrollTrigger: {
+      trigger: separator,
+      scroller: scrollerEl || undefined,
+      start: 'top bottom',
+      end: 'bottom 30%',
+      scrub: true
+    }
+  });
+}
+// ==========================================================================
+// ABOUT SEPARATOR ANIMATION - END
+// ==========================================================================
+
 function initAnimations() {
   if (typeof gsap === 'undefined') {
     return;
@@ -598,6 +666,7 @@ function initAnimations() {
   initRevealAnimations();
   initFooterBrandReveal();
   initDeviderLineAnimation();
+  initAboutSeparatorAnimation();
   initParallaxBackgrounds();
   // Featured cards now use swiper instead of GSAP scroll effect
 

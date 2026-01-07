@@ -106,6 +106,14 @@
   gap: 0.4375rem; // 7px gap from Figma
   flex: 41% 0 0;
 }
+.seprator {
+  max-width: 100%;
+  text-align: center;
+  margin: 2rem 0;
+  object,img{
+    max-width: 100%;
+  }
+}
 
 .news-detail-hero .news-detail-hero__meta-label {
   font-family: @font-family-averta;
@@ -130,7 +138,7 @@
 .news-detail-hero .news-detail-hero__scroll-indicator {
   position: absolute;
   right: 6.106875rem; // 97.71px from right (1440px - 1342.29px = 97.71px)
-  top: 51.75rem; // 828px from top from Figma
+  bottom: 4.5rem; // 828px from top from Figma
   z-index: 3;
 
   @media (max-width: (@breakpoint-md - 1)) {

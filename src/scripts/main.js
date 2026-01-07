@@ -28,6 +28,7 @@
     initFAQAccordion();
     initLocalNavFilters();
     initLazyVideoLoading();
+    initSmoothTestimonialButtons();
     // initFeaturesCardsSlider();
    
   });
@@ -1784,6 +1785,142 @@
 
   // ==========================================================================
   // END LAZY VIDEO LOADING
+  // ==========================================================================
+
+  // ==========================================================================
+  // TESTIMONIAL BUTTON MORPHING
+  // ==========================================================================
+  
+  function initBasicTestimonialButtons() {
+    const buttons = document.querySelectorAll('.testimonial-audio-toggle');
+    if (!buttons.length) return;
+
+    buttons.forEach(button => {
+      const outerRing = button.querySelector('.outerRing');
+      const anim1 = button.querySelector('.anim1');
+      const anim2 = button.querySelector('.anim2');
+      
+      if (!outerRing || !anim1 || !anim2) return;
+
+      // Animation constants
+      const PAUSE_1 = "0,0 110,0 110,300 0,300";
+      const PAUSE_2 = "190,0 300,0 300,300 190,300";
+      const PLAY_1 = "0,0 152,75 152,225 0,300";
+      const PLAY_2 = "150,75 300,150 300,150 150,225";
+
+      // Rotation angles (same as test.html)
+      const ROT_PLAY = -10;
+      const ROT_PAUSE = 12;
+
+      function morph(from1, to1, from2, to2) {
+        const isMobile = window.innerWidth <= 1024;
+        const duration = isMobile ? '200ms' : '300ms';
+        
+        // Set mobile-optimized duration
+        anim1.setAttribute("dur", duration);
+        anim2.setAttribute("dur", duration);
+        
+        anim1.setAttribute("from", from1);
+        anim1.setAttribute("to", to1);
+        anim1.beginElement();
+
+        anim2.setAttribute("from", from2);
+        anim2.setAttribute("to", to2);
+        anim2.beginElement();
+      }
+
+      function setOuterRotation(deg) {
+        const isMobile = window.innerWidth <= 1024;
+        
+        if (isMobile) {
+          // Mobile: Use requestAnimationFrame for smoother animation
+          outerRing.style.transition = 'none';
+          const startRotation = parseFloat(outerRing.style.transform.replace(/[^\d.-]/g, '')) || 0;
+          const endRotation = deg;
+          const startTime = performance.now();
+          const duration = 200;
+          
+          function animate(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeProgress = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const currentRotation = startRotation + (endRotation - startRotation) * easeProgress;
+            
+            outerRing.style.transform = `rotate(${currentRotation}deg)`;
+            outerRing.style.willChange = 'transform';
+            outerRing.style.backfaceVisibility = 'hidden';
+            outerRing.style.webkitBackfaceVisibility = 'hidden';
+            
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              outerRing.style.willChange = 'auto';
+            }
+          }
+          
+          requestAnimationFrame(animate);
+        } else {
+          // Desktop: Use CSS transition
+          outerRing.style.transition = 'transform 200ms ease-out';
+          outerRing.style.transform = `rotate(${deg}deg)`;
+        }
+      }
+
+      let currentState = null;
+      let animationTimeout = null;
+
+      // Debounced function to prevent rapid state changes
+      function updateButtonState(isPlaying) {
+        if (currentState === isPlaying) return;
+        
+        // Clear any pending animation
+        if (animationTimeout) {
+          clearTimeout(animationTimeout);
+        }
+        
+        currentState = isPlaying;
+        
+        // Delay the animation slightly to prevent flicker during rapid changes
+        const isMobile = window.innerWidth <= 1024;
+        const delay = isMobile ? 25 : 50; // Faster response on mobile
+        
+        animationTimeout = setTimeout(() => {
+          if (isPlaying) {
+            morph(PLAY_1, PAUSE_1, PLAY_2, PAUSE_2);
+            setOuterRotation(ROT_PAUSE);
+          } else {
+            morph(PAUSE_1, PLAY_1, PAUSE_2, PLAY_2);
+            setOuterRotation(ROT_PLAY);
+          }
+          animationTimeout = null;
+        }, delay);
+      }
+
+      // Watch for state changes from swiper.js
+      const observer = new MutationObserver(() => {
+        const isPlaying = button.getAttribute('aria-pressed') === 'true' || button.classList.contains('is-playing');
+        updateButtonState(isPlaying);
+      });
+      
+      observer.observe(button, { 
+        attributes: true, 
+        attributeFilter: ['aria-pressed', 'class'] 
+      });
+
+      // Set initial rotation
+      setOuterRotation(ROT_PLAY);
+    });
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBasicTestimonialButtons);
+  } else {
+    initBasicTestimonialButtons();
+  }
+
+  // ==========================================================================
+  // BASIC TESTIMONIAL BUTTON MORPHING
   // ==========================================================================
  
   
