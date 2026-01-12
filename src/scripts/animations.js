@@ -848,7 +848,7 @@ class GSAPAnimations {
       ease: {
         fade: 'power2.out',
         zoom: 'power2.out',
-        zoomIn: 'back.out(1.4)',
+        zoomIn: 'back.out(1.2)',
         slide: 'power2.out',
         clip: 'power3.out',
         chars: 'expo.out'
