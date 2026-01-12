@@ -33,295 +33,152 @@
     margin-bottom: 0;
   }
 
-  // Carousel Wrapper
+  // Arc Slider Wrapper
   .moments-carousel-wrapper {
     position: relative;
     width: 100%;
-    height: auto; 
+    height: clamp(620px, 80vh, 720px);
     display: flex;
     align-items: center;
     justify-content: center;
-    perspective: 2000px;
     margin-bottom: 60px;
-   
-    overflow: visible; // Allow cards to move beyond boundaries
+    overflow: hidden;
   }
 
-  // Swiper Container
+  // Arc Slider Container
   .moments-arc-carousel {
+    position: relative;
     width: 100%;
     height: 100%;
-    padding: 0;
-    overflow: visible;
+    cursor: grab;
+    touch-action: pan-y;
+    --arc-offset: 0deg;
+    --card-width: 20.9375rem;
 
-    .swiper-wrapper {
-      align-items: center;
-      display: flex;
-      transform-style: preserve-3d;
+    &.is-dragging {
+      cursor: grabbing;
     }
 
-    .swiper-slide {
-      width: 335px !important;
-      height: 562.5px;
+    // Arc Slider Track
+    .arc-slider__track {
+      position: relative;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    // Arc Slides
+    .arc-slide {
+      position: absolute;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      transform-style: preserve-3d;
-      flex-shrink: 0;
-      will-change: transform;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
-      opacity: 1 !important; // Force visibility for all slides
+      user-select: none;
+      transform-origin: 50% var(--origin-y);
+      transform: rotate(calc(var(--arc-offset) + var(--rotate-base)));
     }
   }
 
-  // Card Styles - Using reusable video-card component
-  .moments-card {
-    width: 335px;
-    height: 562.5px;
+  // Arc Slide Card Styles
+  .arc-slide .moments-card {
+    display: flex;
+    width: var(--card-width);
+    height: 35.15625rem;
     position: relative;
-    transform-origin: center center;
-    opacity: 1 !important; // Force visibility for all cards
     border-radius: 1.25rem;
     overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+    background: #000;
 
-    
+    .moments-reel-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
 
     video {
-      max-width: 100%;
-      height: auto;
-
-    }
-.moments-play-button{
-  position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: none;
-    border: none;
-}
-    
-    // Ensure all child elements are visible
-    * {
-      opacity: 1 !important;
-    }
-
-    // Direct styles matching backup-internal.html structure
-    .card {
       width: 100%;
       height: 100%;
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: grab;
-      user-select: none;
-      will-change: transform;
-      background: white;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-      &:active {
-        cursor: grabbing;
-      }
+      object-fit: cover;
     }
 
-    .card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .media {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      border-radius: 20px;
-
-      video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
-    }
-
-    .card-overlay {
+    .moments-play-button {
       position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 67.244%, rgba(0, 0, 0, 0.65) 100%);
-      border-radius: 20px;
-      pointer-events: none;
-      z-index: 1;
-      padding: 2rem;
-      display: flex;
-      align-items: flex-end;
-      // Remove any transform animations
-      transform: none !important;
-      transition: none !important;
-    }
-
-    .card-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      width: 100%;
-      // Remove any transform animations
-      transform: none !important;
-      transition: none !important;
-    }
-
-    .card-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      // Remove any transform animations
-      transform: none !important;
-      transition: none !important;
-    }
-
-    .card-name {
-      font-family: @font-family-averta;
-      font-size: 1.25rem;
-      font-weight: @font-weight-bold;
-      line-height: 1.2;
-      letter-spacing: -0.025rem;
-      color: @base-white;
-      margin: 0;
-      // Remove any transform animations
-      transform: none !important;
-      transition: none !important;
-    }
-
-    .card-title {
-      font-family: @font-family-averta;
-      font-size: 0.875rem;
-      font-weight: @font-weight-regular;
-      line-height: 1.3;
-      letter-spacing: -0.0125rem;
-      color: @base-white;
-      margin: 0;
-      opacity: 0.9;
-      // Remove any transform animations
-      transform: none !important;
-      transition: none !important;
-    }
-
-    .play-button-wrapper {
-      pointer-events: all;
-      // Remove any transform animations
-      transform: none !important;
-      transition: none !important;
-    }
-
-    .play-button {
-      background: transparent;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: none;
       border: none;
       padding: 0;
       cursor: pointer;
-      position: relative;
-      // Remove hover animations but keep basic transitions
-      transition: none !important;
-      transform: none !important;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.9;
+      transition: opacity 0.3s ease, transform 0.3s ease;
 
       &:hover {
-        // Remove hover transform
-        transform: none !important;
-      }
-    }
-
-    .play-button-circle {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background-color: @primary-coral;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      // Remove background color transition
-      transition: none !important;
-      box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
-      // Remove any transform animations
-      transform: none !important;
-    }
-
-    .play-button-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      // Remove any transform animations
-      transform: none !important;
-      transition: none !important;
-
-      .icon-play {
         opacity: 1;
-        // Remove opacity transition
-        transition: none !important;
-        transform: none !important;
-
-        &::before {
-          content: '';
-          width: 0;
-          height: 0;
-          border-left: 12px solid white;
-          border-top: 8px solid transparent;
-          border-bottom: 8px solid transparent;
-          margin-left: 2px;
-        }
-      }
-
-      .icon-close {
-        position: absolute;
-        opacity: 0;
-        // Remove opacity transition
-        transition: none !important;
-        transform: none !important;
-
-        svg {
-          width: 16px;
-          height: 16px;
-          stroke: white;
-          stroke-width: 2;
-          fill: none;
-        }
+        transform: translate(-50%, -50%) scale(1.1);
       }
     }
 
-    .play-button.is-active {
-      .play-button-circle {
-        background-color: darken(@primary-coral, 10%);
-      }
+    .moments-play-circle {
+      width: 64px;
+      height: 64px;
+      display: block;
+      filter: drop-shadow(0 4px 12px rgba(219, 87, 78, 0.4));
+      transition: all 0.3s ease;
+    }
 
-      .icon-play {
-        opacity: 0;
-      }
+    .moments-play-button:hover .moments-play-circle {
+      transform: scale(1.05);
+      filter: drop-shadow(0 4px 12px rgba(219, 87, 78, 0.6));
 
-      .icon-close {
-        opacity: 1;
+      circle {
+        fill-opacity: 1;
       }
     }
   }
 
-  .moments-card-center {
+
+  // Arc Slider Dots
+  .arc-slider__dots {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    z-index: 5;
+  }
+
+  .arc-slider__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgb(104, 104, 104);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &.active {
+      background-color: @primary-coral;
+    }
+
+    &:hover {
+      background-color: @primary-coral;
+    }
+  }
+
+  // Active slide styling
+  .arc-slide.active .moments-card {
     z-index: 10;
   }
-
-  // Arc Effect - Applied via JavaScript
-  // Opacity and transforms are controlled by JavaScript
 
   // CTA Section
   .moments-cta {
@@ -372,26 +229,12 @@
 
   // Responsive Styles  
   @media (min-width: @breakpoint-lg) {
-
-    // Desktop specific overrides to ensure visibility
-    .moments-arc-carousel {
-      .swiper-slide {
-        opacity: 1 !important;
-        visibility: visible !important;
-      }
+    .moments-carousel-wrapper {
+      height: clamp(720px, 85vh, 800px);
     }
 
-    .moments-card {
-      opacity: 1 !important;
-      visibility: visible !important;
-
-      .video-card-overlay,
-      .video-card-content,
-      .video-card-info,
-      .video-card-play-wrapper {
-        opacity: 1 !important;
-        visibility: visible !important;
-      }
+    .moments-arc-carousel {
+      --card-width: 20.9375rem;
     }
   }
 
@@ -417,23 +260,16 @@
     }
 
     .moments-carousel-wrapper {
-      height: 750px; // Increased mobile height too
-      padding: 80px 0; // Add padding for mobile too
+      height: clamp(480px, 70vh, 600px);
+      padding: 60px 0;
     }
 
-    .moments-arc-carousel .swiper-slide {
-      width: 280px !important;
-      height: 470px;
+    .moments-arc-carousel {
+      --card-width: 17.5rem;
     }
 
-    .moments-card {
-      width: 280px;
-      height: 470px;
-
-      .card {
-        width: 100%;
-        height: 100%;
-      }
+    .arc-slide .moments-card {
+      height: 29.375rem;
     }
   }
 
@@ -460,23 +296,16 @@
     }
 
     .moments-carousel-wrapper {
-      height: auto; // Increased mobile height too
-      padding: 0; // Add padding for mobile too
+      height: clamp(360px, 60vh, 480px);
+      padding: 0;
     }
 
-    .moments-arc-carousel .swiper-slide {
-      width: 240px !important;
-      height: 400px;
+    .moments-arc-carousel {
+      --card-width: 15rem;
     }
 
-    .moments-card {
-      width: 240px;
-      height: 400px;
-
-      .card {
-        width: 100%;
-        height: 100%;
-      }
+    .arc-slide .moments-card {
+      height: 25rem;
     }
   }
 }

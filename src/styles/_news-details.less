@@ -14,11 +14,12 @@
   overflow: hidden;
 
   @media (max-width: (@breakpoint-md - 1)) {
-    height: 70vh;
+    height: 90vh;
     min-height: 25rem;
   }
-  .bottom-edge{
-     position: absolute;
+
+  .bottom-edge {
+    position: absolute;
     bottom: -1.25rem;
     width: 100%;
   }
@@ -106,11 +107,14 @@
   gap: 0.4375rem; // 7px gap from Figma
   flex: 41% 0 0;
 }
+
 .seprator {
   max-width: 100%;
   text-align: center;
   margin: 2rem 0;
-  object,img{
+
+  object,
+  img {
     max-width: 100%;
   }
 }
@@ -369,5 +373,34 @@
 .news-detail-content-section .news-detail-content-section__image {
   @media (max-width: (@breakpoint-md - 1)) {
     border-radius: 1.5rem;
+  }
+}
+
+
+@media (max-width: (@breakpoint-md - 1)) {
+  .news-detail-hero {
+    height: 90vh;
+    min-height: 25rem;
+
+    .news-detail-hero__scroll-indicator {
+      padding: 0;
+    }
+
+    .news-detail-hero__overlay {
+      padding: 0;
+
+      .news-detail-hero__scroll-indicator {
+        bottom: 1rem;
+      }
+    }
+
+    .news-detail-hero__content {
+gap: 1.5rem;
+      .news-detail-hero__title,
+      .news-detail-hero__metadata {
+        padding: 0;
+        gap: 0.5rem;
+      }
+    }
   }
 }

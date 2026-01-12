@@ -90,13 +90,7 @@
         display: flex;
         height: 100%;
 
-        @media (max-width: (@breakpoint-md - 1)) {
-          background: rgba(0, 0, 0, 0.3);
-          padding: 6rem 0 8rem;
-          align-items: flex-start;
-          position: relative;
-          height:100%;
-        }
+
 
         .audio-btn {
           position: absolute;
@@ -214,7 +208,7 @@
       li.breadcrumb-item {
         color: @color-white;
 
-        & + li{
+        &+li {
           &:before {
             opacity: 1;
             color: @color-white;
@@ -360,15 +354,14 @@ h1 {
     @media (max-width: (@breakpoint-md - 1)) {
       // Show and reposition on mobile - work with parallax
       display: block;
-      position: relative;
+      position: absolute;
       left: inherit;
       top: inherit;
       width: auto;
       max-width: 100%;
       z-index: 2;
       padding: 0;
-      margin-bottom: 1.125rem;
-      margin-top: 4rem;
+      bottom: 8rem;
 
       p {
         margin: 0;
@@ -646,59 +639,42 @@ h1 {
 @media (max-width:767px) {
 
   .hero {
-    max-height: 100vh;
+    .hero__slider {
+      .hero__slide-overlay {
+        padding: 0;
+
+        .audio-btn {
+          display: none;
+        }
+
+        .container-fluid {
+          height: 100vh;
+          display: flex;
+          padding-top: 7rem;
+          position: relative;
+
+          .hero__content {
+            display: flex;
+            gap: 1.25rem;
+          }
+        }
+      }
+    }
+
 
     .bottom-edge {
       bottom: -0.375rem;
     }
 
-    .hero__content {
-      position: relative;
-      width: 100%;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      padding: 1rem 0 0;
-    
-
-      >.row {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        order: 1;       
-        height: calc(100% - 5rem);
-        flex-wrap: wrap;
-        
-      }
 
 
-
-      h1 {
-        font-size: 3.5rem;
-      }
-
-      .hero__description {
-        position: relative;
-        left: inherit;
-        top: inherit;
-        padding: 0;
-        margin-bottom: 1.125rem;
-      }
-    }
 
     .arrow-navigation {
       display: none;
     }
 
-    .hero__slider .hero__slide-overlay {
-
-      .container-fluid {
-        display: flex;
-        height: 100%;
 
 
-      }
-    }
   }
 
   .internal-page .hero .hero__slider .hero__slide-overlay {
@@ -730,5 +706,31 @@ h1 {
 @media (min-width:1600px) {
   .hero .bottom-edge {
     bottom: -1.6875rem;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari only */
+
+
+  @media (max-width:767px) {
+    .hero {
+      .hero__slider {
+        .hero__slide-overlay {
+          .hero__description {
+            padding-bottom: 6rem;
+          }
+
+
+          .container-fluid {
+            .hero__content {
+              .breadcrumb-wrap {
+                padding-top: 4.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

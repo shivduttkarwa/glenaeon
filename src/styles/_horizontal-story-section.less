@@ -1,3 +1,7 @@
+.story-page {
+  background: url(../../assets/images/section-bg.jpg);
+  background-attachment: fixed;
+}
 
 .student-story-hero-section {
   position: relative;
@@ -6,6 +10,17 @@
   max-height: 100vh;
   overflow: hidden;
   flex-shrink: 0;
+
+  .student-story-hero-navigation {
+    bottom: 3rem;
+
+    button.arrow-navigation__arrow {
+      width: 4.3605rem;
+      height: 4.38344rem;
+
+    }
+  }
+
 }
 
 .student-story-hero-seprator {
@@ -16,6 +31,8 @@
   height: 100%;
   z-index: 1;
   pointer-events: none;
+  display: flex;
+  height: 100vh;
 }
 
 .student-story-hero-swiper {
@@ -114,6 +131,8 @@
 
   @media (max-width: (@breakpoint-lg - 1)) {
     width: 100%;
+
+
   }
 }
 
@@ -177,12 +196,21 @@
     width: 60%;
     height: 50%;
   }
+
+
+}
+
+@media (max-width: (@breakpoint-lg - 1)) {
+  .student-story-hero-seprator {
+    display: none;
+  }
 }
 
 .student-story-hero-rotated-image-wrapper {
   width: 100%;
   height: 100%;
-  transform: rotate(357.5deg); // From Figma: 357.498deg (essentially -2.5deg)
+  /*  transform: rotate(357.5deg);*/
+  // From Figma: 357.498deg (essentially -2.5deg)
   transform-origin: center center;
   position: relative;
   border-radius: 1.25rem; // 20px
@@ -264,10 +292,12 @@
   }
 
   @media (max-width: (@breakpoint-md - 1)) {
-    left: 1rem;
-    top: 25%;
-    font-size: 3.5rem; // 56px
-    letter-spacing: -0.125rem; // -2px
+    left: auto;
+    top: 5%;
+    font-size: 3.275rem; // 56px
+    letter-spacing: normal; // -2px
+    text-align: center;
+
   }
 }
 
@@ -364,16 +394,17 @@
 }
 
 
-.horizontal-story-testimonial-bg{
+.horizontal-story-testimonial-bg {
   background: url(../../assets/images/story-hero-bg.png) bottom center no-repeat;
 }
+
 // Arrow Navigation - positioned on right bottom
 .student-story-hero-navigation {
   // From Figma: x: 1196.857px, y: 784.311px
   // Converting to percentages: right = (1440 - 1196.857) / 1440 = 16.88%
   // bottom = (900 - 784.311) / 900 = 12.85%
   position: absolute;
-  right: 16.88%;
+  right: 8%;
   bottom: 12.85%;
   z-index: 10;
   pointer-events: none;
@@ -390,11 +421,20 @@
   }
 
   @media (max-width: (@breakpoint-md - 1)) {
-    right: 1.5rem; // 24px
-    bottom: 1.5rem; // 24px
-    transform: scale(0.8);
+
+
+    position: absolute;
+    height: 4rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
   }
 }
+
 
 
 .horizontal-story-section {
@@ -403,26 +443,8 @@
   min-height: 100vh;
   overflow: hidden;
 
-  // Background image with opacity
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('../../assets/images/section-bg.jpg');
-    background-size: 819.2px 409.6px; // From Figma: bg-size-[819.2000122070312px_409.6000061035156px]
-    background-position: top left;
-    background-repeat: repeat;
-    background-attachment: fixed;
-    opacity: 0.5; // From Figma: opacity-50
-    z-index: 0;
-    pointer-events: none;
-  }
 
-  // Content should be above background
-  >* {
-    position: relative;
-    z-index: 1;
-  }
+
 }
 
 .horizontal-story-pin-wrapper {
@@ -448,14 +470,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6.25rem 0; //
+  padding: 6.25rem 0;
 
   .container-fluid {
     width: 90vw;
   }
 
   @media (max-width: (@breakpoint-md - 1)) {
-    padding: 4rem 0;
+    padding: 2rem 1rem;
+    height: auto;
   }
 }
 
@@ -646,13 +669,35 @@
   letter-spacing: 0.75px;
   text-transform: uppercase;
   color: @tertiary-blue-dark;
-  margin: 0;
+  margin: 0 0 1rem 0; // Add bottom margin to push text up from slider
 }
 
 .horizontal-story-moments-gallery {
   display: flex;
   flex-direction: column;
   gap: 0.625rem; // 10px
+  position: relative;
+}
+
+// Swiper container for moments
+.moments-swiper {
+  width: 100%;
+  height: 23.8125rem; // 381px - match the image height
+  border-radius: 1.25rem;
+  overflow: visible;
+  position: relative;
+
+  .swiper-wrapper {
+    height: 100%;
+  }
+
+  .swiper-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .horizontal-story-moments-image {
@@ -667,7 +712,7 @@
     inset: 0;
     width: 100%;
     height: 100%;
-
+    object-fit: cover;
     display: block;
   }
 }
@@ -688,11 +733,21 @@
   display: flex;
   gap: 1.3125rem; // 21px from Figma
   align-items: center;
-  z-index: 2;
+  z-index: 3;
+  pointer-events: auto;
 
   p {
     font-family: @font-family-averta;
-    font-weight: @font-weight-bold;
+    font-weight: 600;
+    font-size: 0.9375rem; // 15px
+    line-height: 1.4;
+    color: @base-white;
+    margin: 0;
+  }
+
+  .moments-pagination-fraction {
+    font-family: @font-family-averta;
+    font-weight: 600;
     font-size: 0.9375rem; // 15px
     line-height: 1.4;
     color: @base-white;
@@ -736,19 +791,53 @@
 // ==========================================================================
 
 .horizontal-story-cards-grid {
-
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: 90rem; // 1440px
+  max-width: 27rem; // 1440px
+  gap: 2.5rem; // Gap between slider and quote
 
   @media (max-width: (@breakpoint-lg - 1)) {
-    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
 
   @media (max-width: (@breakpoint-md - 1)) {
-    grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+}
+
+// Story Card Slider (from test.html - exact copy)
+.slider-container {
+  position: relative;
+  width: 20.8125rem; // Match card width exactly
+  height: 28.25rem; // Match card height exactly
+}
+
+.slide-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  will-change: transform;
+}
+
+// Override for cards inside slider - only image, no flex column
+.slide-card .horizontal-story-card {
+  width: 100%;
+  height: 100%;
+  display: block; // Remove flex-direction: column
+}
+
+.slide-card .horizontal-story-card-image {
+  width: 100%;
+  height: 100%;
 }
 
 .story-image-desc-wrap {
@@ -756,6 +845,11 @@
   gap: 2rem 13.86rem;
   height: auto;
 
+  @media (max-width: (@breakpoint-md - 1)) {
+    padding: 2rem 0;
+    flex-direction: column;
+    gap: 2rem;
+  }
 
   .story-desc-wrap {
     display: flex;
@@ -799,11 +893,17 @@
 
 .horizontal-story-card-image {
   position: relative;
-  width: 100%;
-  height: 31.25rem; // 500px from Figma
-  border: 7px solid @base-white;
-  border-radius: 1.25rem; // 20px
+  width: 23.8125rem;
+  height: 31.25rem;
+  padding: 20rem 1.47963rem 1.42638rem 10rem;
+  border-radius: var(--radius-base, 1.25rem);
+  border: 7px solid var(--basic-white, #FFF);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 62.73%, rgba(0, 0, 0, 0.40) 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
+  box-sizing: border-box;
 
   .full {
     object-fit: cover;
@@ -812,6 +912,8 @@
 
   @media (max-width: (@breakpoint-md - 1)) {
     height: 25rem;
+    width: 100%;
+    padding: 0;
   }
 
   img {
@@ -820,6 +922,8 @@
     width: 100%;
     height: 100%;
     display: block;
+    object-fit: cover;
+    z-index: 0;
   }
 }
 
@@ -859,10 +963,10 @@
 .horizontal-story-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 62.73%, rgba(0, 0, 0, 0.4) 100%);
-  border-radius: 1.25rem;
   z-index: 1;
   pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 62.73%, rgba(0, 0, 0, 0.40) 100%);
+
 }
 
 .horizontal-story-card-pagination {
@@ -892,14 +996,15 @@
 }
 
 .horizontal-story-card-quote {
-  font-family: @font-family-averta;
-  font-weight: @font-weight-regular;
+  color: var(--tertiary-blue-dark, #1C3666);
+
+  font-family: var(--font-family-averta, Averta);
+  font-size: var(--font-size-h3, 1.5625rem);
   font-style: italic;
-  font-size: 1.5625rem; // 25px from Figma h3
-  line-height: 1.2;
-  letter-spacing: -0.03125rem; // -0.5px
-  color: @tertiary-blue-dark;
-  margin: 0;
+  font-weight: 400;
+  line-height: 120%;
+  /* 1.875rem */
+  letter-spacing: -0.03125rem;
 
   @media (max-width: (@breakpoint-md - 1)) {
     font-size: 1.25rem;
@@ -1061,7 +1166,7 @@
 .horizontal-story-tour {
   position: relative;
   width: 100%;
-  height: 56.25rem; // 900px from Figma
+  height: 100vh;
   overflow: hidden;
 
   @media (max-width: (@breakpoint-lg - 1)) {
@@ -1129,7 +1234,7 @@
 }
 
 .horizontal-story-tour-content {
- 
+
   display: flex;
   flex-direction: column;
   gap: 1.25rem; // 20px
@@ -1200,12 +1305,44 @@
     display: block;
   }
 
-  @media (max-width: (@breakpoint-md - 1)) {
-    display: none;
-  }
+
 }
 
+.horizontal-story-panel {
+  .arrow-navigation {
+    gap:.5rem;
+    button.arrow-navigation__arrow {
+      width: 2.18025rem;
+      height: 2.19169rem;
+    }
+  }
+  
+}
 
+.horizontal-story-panel-1 {
+  .student-story-hero-seprator-left {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -6.475rem;
+    z-index: 1;
+    display: flex;
+    height: 100%;
+
+    object,
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: flex;
+    }
+  }
+
+  .horizontal-story-testimonial-card {
+    position: relative;
+    left: -12vw;
+  }
+}
 
 
 .horizontal-story-panel-2 {
@@ -1270,4 +1407,292 @@
       max-width: 100%;
     }
   }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    .horizontal-story-moments {
+      flex-direction: column;
+    }
+  }
+}
+
+
+.horizontal-story-panel-4 {
+
+  .top-image {
+    position: absolute;
+    top: 0;
+    width: 65vw;
+    left: -35vw;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      display: none;
+    }
+  }
+
+  .horizontal-story-moments {
+    .left-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 23.75rem;
+
+
+      .image-width-play-btn {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem 0;
+
+
+        .image-wrap {
+          transform: rotate(5.53deg);
+          position: relative;
+
+          img {
+            width: 23.75rem;
+            height: 23.75rem;
+            object-fit: cover;
+            border-radius: 1.5rem;
+            aspect-ratio: 1;
+            border: 0.4375rem solid var(--basic-white, #FFF);
+          }
+
+          .overlay {
+            position: absolute;
+            left: 0.4375rem;
+            right: 0.4375rem;
+            top: 0.4375rem;
+            bottom: 0.4375rem;
+            margin: auto;
+            border-radius: 1.5rem;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 62.73%, rgba(0, 0, 0, 0.40) 100%);
+          }
+        }
+      }
+
+      .image-description {
+        padding: 0 2.5rem;
+
+        h5 {
+          color: var(--tertiary-blue-dark, #1C3666);
+          font-family: var(--font-family-averta, Averta);
+          font-size: 1.25rem;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 130%;
+          /* 1.625rem */
+          letter-spacing: -0.025rem;
+          margin: 0;
+        }
+
+        p {
+          color: var(--tertiary-blue-dark, #1C3666);
+          font-family: var(--font-family-averta, Averta);
+          font-size: 0.9375rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 140%;
+
+        }
+
+      }
+    }
+
+    .right-block {}
+  }
+}
+
+.horizontal-story-panel-5 {
+  gap: 2rem 4.8rem;
+
+
+
+  .circle-image {
+    position: absolute;
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    flex-direction: column;
+    gap: 2rem 0;
+
+    .circle-image {
+      position: relative;
+    }
+  }
+}
+
+.horizontal-story-panel-6 {
+  padding: 0 0 0 10rem;
+  position: relative;
+
+  .bottom-image {
+    position: absolute;
+    bottom: 0;
+    left: 6vw;
+
+    @media (max-width: (@breakpoint-md - 1)) {
+      display: none;
+    }
+  }
+
+  .cards-wrap {
+    display: flex;
+    gap: 2rem 14rem;
+    align-items: center;
+    position: relative;
+
+
+    .svg-object {
+      position: absolute;
+      right: 0;
+      top: -3rem;
+      margin: auto;
+      text-align: center;
+      transform: rotate(180deg);
+      width: 83%;
+
+      object {
+        max-width: 50%;
+      }
+    }
+
+    .left-block {}
+
+    .right-block {
+      flex-direction: column;
+      gap: 2.44rem;
+      width: 32.1875rem;
+
+      .five-as-section__image-wrapper {
+
+        width: 20.28281rem;
+      }
+
+      .horizontal-story-whats-next {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    flex-direction: column;
+    padding: 2rem 0;
+
+    .cards-wrap {
+      padding: 2rem 1rem;
+      max-width: 100vw;
+      flex-direction: column;
+
+      .svg-object {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        object {
+          max-width: 100%;
+        }
+      }
+
+      .right-block {
+        max-width: 100vw;
+        padding: 2rem 1rem;
+      }
+    }
+
+  }
+}
+
+.horizontal-story-panel-7 {
+  padding: 0;
+  position: relative;
+
+  .image-wrap {
+    overflow: hidden;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+
+
+    >img {
+      width: auto;
+      height: 100vh;
+      min-height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .student-story-hero-seprator-right {
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 11;
+    display: flex;
+    height: 100%;
+  }
+
+  .horizontal-story-tour-bg-dark-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 4rem 5rem;
+
+    .horizontal-story-tour-arrow {
+      transform: none;
+      top: inherit;
+      bottom: 4rem;
+      right: 4rem;
+    }
+
+  }
+
+  @media (max-width: (@breakpoint-md - 1)) {
+    .image-wrap {
+      width: 100vw;
+    }
+
+    .horizontal-story-tour-bg-dark-overlay {
+      padding: 2rem 1rem 5rem;
+
+      .horizontal-story-tour-arrow {
+        transform: none;
+        top: inherit;
+        bottom: 1rem;
+        right: 1rem;
+      }
+    }
+
+    .student-story-hero-seprator-right {
+      display: none;
+    }
+  }
+}
+
+
+@media (max-width: 767px) {
+  .horizontal-story-panel {
+
+    .horizontal-story-cards-grid {
+      .slider-container {
+        max-width: 90%;
+        margin: auto;
+      }
+    }
+  }
+
+  .horizontal-story-panel-1 .horizontal-story-testimonial-card {
+    left: 0;
+  }
+}
+
+// Prevent first-load flicker until hero intro sets initial states.
+.story-page.hero-intro-pending .student-story-hero-rotated-image,
+.story-page.hero-intro-pending .student-story-hero-title,
+.story-page.hero-intro-pending .student-story-hero-quote,
+.story-page.hero-intro-pending .student-story-hero-buttons,
+.story-page.hero-intro-pending .student-story-hero-navigation {
+  opacity: 0;
+  visibility: hidden;
 }
