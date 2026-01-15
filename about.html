@@ -889,10 +889,13 @@
                         <div class="welcome-head__left">
                           <!-- Masked Video -->
                           <div class="masked-image-content-block-wrap">
-                            <div data-gsap="zoom-in" data-gsap-start="top 100%" class="frame">
+                            <div data-gsap="clip-reveal" class="frame">
                               <img src="assets/images/light-blue-frame.png" class="full" alt="" />
-                              <div class="image-wrap">
-                                <video class="welcome-head__video" autoplay muted loop playsinline>
+                              <div class="image-wrap" data-video-fade>
+                                <img class="welcome-head__video-poster" src="assets/images/SteinerWilloughby_237.jpg"
+                                  alt="" aria-hidden="true">
+                                <video class="welcome-head__video" autoplay muted loop playsinline preload="none"
+                                  poster="assets/images/SteinerWilloughby_237.jpg">
                                   <source src="assets/videos/3.mp4" type="video/mp4">
                                 </video>
                               </div>
@@ -936,7 +939,7 @@
                               </p>
                             </div>
                           </div>
-                          <a data-gsap="slide-left" data-gsap-ease="none"
+                          <a data-gsap="slide-up" data-gsap-ease="none"
                             href="https://www.instagram.com/glenaeonrudolfsteinerschool" class="welcome-head__cta-btn"
                             target="_blank" rel="noopener">
                             Video: Watch Diana's Welcome
@@ -956,8 +959,11 @@
                           <div class="masked-image-content-block-wrap">
                             <div class="frame">
                               <img src="assets/images/light-blue-frame.png" class="full" alt="" />
-                              <div class="image-wrap">
-                                <video class="welcome-head__video" autoplay muted loop playsinline>
+                              <div class="image-wrap" data-video-fade>
+                                <img class="welcome-head__video-poster" src="assets/images/SteinerWilloughby_237.jpg"
+                                  alt="" aria-hidden="true">
+                                <video class="welcome-head__video" autoplay muted loop playsinline preload="none"
+                                  poster="assets/images/SteinerWilloughby_237.jpg">
                                   <source src="assets/videos/3.mp4" type="video/mp4">
                                 </video>
                               </div>
@@ -1117,8 +1123,8 @@
                     <!-- Title Block -->
                     <div class="core-values-title-group">
                       <h2 class="core-values-title">
-                        <span data-gsap="slide-up" class="core-values-title-script">Our Core</span>
-                        <span data-gsap="slide-up" class="core-values-title-bold">VALUES</span>
+                        <span data-gsap="chars" class="core-values-title-script">Our Core</span>
+                        <span data-gsap="chars" class="core-values-title-bold">VALUES</span>
                       </h2>
                     </div>
 
@@ -1132,10 +1138,10 @@
                     </p>
 
                     <!-- Values List -->
-                    <div class="core-values-list">
+                    <div data-gsap="core-values" data-gsap-stagger="0.2" class="core-values-list">
                       <!-- Integrity -->
                       <div class="core-value-item">
-                        <div data-gsap="zoom-in" class="core-value-icon-wrapper">
+                        <div class="core-value-icon-wrapper">
                           <div class="core-value-icon-frame" data-frame="integrity">
 
                             <img src="assets/images/integrity-icon.svg" alt="">
@@ -1143,7 +1149,7 @@
                           </div>
 
                         </div>
-                        <div data-gsap="slide-up" class="core-value-text">
+                        <div class="core-value-text">
                           <h3 class="core-value-title">Integrity</h3>
                           <p class="core-value-description">We do what we say and we take<br>responsibility.</p>
                         </div>
@@ -1151,13 +1157,13 @@
 
                       <!-- Wisdom -->
                       <div class="core-value-item core-value-item-wisdom">
-                        <div data-gsap="zoom-in"="core-value-icon-wrapper">
+                        <div class="core-value-icon-wrapper">
                           <div class="core-value-icon-frame core-value-icon-frame-wisdom">
                             <img src="assets/images/wisdome-icon.svg" alt="" class="core-value-icon-frame-img" />
                           </div>
 
                         </div>
-                        <div data-gsap="slide-up" class="core-value-text">
+                        <div class="core-value-text">
                           <h3 class="core-value-title">Wisdom</h3>
                           <p class="core-value-description">We arrive at decisions through deep<br>learning and
                             conscious thought</p>
@@ -1166,13 +1172,13 @@
 
                       <!-- Courage -->
                       <div class="core-value-item">
-                        <div data-gsap="zoom-in" class="core-value-icon-wrapper">
+                        <div class="core-value-icon-wrapper">
                           <div class="core-value-icon-frame" data-frame="courage">
                             <img src="assets/images/courage-icon.svg" alt="" class="core-value-icon-frame-img" />
                           </div>
 
                         </div>
-                        <div data-gsap="slide-up" class="core-value-text">
+                        <div class="core-value-text">
                           <h3 class="core-value-title">Courage</h3>
                           <p class="core-value-description">We commit to brave actions in the<br>face of discomfort and
                             challenge</p>
@@ -1181,13 +1187,13 @@
 
                       <!-- Heart -->
                       <div class="core-value-item core-value-item-heart">
-                        <div data-gsap="zoom-in" class="core-value-icon-wrapper">
+                        <div class="core-value-icon-wrapper">
                           <div class="core-value-icon-frame" data-frame="heart">
                             <img src="assets/images/heart-icon.svg" alt="" class="core-value-icon-frame-img" />
                           </div>
 
                         </div>
-                        <div data-gsap="slide-up" class="core-value-text">
+                        <div class="core-value-text">
                           <h3 class="core-value-title core-value-title-heart">Heart</h3>
                           <p class="core-value-description">We act from awareness with<br>compassion and kindness</p>
                         </div>
@@ -1359,7 +1365,7 @@
               <div class="row g-0 align-items-center what-makes-glenaeon-special-item">
                 <!-- Left Side: Masked Image -->
                 <div class="col-lg-6 col-md-6">
-                  <div data-gsap="zoom-in" class="masked-image-content-block">
+                  <div data-gsap="slide-left" class="masked-image-content-block">
                     <div class="frame">
                       <img src="assets/images/yellow-frame.png" class="full" alt="" />
                       <div class="image-wrap">
@@ -1388,7 +1394,7 @@
               <div class="row g-0 align-items-center what-makes-glenaeon-special-item row-reverse">
                 <!-- Right Side: Masked Image -->
                 <div class="col-lg-6 col-md-6">
-                  <div data-gsap="zoom-in" class="masked-image-content-block">
+                  <div data-gsap="slide-right" class="masked-image-content-block">
                     <div class="frame">
                       <img src="assets/images/light-green-frame.png" class="full" alt="" />
                       <div class="image-wrap">
@@ -1417,7 +1423,7 @@
               <div class="row g-0 align-items-center what-makes-glenaeon-special-item">
                 <!-- Left Side: Masked Image -->
                 <div class="col-lg-6 col-md-6">
-                  <div data-gsap="zoom-in" class="masked-image-content-block">
+                  <div data-gsap="slide-left" class="masked-image-content-block">
                     <div class="frame">
                       <img src="assets/images/light-blue-frame.png" class="full" alt="" />
                       <div class="image-wrap">
@@ -1446,7 +1452,7 @@
               <div class="row g-0 align-items-center what-makes-glenaeon-special-item row-reverse">
                 <!-- Right Side: Masked Image -->
                 <div class="col-lg-6 col-md-6">
-                  <div data-gsap="zoom-in" class="masked-image-content-block">
+                  <div data-gsap="slide-right" class="masked-image-content-block">
                     <div class="frame">
                       <img src="assets/images/light-green-frame.png" class="full" alt="" />
                       <div class="image-wrap">
@@ -1473,7 +1479,7 @@
 
               <!-- CTA Button -->
               <div class=" what-makes-glenaeon-special-cta-wrapper">
-                <a data-gsap="slide-left" href="#" class="what-makes-glenaeon-special-cta-button">Explore Learning at
+                <a data-gsap="fade-up" href="#" class="what-makes-glenaeon-special-cta-button">Explore Learning at
                   Glenaeon</a>
               </div>
             </div>
@@ -1929,7 +1935,7 @@
             </div>
           </div>
 
-          <!-- Controls -->
+
           <!-- Controls -->
           <div class="row">
             <div class="col-lg-6 offset-lg-5 position-relative">
@@ -1939,14 +1945,14 @@
                     <!-- Pagination -->
                     <div class="col-auto d-flex align-items-center">
                       <div class="testimonial-audio-pagination-wrapper">
-                        <div data-gsap="slide-left" data-gsap-stagger="0.1" data-gsap-start="top 100%"
+                        <div data-gsap="fade-left" data-gsap-stagger="0.1" data-gsap-start="top 100%"
                           class="swiper-pagination testimonial-audio-pagination"></div>
                       </div>
                     </div>
                     <!-- Navigation Arrows -->
                     <div class="col-auto d-flex align-items-center">
-                      <div data-gsap="slide-right" data-gsap-stagger="0.1" data-gsap-start="top 100%"
-                        data-gsap-ease="back.out(5)" class="testimonial-audio-navigation arrow-navigation">
+                      <div data-gsap="fade-right" data-gsap-stagger="0.1" data-gsap-start="top 100%"
+                        data-gsap-ease="back.out(1.2)" class="testimonial-audio-navigation arrow-navigation">
                         <!-- Left Arrow -->
                         <button class="arrow-navigation__arrow arrow-navigation__arrow--left" type="button"
                           aria-label="Previous">

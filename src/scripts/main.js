@@ -28,6 +28,7 @@
     initFiveAsTabs();
     initFAQAccordion();
     initLocalNavFilters();
+    initInlineVideoFades();
     initLazyVideoLoading();
 
     // initFeaturesCardsSlider();
@@ -2001,6 +2002,37 @@
   // ==========================================================================
   // END LOCAL NAVIGATION / FILTER SECTION - ISOTOPE
   // ==========================================================================
+
+  // ==========================================================================
+  // INLINE VIDEO POSTER FADES
+  // ==========================================================================
+
+  function initInlineVideoFades() {
+    const videoWraps = document.querySelectorAll('[data-video-fade]');
+    if (!videoWraps.length) return;
+
+    videoWraps.forEach(wrap => {
+      const video = wrap.querySelector('video');
+      if (!video) return;
+
+      const markReady = () => {
+        wrap.classList.add('is-video-ready');
+      };
+
+      if (video.readyState >= 2) {
+        markReady();
+        return;
+      }
+
+      const onReady = () => markReady();
+      video.addEventListener('loadeddata', onReady, { once: true });
+      video.addEventListener('canplay', onReady, { once: true });
+      video.addEventListener('playing', onReady, { once: true });
+      video.addEventListener('error', () => {
+        wrap.classList.remove('is-video-ready');
+      });
+    });
+  }
 
   // ==========================================================================
   // LAZY VIDEO LOADING WITH INTERSECTION OBSERVER

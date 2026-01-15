@@ -1345,9 +1345,9 @@
             </div>
 
             <!-- Features Cards Slider -->
-            <div class="features-cards-slider" data-gsap="what-we-do-cards">
+            <div class="features-cards-slider">
               <div class="swiper features-cards-carousel">
-                <div class="swiper-wrapper">
+                <div data-gsap="slide-right" data-gsap-stagger="0.3" class="swiper-wrapper">
                   <!-- Card 1 -->
                   <div class="swiper-slide">
                     <div class="feature-card feature-card-top">
@@ -1366,7 +1366,7 @@
                           </div>
                         </div>
                       </div>
-                      <div data-gsap="fade-up" class="feature-card-content">
+                      <div class="feature-card-content">
                         <h3 class="feature-card-title">
                           A Beautiful Transition to Big School
                         </h3>
@@ -1396,7 +1396,7 @@
                           </div>
                         </div>
                       </div>
-                      <div data-gsap="fade-up" class="feature-card-content">
+                      <div class="feature-card-content">
                         <h3 class="feature-card-title">Nature-Based Learning</h3>
                         <p class="feature-card-description">
                           Children explore gardens, creeks, and bushland daily.
@@ -1423,7 +1423,7 @@
                           </div>
                         </div>
                       </div>
-                      <div data-gsap="fade-up" class="feature-card-content">
+                      <div class="feature-card-content">
                         <h3 class="feature-card-title">
                           Creative Play and Storytelling
                         </h3>
@@ -1452,7 +1452,7 @@
                           </div>
                         </div>
                       </div>
-                      <div data-gsap="fade-up" class="feature-card-content">
+                      <div class="feature-card-content">
                         <h3 class="feature-card-title">A Gentle, Nurturing Approach</h3>
                         <p class="feature-card-description">
                           Our teachers provide warmth, care, and respect for each
@@ -1480,7 +1480,7 @@
                           </div>
                         </div>
                       </div>
-                      <div data-gsap="fade-up" class="feature-card-content">
+                      <div class="feature-card-content">
                         <h3 class="feature-card-title">A Culture of Care</h3>
                         <p class="feature-card-description">
                           Kindness is built in. Bullying is rare. We foster a culture of
@@ -1511,7 +1511,7 @@
                           </div>
                         </div>
                       </div>
-                      <div data-gsap="fade-up" class="feature-card-content">
+                      <div class="feature-card-content">
                         <h3 class="feature-card-title">Creativity in Every Corner</h3>
                         <p class="feature-card-description">
                           Whether it's a hand-carved spoon, a stage performance, or a
@@ -2131,6 +2131,7 @@
               </div>
             </div>
 
+
             <!-- Controls -->
             <div class="row">
               <div class="col-lg-6 offset-lg-5 position-relative">
@@ -2140,14 +2141,14 @@
                       <!-- Pagination -->
                       <div class="col-auto d-flex align-items-center">
                         <div class="testimonial-audio-pagination-wrapper">
-                          <div data-gsap="slide-left" data-gsap-stagger="0.1" data-gsap-start="top 100%"
+                          <div data-gsap="fade-left" data-gsap-stagger="0.1" data-gsap-start="top 100%"
                             class="swiper-pagination testimonial-audio-pagination"></div>
                         </div>
                       </div>
                       <!-- Navigation Arrows -->
                       <div class="col-auto d-flex align-items-center">
-                        <div data-gsap="slide-right" data-gsap-stagger="0.1" data-gsap-start="top 100%"
-                          data-gsap-ease="back.out(5)" class="testimonial-audio-navigation arrow-navigation">
+                        <div data-gsap="fade-right" data-gsap-stagger="0.1" data-gsap-start="top 100%"
+                          data-gsap-ease="back.out(1.2)" class="testimonial-audio-navigation arrow-navigation">
                           <!-- Left Arrow -->
                           <button class="arrow-navigation__arrow arrow-navigation__arrow--left" type="button"
                             aria-label="Previous">

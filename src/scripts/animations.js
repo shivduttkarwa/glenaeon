@@ -825,6 +825,7 @@ if (document.readyState === 'loading') {
 // - lines (line-by-line slide up - auto-detects lines on any device)
 // - what-we-do-header (section title + logo scrub animation)
 // - what-we-do-cards (feature card circles + content reveal)
+// - core-values (core value icons zoom-in + text slide-up)
 // - hero-about (about hero line slide-in, waits for body.loaded when data-gsap-wait-loaded is set)
 // - hero-home (home hero script reveal + bold character rise)
 // - hero-learning (script clip reveal + bold character rise)
@@ -848,7 +849,7 @@ class GSAPAnimations {
       ease: {
         fade: 'power2.out',
         zoom: 'power2.out',
-        zoomIn: 'back.out(1.2)',
+        zoomIn: 'back.out(1.1)',
         slide: 'power2.out',
         clip: 'power3.out',
         chars: 'expo.out'
@@ -942,6 +943,9 @@ class GSAPAnimations {
           break;
         case 'what-we-do-cards':
           this.whatWeDoCards(el, config);
+          break;
+        case 'core-values':
+          this.coreValues(el, config);
           break;
         case 'hero-about':
           this.heroAbout(el, config);
@@ -1113,7 +1117,7 @@ class GSAPAnimations {
     const children = el.children.length > 0 ? Array.from(el.children) : null;
     const target = children && config.stagger ? children : el;
 
-    gsap.set(target, { x: -100, autoAlpha: 0 });
+    gsap.set(target, { x: -300, autoAlpha: 0 });
 
     gsap.to(target,
       {
@@ -1132,7 +1136,7 @@ class GSAPAnimations {
     const children = el.children.length > 0 ? Array.from(el.children) : null;
     const target = children && config.stagger ? children : el;
 
-    gsap.set(target, { x: 100, autoAlpha: 0 });
+    gsap.set(target, { x: 300, autoAlpha: 0 });
 
     gsap.to(target,
       {
@@ -1432,7 +1436,8 @@ class GSAPAnimations {
         trigger: el,
         start: 'top 60%',
         end: 'bottom 40%',
-        toggleActions: 'play none none reverse'
+        toggleActions: 'play none none none',
+        once: true
       }
     });
 
@@ -1512,6 +1517,61 @@ class GSAPAnimations {
           },
           delay: (index * 0.15) + 0.3
         });
+      }
+    });
+  }
+
+  // Core values list animation (icon zoom-in + text slide-up with stagger)
+  coreValues(el, config) {
+    if (!el) return;
+
+    const items = Array.from(el.querySelectorAll('.core-value-item'));
+    if (!items.length) return;
+
+    const stagger = Number.isFinite(config.stagger) ? config.stagger : 0.2;
+    const duration = Number.isFinite(config.duration) ? config.duration : 1.25;
+    const delay = Number.isFinite(config.delay) ? config.delay : 0;
+    const iconEase = config.ease || this.defaults.ease.zoomIn;
+    const textEase = config.ease || this.defaults.ease.slide;
+
+    items.forEach(item => {
+      const icon = item.querySelector('.core-value-icon-wrapper');
+      const text = item.querySelector('.core-value-text');
+
+      if (icon) {
+        gsap.set(icon, { scale: 0.4, autoAlpha: 0 });
+      }
+
+      if (text) {
+        gsap.set(text, { y: 30, autoAlpha: 0 });
+      }
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: this.buildScrollTrigger(el, config)
+    });
+
+    items.forEach((item, index) => {
+      const icon = item.querySelector('.core-value-icon-wrapper');
+      const text = item.querySelector('.core-value-text');
+      const start = delay + (index * stagger);
+
+      if (icon) {
+        tl.to(icon, {
+          scale: 1,
+          autoAlpha: 1,
+          duration,
+          ease: iconEase
+        }, start);
+      }
+
+      if (text) {
+        tl.to(text, {
+          y: 0,
+          autoAlpha: 1,
+          duration,
+          ease: textEase
+        }, start + 0.05);
       }
     });
   }
